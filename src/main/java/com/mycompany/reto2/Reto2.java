@@ -10,8 +10,9 @@ package com.mycompany.reto2;
  */
 public class Reto2 {
 
-    public static void main(String[] args) {
-        Conection conexion = new Conection();
-        conexion.pruebaConsulta();
+    public Reto2() {
+        LogIn logIn;
+        MyConnection conexion = new MyConnection();
+        conexion.tryQuery();
     }
 }
