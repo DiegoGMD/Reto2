@@ -11,4 +11,12 @@
         <maven.compiler.target>21</maven.compiler.target>
         <exec.mainClass>com.mycompany.reto2.Reto2</exec.mainClass>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.26</version>
+        </dependency>
+    </dependencies>
+    <name>Reto2</name>
 </project>
