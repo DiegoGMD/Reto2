@@ -15,6 +15,8 @@ import javax.swing.JOptionPane;
  */
 public class LogIn extends javax.swing.JDialog {
 
+    public String usuario;
+    public String contraseña;
 
     /**
      * Creates new form LogIn
@@ -23,11 +25,7 @@ public class LogIn extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        MyConnection conexion = new MyConnection();
-        conexion.tryQuery2();
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -154,15 +152,18 @@ public class LogIn extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOKActionPerformed
-
+        usuario = jTextFieldUsername.getText();
+        contraseña = jTextFieldPassword.getText();
+        MyConnection conexion = new MyConnection();
+        conexion.verificarCredenciales(usuario, contraseña);
     }//GEN-LAST:event_jButtonOKActionPerformed
 
     private void jTextFieldUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUsernameActionPerformed
-
+        
     }//GEN-LAST:event_jTextFieldUsernameActionPerformed
 
     private void jTextFieldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPasswordActionPerformed
-
+        
     }//GEN-LAST:event_jTextFieldPasswordActionPerformed
 
     /**

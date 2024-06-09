@@ -6,6 +6,7 @@ package com.mycompany.reto2;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -24,21 +25,10 @@ public class MyConnection {
     public static String puerto = "3306";
     public static String cadena = "jdbc:mysql://" + ip + ":" + puerto + "/" + bd;
 
-    public MyConnection() {
-        this.connection = connection;
-        this.usuario = usuario;
-        this.contraseña = contraseña;
-        this.bd = bd;
-        this.ip = ip;
-        this.puerto = puerto;
-        this.cadena = cadena;
-    }
-
     public Connection makeConection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(cadena, usuario, contraseña);
-            JOptionPane.showInternalMessageDialog(null, "Se pudo conectar");
         } catch (Exception e) {
             JOptionPane.showInternalMessageDialog(null, "No se pudo conectar" + e.toString());
         }
@@ -66,8 +56,8 @@ public class MyConnection {
             }
         }
     }
-    
-     public void tryQuery2() { //Esto es una consulta temporal, lo tendremos de modelo
+
+    public void tryQuery2() { //Esto es una consulta temporal, lo tendremos de modelo
         Connection conn = makeConection();
         if (conn != null) {
             try {
@@ -78,6 +68,33 @@ public class MyConnection {
                 while (rs.next()) {
                     String nombre = rs.getString("apellidos");
                     System.out.println("Nombre: " + nombre);
+                }
+
+                rs.close();
+                stmt.close();
+                conn.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+            }
+        }
+    }
+
+    public void verificarCredenciales(String nombre, String clave) {
+        Connection conn = makeConection();
+        if (conn != null) {
+            try {
+                String query = "SELECT nombre, contrasena FROM credenciales";
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+
+                while (rs.next()) {
+                    String nombre1 = rs.getString("nombre");
+                    String clave1 = rs.getString("contrasena");
+                    if(nombre.equals(nombre1) && clave.equals(clave1)) {
+                        System.out.println("Nombre: " + nombre + " Clave: " + clave);
+                    } else {
+                        System.out.println("Ususuario no encontrado");
+                    }
                 }
 
                 rs.close();

@@ -11,7 +11,6 @@ package com.mycompany.reto2;
 public class Reto2 {
 
     public Reto2() {
-        LogIn logIn;
         MyConnection conexion = new MyConnection();
         conexion.tryQuery();
     }
