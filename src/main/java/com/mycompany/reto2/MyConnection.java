@@ -80,6 +80,23 @@ public class MyConnection {
             }
         }
     }
+    
+     public void tryQuery3() { //Esto es una consulta temporal, lo tendremos de modelo
+        Connection conn = makeConection();
+        if (conn != null) {
+            try {
+                String query = "INSERT INTO prevision_fct(idempresa,idciclo,cursoescolar,solicitaAlu,acogeAlu,totalSoli)"
+                + "VALUES(1,2,'2023-2024',40,0,40)";
+                Statement stmt = conn.createStatement();
+                int rs = stmt.executeUpdate(query);
+
+                stmt.close();
+                conn.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+            }
+        }
+    }
 
     public boolean verificarCredenciales(String nombre, String clave) {
         boolean verificacion = false;
