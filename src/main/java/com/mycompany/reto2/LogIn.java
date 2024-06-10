@@ -43,7 +43,7 @@ public class LogIn extends javax.swing.JDialog {
         jTextFieldUsername = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jPanelLogo = new javax.swing.JPanel();
-        jTextFieldPassword = new javax.swing.JTextField();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -84,12 +84,7 @@ public class LogIn extends javax.swing.JDialog {
             .addGap(0, 30, Short.MAX_VALUE)
         );
 
-        jTextFieldPassword.setText("**********");
-        jTextFieldPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldPasswordActionPerformed(evt);
-            }
-        });
+        jPasswordField1.setText("jPasswordField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,9 +99,9 @@ public class LogIn extends javax.swing.JDialog {
                             .addComponent(jLabelPassword)
                             .addComponent(jLabelUsername))
                         .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonHelp, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -137,7 +132,7 @@ public class LogIn extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelPassword)
                     .addComponent(jButtonHelp)
-                    .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -146,7 +141,7 @@ public class LogIn extends javax.swing.JDialog {
 
     private void jButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOKActionPerformed
         usuario = jTextFieldUsername.getText();
-        contraseña = jTextFieldPassword.getText();
+        contraseña = jPasswordField1.getText();
         MyConnection conexion = new MyConnection();
         boolean verification = conexion.verificarCredenciales(usuario, contraseña);
         if (verification) {
@@ -159,10 +154,6 @@ public class LogIn extends javax.swing.JDialog {
     private void jTextFieldUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUsernameActionPerformed
         
     }//GEN-LAST:event_jTextFieldUsernameActionPerformed
-
-    private void jTextFieldPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPasswordActionPerformed
-        
-    }//GEN-LAST:event_jTextFieldPasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,7 +204,7 @@ public class LogIn extends javax.swing.JDialog {
     private javax.swing.JLabel jLabelPassword;
     private javax.swing.JLabel jLabelUsername;
     private javax.swing.JPanel jPanelLogo;
-    private javax.swing.JTextField jTextFieldPassword;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextFieldUsername;
     // End of variables declaration//GEN-END:variables
 }

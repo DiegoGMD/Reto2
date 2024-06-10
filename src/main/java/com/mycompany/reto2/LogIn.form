@@ -33,9 +33,9 @@
                           <Component id="jLabelUsername" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jTextFieldUsername" min="-2" pref="90" max="-2" attributes="0"/>
-                          <Component id="jTextFieldPassword" min="-2" pref="90" max="-2" attributes="0"/>
+                          <Component id="jPasswordField1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="26" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -77,7 +77,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabelPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonHelp" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextFieldPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPasswordField1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
@@ -145,13 +145,10 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Component class="javax.swing.JTextField" name="jTextFieldPassword">
+    <Component class="javax.swing.JPasswordField" name="jPasswordField1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="**********"/>
+        <Property name="text" type="java.lang.String" value="jPasswordField1"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldPasswordActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>
