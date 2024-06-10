@@ -79,7 +79,8 @@ public class MyConnection {
         }
     }
 
-    public void verificarCredenciales(String nombre, String clave) {
+    public boolean verificarCredenciales(String nombre, String clave) {
+        boolean verificacion = false;
         Connection conn = makeConection();
         if (conn != null) {
             try {
@@ -91,12 +92,10 @@ public class MyConnection {
                     String nombre1 = rs.getString("nombre");
                     String clave1 = rs.getString("contrasena");
                     if(nombre.equals(nombre1) && clave.equals(clave1)) {
-                        System.out.println("Nombre: " + nombre + " Clave: " + clave);
-                    } else {
-                        System.out.println("Ususuario no encontrado");
+                        verificacion = true;
+                        break;
                     }
                 }
-
                 rs.close();
                 stmt.close();
                 conn.close();
@@ -104,5 +103,6 @@ public class MyConnection {
                 JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
             }
         }
+        return verificacion;
     }
 }
