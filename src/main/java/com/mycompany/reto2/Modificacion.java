@@ -38,7 +38,7 @@ public class Modificacion extends javax.swing.JFrame {
 
         jLabel1.setText("Selecciona el elemento a modificar");
 
-        jComboBoxElementos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empresa", "Contacto con empresa", "Profesores", "FCT" }));
+        jComboBoxElementos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona una opcion", "Empresa", "Contacto con empresa", "Profesores", "FCT" }));
         jComboBoxElementos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxElementosActionPerformed(evt);
@@ -74,8 +74,8 @@ public class Modificacion extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jComboBoxElementos, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 99, Short.MAX_VALUE)))
+                            .addComponent(jComboBoxElementos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 131, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -101,16 +101,16 @@ public class Modificacion extends javax.swing.JFrame {
 
     private void jComboBoxElementosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxElementosActionPerformed
         switch (jComboBoxElementos.getSelectedIndex()) {
-            case 0:
+            case 1:
                 elemento = 1;
                 break;
-            case 1:
+            case 2:
                 elemento = 2;
                 break;
-            case 2:
+            case 3:
                 elemento = 3;
                 break;
-            case 3:
+            case 4:
                 elemento = 4;
                 break;
         }
