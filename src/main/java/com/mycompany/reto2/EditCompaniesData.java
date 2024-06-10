@@ -4,6 +4,9 @@
  */
 package com.mycompany.reto2;
 
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 /**
  *
  * @author profesor3
@@ -16,7 +19,7 @@ public class EditCompaniesData extends javax.swing.JFrame {
     public EditCompaniesData() {
         initComponents();
         setLocationRelativeTo(null);
-        jLabelTitulo.setText("Empresas:\tSector:");
+        jLabelTitle.setText("Empresas:\tSector:\tAlum.cogidos\tPlazas Vacantes");
         jListCompanies.setModel(new javax.swing.AbstractListModel<String>() {
             MyConnection conexion = new MyConnection();
             String[] strings = conexion.getCompaniesDBData();
@@ -29,6 +32,21 @@ public class EditCompaniesData extends javax.swing.JFrame {
                 return strings[i];
             }
         });
+        jListCompanies.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                getSelectedCompany();
+            }
+        });
+    }
+
+    private void getSelectedCompany() {
+        int selectedIndex = jListCompanies.getSelectedIndex() + 1;
+        if (selectedIndex != -1) {
+            System.out.println("Selected Index: " + selectedIndex);
+        } else {
+            System.out.println("No item selected.");
+        }
     }
 
     /**
@@ -44,17 +62,17 @@ public class EditCompaniesData extends javax.swing.JFrame {
         jTextPane1 = new javax.swing.JTextPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListCompanies = new javax.swing.JList<>();
-        jLabelTitulo = new javax.swing.JLabel();
+        jLabelTitle = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        jLabelCompany = new javax.swing.JLabel();
+        jTextFieldCompanyName = new javax.swing.JTextField();
+        jLabelSector = new javax.swing.JLabel();
+        jTextFieldSector = new javax.swing.JTextField();
+        jLabelFTCs = new javax.swing.JLabel();
+        jTextFieldFCTs = new javax.swing.JTextField();
+        jLabelAssignedStudents = new javax.swing.JLabel();
+        jLabelAvaliablePositions = new javax.swing.JLabel();
+        jTextFieldAssignedStudents = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -75,46 +93,46 @@ public class EditCompaniesData extends javax.swing.JFrame {
         jListCompanies.setPreferredSize(new java.awt.Dimension(25, 90));
         jScrollPane1.setViewportView(jListCompanies);
 
-        jLabelTitulo.setText("Empresas:");
+        jLabelTitle.setText("Empresas:");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         jPanel1.setPreferredSize(new java.awt.Dimension(25, 90));
 
-        jLabel2.setText("Empresa:");
+        jLabelCompany.setText("Company:");
 
-        jTextField1.setText("Unknown");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldCompanyName.setText("Unknown");
+        jTextFieldCompanyName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTextFieldCompanyNameActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Sector:");
+        jLabelSector.setText("Sector:");
 
-        jTextField2.setText("Unknown");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldSector.setText("Unknown");
+        jTextFieldSector.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jTextFieldSectorActionPerformed(evt);
             }
         });
 
-        jLabel4.setText("FCTs:");
+        jLabelFTCs.setText("FCTs:");
 
-        jTextField3.setText("Unknown");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldFCTs.setText("Unknown");
+        jTextFieldFCTs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                jTextFieldFCTsActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Alum. Assignados:");
+        jLabelAssignedStudents.setText("AssignedStudents:");
 
-        jLabel5.setText("Plazas Vacantes:");
+        jLabelAvaliablePositions.setText("AvaliablePositions:");
 
-        jTextField4.setText("Unknown");
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldAssignedStudents.setText("Unknown");
+        jTextFieldAssignedStudents.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                jTextFieldAssignedStudentsActionPerformed(evt);
             }
         });
 
@@ -133,41 +151,41 @@ public class EditCompaniesData extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField5)
-                    .addComponent(jTextField1)
+                    .addComponent(jTextFieldCompanyName)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel5))
-                        .addGap(0, 4, Short.MAX_VALUE))
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField3)
-                    .addComponent(jTextField4))
+                            .addComponent(jLabelCompany)
+                            .addComponent(jLabelSector)
+                            .addComponent(jLabelFTCs)
+                            .addComponent(jLabelAssignedStudents)
+                            .addComponent(jLabelAvaliablePositions))
+                        .addGap(0, 3, Short.MAX_VALUE))
+                    .addComponent(jTextFieldSector)
+                    .addComponent(jTextFieldFCTs)
+                    .addComponent(jTextFieldAssignedStudents))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(jLabelCompany)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addComponent(jLabelSector)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldSector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addComponent(jLabelFTCs)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldFCTs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addComponent(jLabelAssignedStudents)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldAssignedStudents, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
+                .addComponent(jLabelAvaliablePositions)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(44, Short.MAX_VALUE))
@@ -176,6 +194,11 @@ public class EditCompaniesData extends javax.swing.JFrame {
         jButton1.setText("Add");
 
         jButton2.setText("Modify");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Delete");
 
@@ -196,7 +219,7 @@ public class EditCompaniesData extends javax.swing.JFrame {
                         .addComponent(jButton3)
                         .addGap(18, 18, 18)
                         .addComponent(jButton4))
-                    .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -208,7 +231,7 @@ public class EditCompaniesData extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelTitulo)
+                        .addComponent(jLabelTitle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -224,25 +247,30 @@ public class EditCompaniesData extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextFieldCompanyNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCompanyNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTextFieldCompanyNameActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jTextFieldSectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSectorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jTextFieldSectorActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void jTextFieldFCTsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFCTsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_jTextFieldFCTsActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void jTextFieldAssignedStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAssignedStudentsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_jTextFieldAssignedStudentsActionPerformed
 
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        MyConnection conexion = new MyConnection();
+        conexion.tryQuery3();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,21 +315,21 @@ public class EditCompaniesData extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JLabel jLabelAssignedStudents;
+    private javax.swing.JLabel jLabelAvaliablePositions;
+    private javax.swing.JLabel jLabelCompany;
+    private javax.swing.JLabel jLabelFTCs;
+    private javax.swing.JLabel jLabelSector;
+    private javax.swing.JLabel jLabelTitle;
     private javax.swing.JList<String> jListCompanies;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextFieldAssignedStudents;
+    private javax.swing.JTextField jTextFieldCompanyName;
+    private javax.swing.JTextField jTextFieldFCTs;
+    private javax.swing.JTextField jTextFieldSector;
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }
