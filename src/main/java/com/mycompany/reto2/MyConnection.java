@@ -114,12 +114,26 @@ public class MyConnection {
 
         if (conn != null) {
             try {
-                String query = "SELECT nombre, idSector FROM empresa";
+                String query = "SELECT "
+                        + "e.idempresa AS company_id, "
+                        + "e.nombre AS company_name, "
+                        + "s.descripcion AS sector, "
+                        + "rf.num_alu_asignados AS fct_real_assigned_students, "
+                        + "pf.solicitaAlu AS available_places_for_students "
+                        + "FROM "
+                        + "empresa e "
+                        + "LEFT JOIN sector s ON e.idSector = s.idSector "
+                        + "LEFT JOIN realizan_fct rf ON e.idempresa = rf.idempresa "
+                        + "LEFT JOIN prevision_fct pf ON e.idempresa = pf.idempresa "
+                        + "ORDER BY e.idempresa;";
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
 
                 while (rs.next()) {
-                    String line = rs.getString("nombre") + " || " + rs.getString("idSector");
+                    String line = rs.getString("company_name")
+                            + " || " + rs.getString("sector")
+                            + " || " + rs.getString("fct_real_assigned_students")
+                            + " || " + rs.getString("available_places_for_students");
                     data.add(line);
                 }
 
