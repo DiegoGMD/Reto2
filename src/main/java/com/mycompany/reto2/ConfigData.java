@@ -5,6 +5,8 @@
 package com.mycompany.reto2;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -34,4 +36,21 @@ public class ConfigData {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    // Array de Empresas
+    ArrayList<String> empresas = new ArrayList<>(Arrays.asList(
+        "480", "InnovateLtd", "Lego", "Orbyz", "Porcelanosa"
+    ));
+
+    // ArrayList de Ciclos Formativos
+    ArrayList<String> ciclosFormativos = new ArrayList<>(Arrays.asList(
+        "DAW", "DAM", "ASIR", "SMR", "AF"
+    ));
+
+    // ArrayList de Grupos
+    ArrayList<Integer> grupos = new ArrayList<>(Arrays.asList(
+        1, 2, 3, 4, 5
+    ));
+    
+  
 }

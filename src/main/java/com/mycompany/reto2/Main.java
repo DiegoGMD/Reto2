@@ -14,7 +14,7 @@ public class Main extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         LogIn logIn = new LogIn(this, true);
-        logIn.setVisible(true);
+        logIn.setVisible(true);  
     }
 
     /**
