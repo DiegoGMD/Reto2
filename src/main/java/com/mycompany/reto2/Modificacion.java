@@ -17,6 +17,8 @@ public class Modificacion extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
+    
+    int elemento;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,7 +30,7 @@ public class Modificacion extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxElementos = new javax.swing.JComboBox<>();
         jButtonVolver = new javax.swing.JButton();
         jButtonOK = new javax.swing.JButton();
 
@@ -36,7 +38,12 @@ public class Modificacion extends javax.swing.JFrame {
 
         jLabel1.setText("Selecciona el elemento a modificar");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empresa", "Contacto con empresa", "Profesores", "FCT" }));
+        jComboBoxElementos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empresa", "Contacto con empresa", "Profesores", "FCT" }));
+        jComboBoxElementos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxElementosActionPerformed(evt);
+            }
+        });
 
         jButtonVolver.setText("Volver");
         jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -46,6 +53,11 @@ public class Modificacion extends javax.swing.JFrame {
         });
 
         jButtonOK.setText("OK");
+        jButtonOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOKActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -57,13 +69,13 @@ public class Modificacion extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButtonVolver)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonOK))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 204, Short.MAX_VALUE)))
+                            .addComponent(jComboBoxElementos, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 99, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -72,7 +84,7 @@ public class Modificacion extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBoxElementos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonVolver)
@@ -87,6 +99,37 @@ public class Modificacion extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
+    private void jComboBoxElementosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxElementosActionPerformed
+        switch (jComboBoxElementos.getSelectedIndex()) {
+            case 0:
+                elemento = 1;
+                break;
+            case 1:
+                elemento = 2;
+                break;
+            case 2:
+                elemento = 3;
+                break;
+            case 3:
+                elemento = 4;
+                break;
+        }
+    }//GEN-LAST:event_jComboBoxElementosActionPerformed
+
+    private void jButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOKActionPerformed
+        if (elemento == 1) {
+            EditCompaniesData editCompaniesData = new EditCompaniesData();
+            editCompaniesData.setVisible(true);
+        } else if (elemento == 2) {
+            
+        } else if (elemento == 3) {
+            
+        } else if (elemento == 4) {
+            
+        }
+    }//GEN-LAST:event_jButtonOKActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */
@@ -125,7 +168,7 @@ public class Modificacion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonOK;
     private javax.swing.JButton jButtonVolver;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBoxElementos;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
