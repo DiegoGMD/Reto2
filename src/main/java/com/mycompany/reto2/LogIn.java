@@ -160,7 +160,7 @@ public class LogIn extends javax.swing.JDialog {
         boolean verification = conexion.verificarCredenciales(usuario, contraseña);
         if (verification) {
             setVisible(false);
-        } else {
+        } else { 
             System.out.println("Cagaste, vuelve a intentar");
         }
     }//GEN-LAST:event_jButtonOKActionPerformed

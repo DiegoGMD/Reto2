@@ -9,6 +9,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -91,7 +93,7 @@ public class MyConnection {
                 while (rs.next()) {
                     String nombre1 = rs.getString("nombre");
                     String clave1 = rs.getString("contrasena");
-                    if(nombre.equals(nombre1) && clave.equals(clave1)) {
+                    if (nombre.equals(nombre1) && clave.equals(clave1)) {
                         verificacion = true;
                         break;
                     }
@@ -104,5 +106,31 @@ public class MyConnection {
             }
         }
         return verificacion;
+    }
+
+    public String[] getCompaniesDBData() {
+        Connection conn = makeConection();
+        List<String> data = new ArrayList<>();
+
+        if (conn != null) {
+            try {
+                String query = "SELECT nombre, idSector FROM empresa";
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+
+                while (rs.next()) {
+                    String line = rs.getString("nombre") + " || " + rs.getString("idSector");
+                    data.add(line);
+                }
+
+                rs.close();
+                stmt.close();
+                conn.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+            }
+        }
+
+        return data.toArray(new String[0]);
     }
 }
