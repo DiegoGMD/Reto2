@@ -4,11 +4,14 @@
  */
 package com.mycompany.reto2;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Administrador
  */
 public class Consultas extends javax.swing.JFrame {
+    private ConfigData configData;
 
     /**
      * Creates new form Consultas
@@ -16,6 +19,7 @@ public class Consultas extends javax.swing.JFrame {
     public Consultas() {
         initComponents();
         setLocationRelativeTo(null);
+        configData = new ConfigData();
     }
 
     /**
@@ -49,7 +53,6 @@ public class Consultas extends javax.swing.JFrame {
 
         jLabelSegunConsulta.setText("Segun consulta");
 
-        jComboBoxSegunconsulta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxSegunconsulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxSegunconsultaActionPerformed(evt);
@@ -106,31 +109,32 @@ public class Consultas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBoxConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxConsultaActionPerformed
-         switch (jComboBoxConsulta.getSelectedIndex()) {
-            case 0:
-                
-                break;
-            case 1:
-                
-                break;
-            case 2:
-                
-                break;
-            case 3:
-                
-                break;
-            case 4:
-                
-                break;
-            case 5:
-                
-                break;  
-            case 6:
-                
-                break;
-            case 7:
-                
-                break;    
+
+        switch (jComboBoxConsulta.getSelectedIndex()) {
+           case 0:
+
+               break;
+           case 1:
+
+               break;
+           case 2:
+
+               break;
+           case 3:
+
+               break;
+           case 4:
+
+               break;
+           case 5:
+
+               break;  
+           case 6:
+
+               break;
+           case 7:
+
+               break;    
         }
     }//GEN-LAST:event_jComboBoxConsultaActionPerformed
 
@@ -139,7 +143,29 @@ public class Consultas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     private void jComboBoxSegunconsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSegunconsultaActionPerformed
-        // TODO add your handling code here:
+        
+    /* public void tryQuery() { //Esto es una consulta temporal, lo tendremos de modelo
+        Connection conn = makeConection();
+        if (conn != null) {
+            try {
+                String query = "SELECT nombre FROM profesor";
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+
+                while (rs.next()) {
+                    String nombre = rs.getString("nombre");
+                    System.out.println("Nombre: " + nombre);
+                }
+
+                rs.close();
+                stmt.close();
+                conn.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+            }
+        }
+    }
+    */
     }//GEN-LAST:event_jComboBoxSegunconsultaActionPerformed
 
     /**
