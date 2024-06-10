@@ -71,7 +71,6 @@ public class LogIn extends javax.swing.JDialog {
 
         jLabelPassword.setText("Password:");
 
-        jTextFieldUsername.setText("Unknown");
         jTextFieldUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldUsernameActionPerformed(evt);
@@ -95,7 +94,11 @@ public class LogIn extends javax.swing.JDialog {
             .addGap(0, 30, Short.MAX_VALUE)
         );
 
-        jPasswordField1.setText("jPasswordField1");
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,9 +113,9 @@ public class LogIn extends javax.swing.JDialog {
                             .addComponent(jLabelPassword)
                             .addComponent(jLabelUsername))
                         .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                            .addComponent(jPasswordField1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonHelp, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -156,7 +159,7 @@ public class LogIn extends javax.swing.JDialog {
         MyConnection conexion = new MyConnection();
         boolean verification = conexion.verificarCredenciales(usuario, contraseña);
         if (verification) {
-            System.out.println("Entraste");
+            setVisible(false);
         } else {
             System.out.println("Cagaste, vuelve a intentar");
         }
@@ -165,6 +168,10 @@ public class LogIn extends javax.swing.JDialog {
     private void jTextFieldUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUsernameActionPerformed
         
     }//GEN-LAST:event_jTextFieldUsernameActionPerformed
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     /**
      * @param args the command line arguments
