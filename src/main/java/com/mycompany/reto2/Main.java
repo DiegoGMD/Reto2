@@ -28,7 +28,7 @@ public class Main extends javax.swing.JFrame {
 
         jLabelUsername = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButtonConsulta = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -37,7 +37,12 @@ public class Main extends javax.swing.JFrame {
 
         jLabel1.setText("Conectado");
 
-        jButton1.setText("Consulta");
+        jButtonConsulta.setText("Consulta");
+        jButtonConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsultaActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Modificación");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -56,7 +61,7 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelUsername)
-                    .addComponent(jButton1))
+                    .addComponent(jButtonConsulta))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(78, 78, 78))
@@ -70,7 +75,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jLabelUsername))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(jButtonConsulta)
                     .addComponent(jButton2))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
@@ -81,6 +86,11 @@ public class Main extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButtonConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultaActionPerformed
+        Consultas consultas = new Consultas();
+        consultas.setVisible(true);
+    }//GEN-LAST:event_jButtonConsultaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,8 +129,8 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonConsulta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelUsername;
     // End of variables declaration//GEN-END:variables
