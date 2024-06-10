@@ -119,6 +119,7 @@ public class Modificacion extends javax.swing.JFrame {
     private void jButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOKActionPerformed
         if (elemento == 1) {
             EditCompaniesData editCompaniesData = new EditCompaniesData();
+            setVisible(false);
             editCompaniesData.setVisible(true);
         } else if (elemento == 2) {
             
