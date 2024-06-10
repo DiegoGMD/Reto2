@@ -15,6 +15,7 @@ public class Main extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         LogIn logIn = new LogIn(this, true);
         logIn.setVisible(true);
+        jLabelUserName.setText(logIn.usuario);
     }
 
     /**
@@ -30,6 +31,7 @@ public class Main extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButtonConsulta = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabelUserName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,11 +62,16 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelUsername)
-                    .addComponent(jButtonConsulta))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(78, 78, 78))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonConsulta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addGap(78, 78, 78))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelUsername)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelUserName)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -72,7 +79,8 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabelUsername))
+                    .addComponent(jLabelUsername)
+                    .addComponent(jLabelUserName))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonConsulta)
@@ -132,6 +140,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonConsulta;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelUserName;
     private javax.swing.JLabel jLabelUsername;
     // End of variables declaration//GEN-END:variables
 }
