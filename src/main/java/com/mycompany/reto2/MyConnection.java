@@ -97,6 +97,81 @@ public class MyConnection {
             }
         }
     }
+     
+
+	public String[] tryQuery4() { // Combobox de empresas
+    	Connection conn = makeConection();
+    	List<String> Empresas = new ArrayList<>();
+           	 
+            if (conn != null) {
+                    try {
+                    String query = "SELECT nombre FROM empresa";
+                    Statement stmt = conn.createStatement();
+                    ResultSet rs = stmt.executeQuery(query);
+
+                    while (rs.next()) {
+                            String nombre = rs.getString("nombre");
+                            Empresas.add(nombre);
+                    }
+                    rs.close();
+                    stmt.close();
+                    conn.close();
+                    } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                    }
+            }
+            return Empresas.toArray(new String[0]);
+        }
+        
+        public String[] tryQuery5() { // Combobox de ciclo
+    	Connection conn = makeConection();
+    	List<String> Ciclo = new ArrayList<>();
+           	 
+            if (conn != null) {
+                    try {
+                    String query = "SELECT ciclo FROM ciclo";
+                    Statement stmt = conn.createStatement();
+                    ResultSet rs = stmt.executeQuery(query);
+
+                    while (rs.next()) {
+                            String cicloStr = rs.getString("ciclo");
+                            Ciclo.add(cicloStr);
+                    }
+                    rs.close();
+                    stmt.close();
+                    conn.close();
+                    } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                    }
+            }
+            return Ciclo.toArray(new String[0]);
+        }
+        
+        public String[] tryQuery6() { // Combobox de grupo
+    	Connection conn = makeConection();
+    	List<String> Grupo = new ArrayList<>();
+           	 
+            if (conn != null) {
+                    try {
+                    String query = "SELECT idGrupo FROM grupo";
+                    Statement stmt = conn.createStatement();
+                    ResultSet rs = stmt.executeQuery(query);
+
+                    while (rs.next()) {
+                            String idGrupoStr = rs.getString("idGrupo");
+                            Grupo.add(idGrupoStr);
+                    }
+                    rs.close();
+                    stmt.close();
+                    conn.close();
+                    } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                    }
+            }
+            return Grupo.toArray(new String[0]);
+        }
+        
+
 
     public boolean verificarCredenciales(String nombre, String clave) {
         boolean verificacion = false;

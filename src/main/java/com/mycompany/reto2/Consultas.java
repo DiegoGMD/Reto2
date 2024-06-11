@@ -21,6 +21,8 @@ public class Consultas extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         configData = new ConfigData();
     }
+ 
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,13 +36,11 @@ public class Consultas extends javax.swing.JFrame {
         jLabelConsulta = new javax.swing.JLabel();
         jComboBoxConsulta = new javax.swing.JComboBox<>();
         OKjButton = new javax.swing.JButton();
-        jLabelSegunConsulta = new javax.swing.JLabel();
-        jComboBoxSegunconsulta = new javax.swing.JComboBox<>();
         jButtonVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabelConsulta.setText("Seleciona la consulta");
+        jLabelConsulta.setText("Seleciona la consulta:");
 
         jComboBoxConsulta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", " " }));
         jComboBoxConsulta.addActionListener(new java.awt.event.ActionListener() {
@@ -50,14 +50,6 @@ public class Consultas extends javax.swing.JFrame {
         });
 
         OKjButton.setText("OK");
-
-        jLabelSegunConsulta.setText("Segun consulta");
-
-        jComboBoxSegunconsulta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxSegunconsultaActionPerformed(evt);
-            }
-        });
 
         jButtonVolver.setText("Volver");
         jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -71,35 +63,27 @@ public class Consultas extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addContainerGap(127, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelConsulta)
-                    .addComponent(jComboBoxConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelSegunConsulta)
-                    .addComponent(jComboBoxSegunconsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabelConsulta)
+                        .addGap(14, 14, 14))
+                    .addComponent(jComboBoxConsulta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(OKjButton)
                     .addComponent(jButtonVolver))
-                .addGap(24, 24, 24))
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelConsulta)
-                    .addComponent(jLabelSegunConsulta))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxSegunconsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(36, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(OKjButton)
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addComponent(jLabelConsulta)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(OKjButton)
+                    .addComponent(jComboBoxConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonVolver)
                 .addContainerGap())
@@ -109,16 +93,17 @@ public class Consultas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBoxConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxConsultaActionPerformed
-
+        MyConnection conexion = new MyConnection();
         switch (jComboBoxConsulta.getSelectedIndex()) {
-           case 0:
-
+            case 0:
+               //jComboBoxSegunconsulta.removeAllItems();
+               //jComboBoxSegunconsulta.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.tryQuery4())); // Combobox de empresas
                break;
            case 1:
-
+               //jComboBoxSegunconsulta.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.tryQuery5()));// Combobox de ciclo
                break;
            case 2:
-
+               //jComboBoxSegunconsulta.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.tryQuery6()));// Combobox de curso
                break;
            case 3:
 
@@ -135,38 +120,15 @@ public class Consultas extends javax.swing.JFrame {
            case 7:
 
                break;    
+           case 8:
+               
+               break;
         }
     }//GEN-LAST:event_jComboBoxConsultaActionPerformed
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
          setVisible(false);
     }//GEN-LAST:event_jButtonVolverActionPerformed
-
-    private void jComboBoxSegunconsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSegunconsultaActionPerformed
-        
-    /* public void tryQuery() { //Esto es una consulta temporal, lo tendremos de modelo
-        Connection conn = makeConection();
-        if (conn != null) {
-            try {
-                String query = "SELECT nombre FROM profesor";
-                Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery(query);
-
-                while (rs.next()) {
-                    String nombre = rs.getString("nombre");
-                    System.out.println("Nombre: " + nombre);
-                }
-
-                rs.close();
-                stmt.close();
-                conn.close();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
-            }
-        }
-    }
-    */
-    }//GEN-LAST:event_jComboBoxSegunconsultaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,8 +169,7 @@ public class Consultas extends javax.swing.JFrame {
     private javax.swing.JButton OKjButton;
     private javax.swing.JButton jButtonVolver;
     private javax.swing.JComboBox<String> jComboBoxConsulta;
-    private javax.swing.JComboBox<String> jComboBoxSegunconsulta;
     private javax.swing.JLabel jLabelConsulta;
-    private javax.swing.JLabel jLabelSegunConsulta;
     // End of variables declaration//GEN-END:variables
+
 }
