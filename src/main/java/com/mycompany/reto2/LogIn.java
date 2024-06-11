@@ -4,10 +4,12 @@
  */
 package com.mycompany.reto2;
 
+import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -42,27 +44,62 @@ public class LogIn extends javax.swing.JDialog {
             }
         });
         addBongo();
+        addLogo();
+        pack();
+        setVisible(true);
     }
 
     public void addBongo() {
-        try {
-            Image image = ImageIO.read(getClass().getResource("images/bongoCat.png"));
-            JPanel imagePanel = new JPanel() {
-                @Override
-                protected void paintComponent(Graphics g) {
-                    super.paintComponent(g);
-                    if (image != null) {
-                        g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
-                    }
+         try {
+        URL imageUrl = getClass().getResource("/images/bongoCat.png");
+        if (imageUrl == null) {
+            throw new IllegalArgumentException("Image not found!");
+        }
+        Image image = ImageIO.read(imageUrl);
+        JPanel imagePanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                if (image != null) {
+                    g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
                 }
-            };
-            imagePanel.setPreferredSize(jPanelLogoBongoPhoto.getPreferredSize());
-            jPanelLogoBongoPhoto.removeAll();
-            jPanelLogoBongoPhoto.add(imagePanel);
-            jPanelLogoBongoPhoto.revalidate();
-            jPanelLogoBongoPhoto.repaint();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            }
+        };
+        imagePanel.setPreferredSize(jPanelLogoBongoPhoto.getPreferredSize());
+        jPanelLogoBongoPhoto.setLayout(new BorderLayout());
+        jPanelLogoBongoPhoto.removeAll();
+        jPanelLogoBongoPhoto.add(imagePanel, BorderLayout.CENTER);
+        jPanelLogoBongoPhoto.revalidate();
+        jPanelLogoBongoPhoto.repaint();
+    } catch (Exception ex) {
+        ex.printStackTrace();
+        }
+    }
+    
+    public void addLogo() {
+         try {
+        URL imageUrl = getClass().getResource("/images/bongoEnterprise.png");
+        if (imageUrl == null) {
+            throw new IllegalArgumentException("Image not found!");
+        }
+        Image image = ImageIO.read(imageUrl);
+        JPanel imagePanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                if (image != null) {
+                    g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+                }
+            }
+        };
+        imagePanel.setPreferredSize(jPanelLogoBongoEnterprise.getPreferredSize());
+        jPanelLogoBongoEnterprise.setLayout(new BorderLayout());
+        jPanelLogoBongoEnterprise.removeAll();
+        jPanelLogoBongoEnterprise.add(imagePanel, BorderLayout.CENTER);
+        jPanelLogoBongoEnterprise.revalidate();
+        jPanelLogoBongoEnterprise.repaint();
+    } catch (Exception ex) {
+        ex.printStackTrace();
         }
     }
     /**
@@ -75,14 +112,14 @@ public class LogIn extends javax.swing.JDialog {
     private void initComponents() {
 
         jButtonOK = new javax.swing.JButton();
+        jPanelLogoBongoPhoto = new javax.swing.JPanel();
+        jPanelLogoBongoEnterprise = new javax.swing.JPanel();
         jButtonHelp = new javax.swing.JButton();
         jLabelUsername = new javax.swing.JLabel();
         jLabelPassword = new javax.swing.JLabel();
         jTextFieldUsername = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jPanelLogoBongoPhoto = new javax.swing.JPanel();
         jPasswordField1 = new javax.swing.JPasswordField();
-        jPanelLogoBongoEnterprise = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -92,20 +129,6 @@ public class LogIn extends javax.swing.JDialog {
                 jButtonOKActionPerformed(evt);
             }
         });
-
-        jButtonHelp.setText("Help");
-
-        jLabelUsername.setText("Username:");
-
-        jLabelPassword.setText("Password:");
-
-        jTextFieldUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldUsernameActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("Bongo FCT");
 
         jPanelLogoBongoPhoto.setToolTipText("");
         jPanelLogoBongoPhoto.setMinimumSize(new java.awt.Dimension(30, 30));
@@ -122,12 +145,6 @@ public class LogIn extends javax.swing.JDialog {
             .addGap(0, 52, Short.MAX_VALUE)
         );
 
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
-            }
-        });
-
         jPanelLogoBongoEnterprise.setToolTipText("");
         jPanelLogoBongoEnterprise.setMinimumSize(new java.awt.Dimension(30, 30));
 
@@ -141,6 +158,26 @@ public class LogIn extends javax.swing.JDialog {
             jPanelLogoBongoEnterpriseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 52, Short.MAX_VALUE)
         );
+
+        jButtonHelp.setText("Help");
+
+        jLabelUsername.setText("Username:");
+
+        jLabelPassword.setText("Password:");
+
+        jTextFieldUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldUsernameActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Bongo FCT");
+
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
