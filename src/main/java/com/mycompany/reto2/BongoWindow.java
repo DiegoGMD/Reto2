@@ -45,7 +45,7 @@ public class BongoWindow extends javax.swing.JFrame {
         }
     }
     
-     private void detectKey() {
+    private void detectKey() {
         JFrame frame = new JFrame();
         frame.addKeyListener(new KeyAdapter() {
             @Override

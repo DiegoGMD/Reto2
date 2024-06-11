@@ -117,6 +117,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButtonConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultaActionPerformed
+        setVisible(false);
         Consultas consultas = new Consultas();
         consultas.setVisible(true);
     }//GEN-LAST:event_jButtonConsultaActionPerformed

@@ -21,6 +21,8 @@ public class Consultas extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         configData = new ConfigData();
     }
+    
+    int selection = 1;
  
     
 
@@ -101,42 +103,79 @@ public class Consultas extends javax.swing.JFrame {
         MyConnection conexion = new MyConnection();
         switch (jComboBoxConsulta.getSelectedIndex()) {
             case 0:
-               //jComboBoxSegunconsulta.removeAllItems();
-               //jComboBoxSegunconsulta.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.tryQuery4())); // Combobox de empresas
+                selection = 1;
                break;
            case 1:
-               //jComboBoxSegunconsulta.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.tryQuery5()));// Combobox de ciclo
+               selection = 2;
                break;
            case 2:
-               //jComboBoxSegunconsulta.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.tryQuery6()));// Combobox de curso
+               selection = 3;
                break;
            case 3:
-
+               selection = 4;
                break;
            case 4:
-
+               selection = 5;
                break;
            case 5:
-
+               selection = 6;
                break;  
            case 6:
-
+               selection = 7;
                break;
            case 7:
-
+               selection = 8;
                break;    
            case 8:
-               
+               selection = 9;
                break;
         }
     }//GEN-LAST:event_jComboBoxConsultaActionPerformed
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
          setVisible(false);
+         Main main = new Main();
+         main.setVisible(true);
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     private void OKjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKjButtonActionPerformed
-        // TODO add your handling code here:
+        if (selection == 1) {
+            setVisible(false);
+            C1 c1 = new C1();
+            c1.setVisible(true);
+        } else if (selection == 2) {
+            setVisible(false);
+            C2 c2 = new C2();
+            c2.setVisible(true);
+        }else if (selection == 3) {
+            setVisible(false);
+            C3 c3 = new C2();
+            c2.setVisible(true);
+        } else if (selection == 2) {
+            setVisible(false);
+            C2 c2 = new C2();
+            c2.setVisible(true);
+        } else if (selection == 2) {
+            setVisible(false);
+            C2 c2 = new C2();
+            c2.setVisible(true);
+        } else if (selection == 2) {
+            setVisible(false);
+            C2 c2 = new C2();
+            c2.setVisible(true);
+        } else if (selection == 2) {
+            setVisible(false);
+            C2 c2 = new C2();
+            c2.setVisible(true);
+        } else if (selection == 2) {
+            setVisible(false);
+            C2 c2 = new C2();
+            c2.setVisible(true);
+        } else if (selection == 2) {
+            setVisible(false);
+            C2 c2 = new C2();
+            c2.setVisible(true);
+        }
     }//GEN-LAST:event_OKjButtonActionPerformed
 
     /**
