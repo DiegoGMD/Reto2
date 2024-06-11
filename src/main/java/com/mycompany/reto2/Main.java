@@ -4,6 +4,8 @@
  */
 package com.mycompany.reto2;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author profesor3
@@ -13,6 +15,8 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         setLocationRelativeTo(null);
+        BongoWindow bongoWindow = new BongoWindow();
+        bongoWindow.setVisible(true);
         LogIn logIn = new LogIn(this, true);
         logIn.setVisible(true);
         BongoLoadingScreen loadingScreen = new BongoLoadingScreen();
