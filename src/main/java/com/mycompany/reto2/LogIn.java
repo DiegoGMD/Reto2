@@ -44,9 +44,7 @@ public class LogIn extends javax.swing.JDialog {
             }
         });
         addBongo();
-        addLogo();
-        pack();
-        setVisible(true);
+        addBongo2();
     }
 
     public void addBongo() {
@@ -76,9 +74,9 @@ public class LogIn extends javax.swing.JDialog {
         }
     }
     
-    public void addLogo() {
+    public void addBongo2() {
          try {
-        URL imageUrl = getClass().getResource("/images/bongoEnterprise.png");
+        URL imageUrl = getClass().getResource("/images/bongoCat.png");
         if (imageUrl == null) {
             throw new IllegalArgumentException("Image not found!");
         }
@@ -92,12 +90,12 @@ public class LogIn extends javax.swing.JDialog {
                 }
             }
         };
-        imagePanel.setPreferredSize(jPanelLogoBongoEnterprise.getPreferredSize());
-        jPanelLogoBongoEnterprise.setLayout(new BorderLayout());
-        jPanelLogoBongoEnterprise.removeAll();
-        jPanelLogoBongoEnterprise.add(imagePanel, BorderLayout.CENTER);
-        jPanelLogoBongoEnterprise.revalidate();
-        jPanelLogoBongoEnterprise.repaint();
+        imagePanel.setPreferredSize(jPanelLogoBongoPhoto2.getPreferredSize());
+        jPanelLogoBongoPhoto2.setLayout(new BorderLayout());
+        jPanelLogoBongoPhoto2.removeAll();
+        jPanelLogoBongoPhoto2.add(imagePanel, BorderLayout.CENTER);
+        jPanelLogoBongoPhoto2.revalidate();
+        jPanelLogoBongoPhoto2.repaint();
     } catch (Exception ex) {
         ex.printStackTrace();
         }
@@ -113,13 +111,13 @@ public class LogIn extends javax.swing.JDialog {
 
         jButtonOK = new javax.swing.JButton();
         jPanelLogoBongoPhoto = new javax.swing.JPanel();
-        jPanelLogoBongoEnterprise = new javax.swing.JPanel();
         jButtonHelp = new javax.swing.JButton();
         jLabelUsername = new javax.swing.JLabel();
         jLabelPassword = new javax.swing.JLabel();
         jTextFieldUsername = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
+        jPanelLogoBongoPhoto2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -138,25 +136,11 @@ public class LogIn extends javax.swing.JDialog {
         jPanelLogoBongoPhoto.setLayout(jPanelLogoBongoPhotoLayout);
         jPanelLogoBongoPhotoLayout.setHorizontalGroup(
             jPanelLogoBongoPhotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 56, Short.MAX_VALUE)
+            .addGap(0, 84, Short.MAX_VALUE)
         );
         jPanelLogoBongoPhotoLayout.setVerticalGroup(
             jPanelLogoBongoPhotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 52, Short.MAX_VALUE)
-        );
-
-        jPanelLogoBongoEnterprise.setToolTipText("");
-        jPanelLogoBongoEnterprise.setMinimumSize(new java.awt.Dimension(30, 30));
-
-        javax.swing.GroupLayout jPanelLogoBongoEnterpriseLayout = new javax.swing.GroupLayout(jPanelLogoBongoEnterprise);
-        jPanelLogoBongoEnterprise.setLayout(jPanelLogoBongoEnterpriseLayout);
-        jPanelLogoBongoEnterpriseLayout.setHorizontalGroup(
-            jPanelLogoBongoEnterpriseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 56, Short.MAX_VALUE)
-        );
-        jPanelLogoBongoEnterpriseLayout.setVerticalGroup(
-            jPanelLogoBongoEnterpriseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 52, Short.MAX_VALUE)
+            .addGap(0, 70, Short.MAX_VALUE)
         );
 
         jButtonHelp.setText("Help");
@@ -179,32 +163,45 @@ public class LogIn extends javax.swing.JDialog {
             }
         });
 
+        jPanelLogoBongoPhoto2.setToolTipText("");
+        jPanelLogoBongoPhoto2.setMinimumSize(new java.awt.Dimension(30, 30));
+        jPanelLogoBongoPhoto2.setPreferredSize(new java.awt.Dimension(70, 70));
+
+        javax.swing.GroupLayout jPanelLogoBongoPhoto2Layout = new javax.swing.GroupLayout(jPanelLogoBongoPhoto2);
+        jPanelLogoBongoPhoto2.setLayout(jPanelLogoBongoPhoto2Layout);
+        jPanelLogoBongoPhoto2Layout.setHorizontalGroup(
+            jPanelLogoBongoPhoto2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanelLogoBongoPhoto2Layout.setVerticalGroup(
+            jPanelLogoBongoPhoto2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelPassword)
                             .addComponent(jLabelUsername))
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextFieldUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                            .addComponent(jPasswordField1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonHelp, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonOK, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(jPasswordField1)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jPanelLogoBongoPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanelLogoBongoPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanelLogoBongoEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel2)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonHelp, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                    .addComponent(jButtonOK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelLogoBongoPhoto2, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -214,10 +211,8 @@ public class LogIn extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addComponent(jLabel2))
-                    .addComponent(jPanelLogoBongoEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanelLogoBongoPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanelLogoBongoPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelLogoBongoPhoto2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelUsername)
@@ -228,7 +223,7 @@ public class LogIn extends javax.swing.JDialog {
                     .addComponent(jLabelPassword)
                     .addComponent(jButtonHelp)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -302,8 +297,8 @@ public class LogIn extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelPassword;
     private javax.swing.JLabel jLabelUsername;
-    private javax.swing.JPanel jPanelLogoBongoEnterprise;
     private javax.swing.JPanel jPanelLogoBongoPhoto;
+    private javax.swing.JPanel jPanelLogoBongoPhoto2;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextFieldUsername;
     // End of variables declaration//GEN-END:variables
