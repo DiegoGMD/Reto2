@@ -129,7 +129,7 @@ public class MyConnection {
 
         if (conn != null) {
             try {
-                String query = "SELECT ciclo FROM ciclo";
+                String query = "SELECT DISTINCT ciclo FROM ciclo";
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
 
