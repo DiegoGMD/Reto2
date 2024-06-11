@@ -19,9 +19,8 @@ public class EditCompaniesData extends javax.swing.JFrame {
     public EditCompaniesData() {
         initComponents();
         setLocationRelativeTo(null);
-        jLabelTitle.setText("Empresas:\tSector:\tAlum.cogidos\tPlazas Vacantes");
         jListCompanies.setModel(new javax.swing.AbstractListModel<String>() {
-            MyConnection conexion = new MyConnection();
+            MyConnection1 conexion = new MyConnection1();
             String[] strings = conexion.getCompaniesDBData();
 
             public int getSize() {
@@ -50,21 +49,64 @@ public class EditCompaniesData extends javax.swing.JFrame {
     }
 
     public void readCompanyData(int index) {
-        MyConnection conexion = new MyConnection();
-        String[] data = conexion.getCompaniesDBData(index);
-        String[] values = data[0].split(" \\|\\| ");
+        MyConnection1 conexion = new MyConnection1();
+        String[] data = conexion.getCompanyDBData(index);
 
-        if (values.length >= 4) {
-            jTextFieldCompanyName.setText(values[0]);
-            jTextFieldSector.setText(values[1]);
-            jTextFieldAssignedStudents.setText(values[2]);
-            jTextFieldAvaliablePositions.setText(values[3]);
-            if (jTextFieldAssignedStudents.equals(null) ||
-                    jTextFieldAvaliablePositions.equals(null)){
-                jTextFieldFCTs.setText("None");
-            } else {
-                
+        if (data.length >= 1) { // Ensure data is retrieved successfully
+            String[] values = data[0].split(" \\|\\| ");
+
+            if (values.length >= 5) {
+                jTextFieldCompanyName.setText(values[0]);
+                jTextFieldSector.setText(values[1]);
+                jTextFieldFCTs.setText("null");
+                jTextFieldAssignedStudents.setText(values[2]);
+                jTextFieldAvailablePlaces.setText(values[3]);
+                jTextFieldTotalRequests.setText(values[4]);
+
+                if (!(values[4].equals("null"))) {
+                    jTextFieldFCTs.setText("Yes");
+                } else {
+                    jTextFieldFCTs.setText("No");
+                }
             }
+        } else {
+            jTextFieldCompanyName.setText("");
+            jTextFieldSector.setText("");
+            jTextFieldFCTs.setText("");
+            jTextFieldAssignedStudents.setText("");
+            jTextFieldAvailablePlaces.setText("");
+            jTextFieldTotalRequests.setText("");
+        }
+    }
+
+    public void editCompanyData(int index) {
+        MyConnection1 conexion = new MyConnection1();
+        String[] data = conexion.getCompanyDBData(index);
+
+        if (data.length >= 1) { // Ensure data is retrieved successfully
+            String[] values = data[0].split(" \\|\\| ");
+
+            if (values.length >= 5) {
+                jTextFieldCompanyName.setText(values[0]);
+                jTextFieldSector.setText(values[1]);
+                jTextFieldFCTs.setText("null");
+                jTextFieldAssignedStudents.setText(values[2]);
+                jTextFieldAvailablePlaces.setText(values[3]);
+                jTextFieldTotalRequests.setText(values[4]);
+
+                if (!(values[4].equals("null"))) {
+                    jTextFieldFCTs.setText("Yes");
+                } else {
+                    jTextFieldFCTs.setText("No");
+                }
+            }
+        } else {
+            jTextFieldCompanyName.setText("null");
+            jTextFieldSector.setText("null");
+            jTextFieldFCTs.setText("null");
+            jTextFieldAssignedStudents.setText("null");
+            jTextFieldAvailablePlaces.setText("null");
+            jTextFieldTotalRequests.setText("null");
         }
     }
 
@@ -81,7 +123,6 @@ public class EditCompaniesData extends javax.swing.JFrame {
         jTextPane1 = new javax.swing.JTextPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListCompanies = new javax.swing.JList<>();
-        jLabelTitle = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabelCompany = new javax.swing.JLabel();
         jTextFieldCompanyName = new javax.swing.JTextField();
@@ -90,13 +131,16 @@ public class EditCompaniesData extends javax.swing.JFrame {
         jLabelFTCs = new javax.swing.JLabel();
         jTextFieldFCTs = new javax.swing.JTextField();
         jLabelAssignedStudents = new javax.swing.JLabel();
-        jLabelAvaliablePositions = new javax.swing.JLabel();
+        jLabelAvailablePlaces = new javax.swing.JLabel();
         jTextFieldAssignedStudents = new javax.swing.JTextField();
-        jTextFieldAvaliablePositions = new javax.swing.JTextField();
+        jTextFieldAvailablePlaces = new javax.swing.JTextField();
+        jLabelTotalRequests = new javax.swing.JLabel();
+        jTextFieldTotalRequests = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButtonBack = new javax.swing.JButton();
 
         jScrollPane2.setViewportView(jTextPane1);
 
@@ -111,8 +155,6 @@ public class EditCompaniesData extends javax.swing.JFrame {
         jListCompanies.setToolTipText("");
         jListCompanies.setPreferredSize(new java.awt.Dimension(25, 90));
         jScrollPane1.setViewportView(jListCompanies);
-
-        jLabelTitle.setText("Empresas:");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         jPanel1.setPreferredSize(new java.awt.Dimension(25, 90));
@@ -146,7 +188,7 @@ public class EditCompaniesData extends javax.swing.JFrame {
 
         jLabelAssignedStudents.setText("AssignedStudents:");
 
-        jLabelAvaliablePositions.setText("AvaliablePositions:");
+        jLabelAvailablePlaces.setText("AvailablePlaces:");
 
         jTextFieldAssignedStudents.setText("Unknown");
         jTextFieldAssignedStudents.addActionListener(new java.awt.event.ActionListener() {
@@ -155,12 +197,16 @@ public class EditCompaniesData extends javax.swing.JFrame {
             }
         });
 
-        jTextFieldAvaliablePositions.setText("Unknown");
-        jTextFieldAvaliablePositions.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldAvailablePlaces.setText("Unknown");
+        jTextFieldAvailablePlaces.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldAvaliablePositionsActionPerformed(evt);
+                jTextFieldAvailablePlacesActionPerformed(evt);
             }
         });
+
+        jLabelTotalRequests.setText("Total Requests:");
+
+        jTextFieldTotalRequests.setText("Unknown");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -169,19 +215,21 @@ public class EditCompaniesData extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldAvaliablePositions)
+                    .addComponent(jTextFieldAvailablePlaces)
                     .addComponent(jTextFieldCompanyName)
+                    .addComponent(jTextFieldSector)
+                    .addComponent(jTextFieldFCTs)
+                    .addComponent(jTextFieldAssignedStudents)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelCompany)
                             .addComponent(jLabelSector)
                             .addComponent(jLabelFTCs)
                             .addComponent(jLabelAssignedStudents)
-                            .addComponent(jLabelAvaliablePositions))
-                        .addGap(0, 3, Short.MAX_VALUE))
-                    .addComponent(jTextFieldSector)
-                    .addComponent(jTextFieldFCTs)
-                    .addComponent(jTextFieldAssignedStudents))
+                            .addComponent(jLabelAvailablePlaces))
+                        .addGap(0, 5, Short.MAX_VALUE))
+                    .addComponent(jLabelTotalRequests, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldTotalRequests))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -204,10 +252,14 @@ public class EditCompaniesData extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldAssignedStudents, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelAvaliablePositions)
+                .addComponent(jLabelAvailablePlaces)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldAvaliablePositions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addComponent(jTextFieldAvailablePlaces, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelTotalRequests)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldTotalRequests, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jButton1.setText("Add");
@@ -222,6 +274,13 @@ public class EditCompaniesData extends javax.swing.JFrame {
         jButton3.setText("Delete");
 
         jButton4.setText("Update");
+
+        jButtonBack.setText("Back");
+        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -238,10 +297,11 @@ public class EditCompaniesData extends javax.swing.JFrame {
                         .addComponent(jButton3)
                         .addGap(18, 18, 18)
                         .addComponent(jButton4))
-                    .addComponent(jLabelTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonBack))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -249,17 +309,15 @@ public class EditCompaniesData extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelTitle)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3)
-                            .addComponent(jButton4)))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4)
+                    .addComponent(jButtonBack))
                 .addContainerGap())
         );
 
@@ -282,14 +340,18 @@ public class EditCompaniesData extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldAssignedStudentsActionPerformed
 
-    private void jTextFieldAvaliablePositionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAvaliablePositionsActionPerformed
+    private void jTextFieldAvailablePlacesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAvailablePlacesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldAvaliablePositionsActionPerformed
+    }//GEN-LAST:event_jTextFieldAvailablePlacesActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         MyConnection conexion = new MyConnection();
         conexion.tryQuery3();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
+        setVisible(false);
+    }//GEN-LAST:event_jButtonBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -334,21 +396,23 @@ public class EditCompaniesData extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonBack;
     private javax.swing.JLabel jLabelAssignedStudents;
-    private javax.swing.JLabel jLabelAvaliablePositions;
+    private javax.swing.JLabel jLabelAvailablePlaces;
     private javax.swing.JLabel jLabelCompany;
     private javax.swing.JLabel jLabelFTCs;
     private javax.swing.JLabel jLabelSector;
-    private javax.swing.JLabel jLabelTitle;
+    private javax.swing.JLabel jLabelTotalRequests;
     private javax.swing.JList<String> jListCompanies;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextFieldAssignedStudents;
-    private javax.swing.JTextField jTextFieldAvaliablePositions;
+    private javax.swing.JTextField jTextFieldAvailablePlaces;
     private javax.swing.JTextField jTextFieldCompanyName;
     private javax.swing.JTextField jTextFieldFCTs;
     private javax.swing.JTextField jTextFieldSector;
+    private javax.swing.JTextField jTextFieldTotalRequests;
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }
