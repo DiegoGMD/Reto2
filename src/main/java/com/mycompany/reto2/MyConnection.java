@@ -171,6 +171,52 @@ public class MyConnection {
         return Grupo.toArray(new String[0]);
     }
 
+    public List<String> informacionEmpresaSelecionada(String empresaSelec) { //Esto es una consulta temporal, lo tendremos de modelo
+        Connection conn = makeConection();
+        List<String> datos = new ArrayList<>();
+        if (conn != null) {
+            try {
+                String query = "SELECT DISTINCT empresa.nombre AS Empresa, "
+                        + "sector.descripcion AS Sector, "
+                        + "profesor.nombre AS Responsable, "
+                        + "personal.nombre AS Personal_Contacto "
+                        + "FROM empresa "
+                        + "JOIN sector ON empresa.idSector = sector.idSector "
+                        + "JOIN responsable ON empresa.idempresa = responsable.idempresa "
+                        + "JOIN profesor ON responsable.idprofe = profesor.idProf "
+                        + "LEFT JOIN personal ON empresa.idempresa = personal.idempresa "
+                        + "AND personal.escontacto = 1;";
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+
+                while (rs.next()) {
+                    String empresa = rs.getString("Empresa");
+                    if (empresa.equals(empresaSelec)) {
+
+                        String line = empresa;
+                        String line2 = rs.getString("Sector");
+                        String line3 = rs.getString("Responsable");
+                        String line4 = rs.getString("Personal_Contacto");
+                        datos.add(line);
+                        datos.add(line2);
+                        datos.add(line3);
+                        datos.add(line4);
+                    }
+                }
+
+                rs.close();
+                stmt.close();
+                conn.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+            }
+        }
+        for (String dato : datos) {
+            System.out.println(dato);
+        }
+        return datos;
+    }
+
     public boolean verificarCredenciales(String nombre, String clave) {
         boolean verificacion = false;
         Connection conn = makeConection();
@@ -234,7 +280,6 @@ public class MyConnection {
                 JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
             }
         }
-
         return data.toArray(new String[0]);
     }
 
