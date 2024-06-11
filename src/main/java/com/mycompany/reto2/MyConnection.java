@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -80,13 +81,13 @@ public class MyConnection {
             }
         }
     }
-    
-     public void tryQuery3() { //Esto es una consulta temporal, lo tendremos de modelo
+
+    public void tryQuery3() { //Esto es una consulta temporal, lo tendremos de modelo
         Connection conn = makeConection();
         if (conn != null) {
             try {
                 String query = "INSERT INTO prevision_fct(idempresa,idciclo,cursoescolar,solicitaAlu,acogeAlu,totalSoli)"
-                + "VALUES(1,2,'2023-2024',40,0,40)";
+                        + "VALUES(1,2,'2023-2024',40,0,40)";
                 Statement stmt = conn.createStatement();
                 int rs = stmt.executeUpdate(query);
 
@@ -97,81 +98,78 @@ public class MyConnection {
             }
         }
     }
-     
 
-	public String[] tryQuery4() { // Combobox de empresas
-    	Connection conn = makeConection();
-    	List<String> Empresas = new ArrayList<>();
-           	 
-            if (conn != null) {
-                    try {
-                    String query = "SELECT nombre FROM empresa";
-                    Statement stmt = conn.createStatement();
-                    ResultSet rs = stmt.executeQuery(query);
+    public String[] tryQuery4() { // Combobox de empresas
+        Connection conn = makeConection();
+        List<String> Empresas = new ArrayList<>();
 
-                    while (rs.next()) {
-                            String nombre = rs.getString("nombre");
-                            Empresas.add(nombre);
-                    }
-                    rs.close();
-                    stmt.close();
-                    conn.close();
-                    } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
-                    }
+        if (conn != null) {
+            try {
+                String query = "SELECT nombre FROM empresa";
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+
+                while (rs.next()) {
+                    String nombre = rs.getString("nombre");
+                    Empresas.add(nombre);
+                }
+                rs.close();
+                stmt.close();
+                conn.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
             }
-            return Empresas.toArray(new String[0]);
         }
-        
-        public String[] tryQuery5() { // Combobox de ciclo
-    	Connection conn = makeConection();
-    	List<String> Ciclo = new ArrayList<>();
-           	 
-            if (conn != null) {
-                    try {
-                    String query = "SELECT ciclo FROM ciclo";
-                    Statement stmt = conn.createStatement();
-                    ResultSet rs = stmt.executeQuery(query);
+        return Empresas.toArray(new String[0]);
+    }
 
-                    while (rs.next()) {
-                            String cicloStr = rs.getString("ciclo");
-                            Ciclo.add(cicloStr);
-                    }
-                    rs.close();
-                    stmt.close();
-                    conn.close();
-                    } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
-                    }
+    public String[] tryQuery5() { // Combobox de ciclo
+        Connection conn = makeConection();
+        List<String> Ciclo = new ArrayList<>();
+
+        if (conn != null) {
+            try {
+                String query = "SELECT ciclo FROM ciclo";
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+
+                while (rs.next()) {
+                    String cicloStr = rs.getString("ciclo");
+                    Ciclo.add(cicloStr);
+                }
+                rs.close();
+                stmt.close();
+                conn.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
             }
-            return Ciclo.toArray(new String[0]);
         }
-        
-        public String[] tryQuery6() { // Combobox de grupo
-    	Connection conn = makeConection();
-    	List<String> Grupo = new ArrayList<>();
-           	 
-            if (conn != null) {
-                    try {
-                    String query = "SELECT idGrupo FROM grupo";
-                    Statement stmt = conn.createStatement();
-                    ResultSet rs = stmt.executeQuery(query);
+        return Ciclo.toArray(new String[0]);
+    }
 
-                    while (rs.next()) {
-                            String idGrupoStr = rs.getString("idGrupo");
-                            Grupo.add(idGrupoStr);
-                    }
-                    rs.close();
-                    stmt.close();
-                    conn.close();
-                    } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
-                    }
+    public String[] tryQuery6() { // Combobox de grupo
+        Connection conn = makeConection();
+        List<String> Grupo = new ArrayList<>();
+
+        if (conn != null) {
+            try {
+                String query = "SELECT idGrupo FROM grupo";
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+
+                while (rs.next()) {
+                    String idGrupoStr = rs.getString("idGrupo");
+                    Grupo.add(idGrupoStr);
+                }
+                rs.close();
+                stmt.close();
+                conn.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
             }
-            return Grupo.toArray(new String[0]);
         }
-        
-
+        return Grupo.toArray(new String[0]);
+    }
 
     public boolean verificarCredenciales(String nombre, String clave) {
         boolean verificacion = false;
@@ -237,6 +235,61 @@ public class MyConnection {
             }
         }
 
+        return data.toArray(new String[0]);
+    }
+
+    public String[] getCompaniesDBData(int index) {
+        Connection conn = makeConection();
+        List<String> data = new ArrayList<>();
+
+        if (conn != null) {
+            PreparedStatement pstmt = null;
+            ResultSet rs = null;
+            try {
+                String query = "SELECT "
+                        + "e.idempresa AS company_id, "
+                        + "e.nombre AS company_name, "
+                        + "s.descripcion AS sector, "
+                        + "rf.num_alu_asignados AS fct_real_assigned_students, "
+                        + "pf.solicitaAlu AS available_places_for_students "
+                        + "FROM "
+                        + "empresa e "
+                        + "LEFT JOIN sector s ON e.idSector = s.idSector "
+                        + "LEFT JOIN realizan_fct rf ON e.idempresa = rf.idempresa "
+                        + "LEFT JOIN prevision_fct pf ON e.idempresa = pf.idempresa "
+                        + "WHERE e.idempresa = ? "
+                        + "ORDER BY e.idempresa;";
+
+                pstmt = conn.prepareStatement(query);
+                pstmt.setInt(1, index);
+                rs = pstmt.executeQuery();
+
+                if (rs.next()) {
+                    String line = rs.getString("company_name")
+                            + " || " + rs.getString("sector")
+                            + " || " + rs.getString("fct_real_assigned_students")
+                            + " || " + rs.getString("available_places_for_students");
+                    data.add(line);
+                }
+
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+            } finally {
+                try {
+                    if (rs != null) {
+                        rs.close();
+                    }
+                    if (pstmt != null) {
+                        pstmt.close();
+                    }
+                    if (conn != null) {
+                        conn.close();
+                    }
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.toString());
+                }
+            }
+        }
         return data.toArray(new String[0]);
     }
 }
