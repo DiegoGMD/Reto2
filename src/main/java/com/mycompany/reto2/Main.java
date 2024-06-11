@@ -4,9 +4,6 @@
  */
 package com.mycompany.reto2;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.Timer;
 /**
  *
  * @author profesor3
@@ -18,24 +15,11 @@ public class Main extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         LogIn logIn = new LogIn(this, true);
         logIn.setVisible(true);
-        showLoadingScreen();
+        BongoLoadingScreen loadingScreen = new BongoLoadingScreen();
+        loadingScreen.showLoadingScreen();
         jLabelUserName.setText(logIn.usuario);
     }
     
-    public void showLoadingScreen() {
-        BongoLoadingScreen bongoLoadingScreen = new BongoLoadingScreen();
-        bongoLoadingScreen.setVisible(true);
-        bongoLoadingScreen.setAlwaysOnTop(true);
-        Timer timer = new Timer(1400, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                bongoLoadingScreen.setVisible(false);
-                ((Timer)e.getSource()).stop();
-            }
-        });
-        timer.setRepeats(false);
-        timer.start();
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

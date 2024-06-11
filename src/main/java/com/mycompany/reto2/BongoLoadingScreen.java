@@ -7,9 +7,12 @@ package com.mycompany.reto2;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 /**
  *
@@ -52,6 +55,21 @@ public class BongoLoadingScreen extends javax.swing.JFrame {
     } catch (Exception ex) {
         ex.printStackTrace();
         }
+    }
+    
+    public void showLoadingScreen() {
+        BongoLoadingScreen bongoLoadingScreen = new BongoLoadingScreen();
+        bongoLoadingScreen.setVisible(true);
+        bongoLoadingScreen.setAlwaysOnTop(true);
+        Timer timer = new Timer(1400, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                bongoLoadingScreen.setVisible(false);
+                ((Timer)e.getSource()).stop();
+            }
+        });
+        timer.setRepeats(false);
+        timer.start();
     }
 
     /**
