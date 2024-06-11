@@ -19,25 +19,22 @@ public class Main extends javax.swing.JFrame {
         LogIn logIn = new LogIn(this, true);
         logIn.setVisible(true);
         showLoadingScreen();
-        
         jLabelUserName.setText(logIn.usuario);
     }
     
     public void showLoadingScreen() {
-        LoadingScreen loadingScreen = new LoadingScreen();
-        loadingScreen.addLogo();
-        loadingScreen.setVisible(true);
-        Timer timer = new Timer(8000, new ActionListener() {
+        BongoLoadingScreen bongoLoadingScreen = new BongoLoadingScreen();
+        bongoLoadingScreen.setVisible(true);
+        Timer timer = new Timer(2500, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loadingScreen.setVisible(false);
+                bongoLoadingScreen.setVisible(false);
                 ((Timer)e.getSource()).stop();
             }
         });
         timer.setRepeats(false);
         timer.start();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
