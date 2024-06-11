@@ -50,6 +50,11 @@ public class Consultas extends javax.swing.JFrame {
         });
 
         OKjButton.setText("OK");
+        OKjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OKjButtonActionPerformed(evt);
+            }
+        });
 
         jButtonVolver.setText("Volver");
         jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -129,6 +134,10 @@ public class Consultas extends javax.swing.JFrame {
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
          setVisible(false);
     }//GEN-LAST:event_jButtonVolverActionPerformed
+
+    private void OKjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKjButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OKjButtonActionPerformed
 
     /**
      * @param args the command line arguments
