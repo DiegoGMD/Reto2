@@ -25,7 +25,8 @@ public class Main extends javax.swing.JFrame {
     public void showLoadingScreen() {
         BongoLoadingScreen bongoLoadingScreen = new BongoLoadingScreen();
         bongoLoadingScreen.setVisible(true);
-        Timer timer = new Timer(2500, new ActionListener() {
+        bongoLoadingScreen.setAlwaysOnTop(true);
+        Timer timer = new Timer(1400, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 bongoLoadingScreen.setVisible(false);
@@ -89,7 +90,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonConsulta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                         .addComponent(jButton2)
                         .addGap(78, 78, 78))
                     .addGroup(layout.createSequentialGroup()
