@@ -4,6 +4,9 @@
  */
 package com.mycompany.reto2;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
 /**
  *
  * @author profesor3
@@ -15,7 +18,24 @@ public class Main extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         LogIn logIn = new LogIn(this, true);
         logIn.setVisible(true);
+        showLoadingScreen();
+        
         jLabelUserName.setText(logIn.usuario);
+    }
+    
+    public void showLoadingScreen() {
+        LoadingScreen loadingScreen = new LoadingScreen();
+        loadingScreen.addLogo();
+        loadingScreen.setVisible(true);
+        Timer timer = new Timer(8000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadingScreen.setVisible(false);
+                ((Timer)e.getSource()).stop();
+            }
+        });
+        timer.setRepeats(false);
+        timer.start();
     }
 
     /**
