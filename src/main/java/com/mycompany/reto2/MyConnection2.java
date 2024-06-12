@@ -35,6 +35,57 @@ public class MyConnection2 {
         return connection;
     }
     
+    public String[] listaTec() {
+        Connection conn = makeConection();
+        List<String> Tec = new ArrayList<>();
+
+        if (conn != null) {
+            try {
+                String query = "SELECT DISTINCT descripcion FROM tecnologia";
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+
+                while (rs.next()) {
+                    String tec = rs.getString("descripcion");
+                    Tec.add(tec);
+                }
+                rs.close();
+                stmt.close();
+                conn.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+            }
+        }
+        return Tec.toArray(new String[0]);
+    }
+    
+    public String[] empresaDesdeTecnologia(String tecnologia) {
+        Connection conn = makeConection();
+        List<String> Empresa = new ArrayList<>();
+        if (conn != null) {
+            try {
+                String query = "SELECT empresa.nombre as Empresa "
+                        + "FROM empresa "
+                        + "JOIN empresa_tecno ON empresa.idempresa = empresa_tecno.idempresa "
+                        + "JOIN tecnologia ON empresa_tecno.idtecno = tecnologia.idTecno "
+                        + "WHERE tecnologia.descripcion = '" + tecnologia + "'; ";
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+
+                while (rs.next()) {
+                    String empresa = rs.getString("Empresa");
+                    Empresa.add(empresa);
+                }
+                rs.close();
+                stmt.close();
+                conn.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+            }
+        }
+        return Empresa.toArray(new String[0]);
+    }
+    
     public List<String> informacionEmpresaYCicloSelecionado(String empresaSelec, String cicloSelec) {
         Connection conn = makeConection();
         List<String> datos = new ArrayList<>();
