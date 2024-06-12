@@ -527,7 +527,7 @@ public class MyConnection1 {
         Connection conn = makeConection();
         if (conn != null) {
             if (info != null && !info.isEmpty()) { // Ensure data is retrieved successfully
-                String[] values = info.split(" \\|\\| ");
+                String[] values = info.split(", ");
                 if (values.length >= 6) { // Ensure there are enough values
                     Statement stmt = null;
                     try {
