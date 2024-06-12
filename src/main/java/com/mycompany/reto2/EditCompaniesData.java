@@ -4,6 +4,8 @@
  */
 package com.mycompany.reto2;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -21,7 +23,8 @@ public class EditCompaniesData extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         jListCompanies.setModel(new javax.swing.AbstractListModel<String>() {
             MyConnection1 conexion = new MyConnection1();
-            String[] strings = conexion.getCompaniesDBData();
+            List<String> dataList = conexion.getCompaniesDBData();
+            String[] strings = dataList.toArray(new String[0]);
 
             public int getSize() {
                 return strings.length;
@@ -50,20 +53,19 @@ public class EditCompaniesData extends javax.swing.JFrame {
 
     public void readCompanyData(int index) {
         MyConnection1 conexion = new MyConnection1();
-        String[] data = conexion.getCompanyDBData(index);
+        List<String> data = conexion.getCompanyDBData(index);
 
-        if (data.length >= 1) { // Ensure data is retrieved successfully
-            String[] values = data[0].split(" \\|\\| ");
+        if (!data.isEmpty()) { // Ensure data is retrieved successfully
+            String[] values = data.get(0).split(" \\|\\| ");
 
             if (values.length >= 5) {
                 jTextFieldCompanyName.setText(values[0]);
                 jTextFieldSector.setText(values[1]);
-                jTextFieldFCTs.setText("null");
                 jTextFieldAssignedStudents.setText(values[2]);
                 jTextFieldAvailablePlaces.setText(values[3]);
                 jTextFieldTotalRequests.setText(values[4]);
 
-                if (!(values[4].equals("null"))) {
+                if (!"null".equals(values[4])) {
                     jTextFieldFCTs.setText("Yes");
                 } else {
                     jTextFieldFCTs.setText("No");
@@ -79,36 +81,16 @@ public class EditCompaniesData extends javax.swing.JFrame {
         }
     }
 
-    public void editCompanyData(int index) {
-        MyConnection1 conexion = new MyConnection1();
-        String[] data = conexion.getCompanyDBData(index);
+    public List<String> getCompanyInfoFromFields() {
+    List<String> companyInfo = new ArrayList<>();
+    companyInfo.add(jTextFieldCompanyName.getText());
+    companyInfo.add(jTextFieldSector.getText());
+    companyInfo.add(jTextFieldAssignedStudents.getText());
+    companyInfo.add(jTextFieldAvailablePlaces.getText());
+    companyInfo.add(jTextFieldTotalRequests.getText());
+    return companyInfo;
+}
 
-        if (data.length >= 1) { // Ensure data is retrieved successfully
-            String[] values = data[0].split(" \\|\\| ");
-
-            if (values.length >= 5) {
-                jTextFieldCompanyName.setText(values[0]);
-                jTextFieldSector.setText(values[1]);
-                jTextFieldFCTs.setText("null");
-                jTextFieldAssignedStudents.setText(values[2]);
-                jTextFieldAvailablePlaces.setText(values[3]);
-                jTextFieldTotalRequests.setText(values[4]);
-
-                if (!(values[4].equals("null"))) {
-                    jTextFieldFCTs.setText("Yes");
-                } else {
-                    jTextFieldFCTs.setText("No");
-                }
-            }
-        } else {
-            jTextFieldCompanyName.setText("null");
-            jTextFieldSector.setText("null");
-            jTextFieldFCTs.setText("null");
-            jTextFieldAssignedStudents.setText("null");
-            jTextFieldAvailablePlaces.setText("null");
-            jTextFieldTotalRequests.setText("null");
-        }
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -136,10 +118,10 @@ public class EditCompaniesData extends javax.swing.JFrame {
         jTextFieldAvailablePlaces = new javax.swing.JTextField();
         jLabelTotalRequests = new javax.swing.JLabel();
         jTextFieldTotalRequests = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jButtonAdd = new javax.swing.JButton();
+        jButtonModify = new javax.swing.JButton();
+        jButtonDelete = new javax.swing.JButton();
+        jButtonUpdate = new javax.swing.JButton();
         jButtonBack = new javax.swing.JButton();
 
         jScrollPane2.setViewportView(jTextPane1);
@@ -262,18 +244,33 @@ public class EditCompaniesData extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Add");
-
-        jButton2.setText("Modify");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAdd.setText("Add");
+        jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonAddActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Delete");
+        jButtonModify.setText("Modify");
+        jButtonModify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModifyActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Update");
+        jButtonDelete.setText("Delete");
+        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteActionPerformed(evt);
+            }
+        });
+
+        jButtonUpdate.setText("Update");
+        jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUpdateActionPerformed(evt);
+            }
+        });
 
         jButtonBack.setText("Back");
         jButtonBack.addActionListener(new java.awt.event.ActionListener() {
@@ -290,13 +287,13 @@ public class EditCompaniesData extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(jButtonAdd)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addComponent(jButtonModify)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)
+                        .addComponent(jButtonDelete)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4))
+                        .addComponent(jButtonUpdate))
                     .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -313,10 +310,10 @@ public class EditCompaniesData extends javax.swing.JFrame {
                     .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
+                    .addComponent(jButtonAdd)
+                    .addComponent(jButtonModify)
+                    .addComponent(jButtonDelete)
+                    .addComponent(jButtonUpdate)
                     .addComponent(jButtonBack))
                 .addContainerGap())
         );
@@ -344,14 +341,27 @@ public class EditCompaniesData extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldAvailablePlacesActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModifyActionPerformed
         MyConnection conexion = new MyConnection();
         conexion.tryQuery3();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonModifyActionPerformed
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
         setVisible(false);
     }//GEN-LAST:event_jButtonBackActionPerformed
+
+    private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
+        MyConnection1 conexion = new MyConnection1();
+        conexion.insertCompanyData(getCompanyInfoFromFields());
+    }//GEN-LAST:event_jButtonAddActionPerformed
+
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonDeleteActionPerformed
+
+    private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonUpdateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -392,11 +402,11 @@ public class EditCompaniesData extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonBack;
+    private javax.swing.JButton jButtonDelete;
+    private javax.swing.JButton jButtonModify;
+    private javax.swing.JButton jButtonUpdate;
     private javax.swing.JLabel jLabelAssignedStudents;
     private javax.swing.JLabel jLabelAvailablePlaces;
     private javax.swing.JLabel jLabelCompany;

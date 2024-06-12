@@ -198,10 +198,10 @@ public class MyConnection1 {
         return verificacion;
     }
 
-    public String[] getCompaniesDBData() {
+    public List<String> getCompaniesDBData() {
         Connection conn = makeConection();
         List<String> data = new ArrayList<>();
-        
+
         if (conn != null) {
             try {
                 String query = "SELECT "
@@ -228,7 +228,7 @@ public class MyConnection1 {
                             + " || " + rs.getString("total_requests");
                     data.add(line);
                 }
-                
+
                 stmt.close();
 
             } catch (SQLException e) {
@@ -243,10 +243,10 @@ public class MyConnection1 {
                 }
             }
         }
-        return data.toArray(new String[0]);
+        return data;
     }
 
-    public String[] getCompanyDBData(int index) {
+    public List<String> getCompanyDBData(int index) {
         Connection conn = makeConection();
         List<String> data = new ArrayList<>();
 
@@ -299,6 +299,100 @@ public class MyConnection1 {
                 }
             }
         }
-        return data.toArray(new String[0]);
+        return data;
+    }
+
+    public void insertCompanyData(List<String> companyInfo) {
+        Connection conn = makeConection();
+
+        if (conn != null) {
+            PreparedStatement pstmt = null;
+            try {
+                // Insert into empresa
+                String query = "INSERT INTO empresa (nombre, idSector) VALUES (?, ?);";
+                pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                pstmt.setString(1, companyInfo.get(0)); // Company name
+                pstmt.setInt(2, getSectorId(companyInfo.get(1))); // Sector ID
+                pstmt.executeUpdate();
+
+                ResultSet generatedKeys = pstmt.getGeneratedKeys();
+                int companyId = -1;
+                if (generatedKeys.next()) {
+                    companyId = generatedKeys.getInt(1);
+                }
+
+                if (companyId != -1) {
+                    // Insert into realizan_fct
+                    query = "INSERT INTO realizan_fct (idempresa, idgrupo, cursoescolar, periodo, num_alu_asignados) VALUES (?, ?, ?, ?, ?);";
+                    pstmt = conn.prepareStatement(query);
+                    pstmt.setInt(1, companyId); // Company ID
+                    pstmt.setInt(2, Integer.parseInt(companyInfo.get(2))); // Group ID
+                    pstmt.setString(3, null); // Academic year
+                    pstmt.setString(4, null); // Period
+                    pstmt.setInt(5, Integer.parseInt(companyInfo.get(5))); // Number of assigned students
+                    pstmt.executeUpdate();
+
+                    // Insert into prevision_fct
+                    query = "INSERT INTO prevision_fct (idempresa, idciclo, cursoescolar, periodo, solicitaAlu, acogeAlu) VALUES (?, ?, ?, ?, ?, ?);";
+                    pstmt = conn.prepareStatement(query);
+                    pstmt.setInt(1, companyId); // Company ID
+                    pstmt.setInt(2, Integer.parseInt(companyInfo.get(6))); // Cycle ID
+                    pstmt.setString(3, companyInfo.get(7)); // Academic year
+                    pstmt.setString(4, companyInfo.get(8)); // Period
+                    pstmt.setBoolean(5, Boolean.parseBoolean(companyInfo.get(9))); // Solicits students
+                    pstmt.setBoolean(6, Boolean.parseBoolean(companyInfo.get(10))); // Accommodates students
+                    pstmt.executeUpdate();
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error inserting data: " + e.toString());
+            } finally {
+                try {
+                    if (pstmt != null) {
+                        pstmt.close();
+                    }
+                    if (conn != null) {
+                        conn.close();
+                    }
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error closing connection: " + e.toString());
+                }
+            }
+        }
+    }
+
+    // Helper method to get the sector ID
+    private int getSectorId(String sectorDescription) {
+        Connection conn = makeConection();
+        int sectorId = -1;
+        if (conn != null) {
+            PreparedStatement pstmt = null;
+            ResultSet rs = null;
+            try {
+                String query = "SELECT idSector FROM sector WHERE descripcion = ?;";
+                pstmt = conn.prepareStatement(query);
+                pstmt.setString(1, sectorDescription);
+                rs = pstmt.executeQuery();
+                if (rs.next()) {
+                    sectorId = rs.getInt("idSector");
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error fetching sector ID: " + e.toString());
+            } finally {
+                try {
+                    if (rs != null) {
+                        rs.close();
+                    }
+                    if (pstmt != null) {
+                        pstmt.close();
+                    }
+                    if (conn != null) {
+                        conn.close();
+                    }
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error closing connection: " + e.toString());
+                }
+            }
+        }
+        return sectorId;
     }
 }
