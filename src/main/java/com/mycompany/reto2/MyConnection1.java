@@ -437,13 +437,13 @@ public class MyConnection1 {
 
                 while (rs.next()) {
                     String line = rs.getString("company_id")
-                            + " || " + rs.getString("company_name")
-                            + " || " + rs.getString("course_id")
-                            + " || " + rs.getString("course_name")
-                            + " || " + rs.getString("course_year")
-                            + " || " + rs.getString("fct_real_assigned_students")
-                            + " || " + rs.getString("available_places_for_students")
-                            + " || " + rs.getString("total_requests");
+                            + ", " + rs.getString("company_name")
+                            + ", " + rs.getString("course_id")
+                            + ", " + rs.getString("course_name")
+                            + ", " + rs.getString("course_year")
+                            + ", " + rs.getString("fct_real_assigned_students")
+                            + ", " + rs.getString("available_places_for_students")
+                            + ", " + rs.getString("total_requests");
                     data.add(line);
                 }
 
@@ -494,13 +494,13 @@ public class MyConnection1 {
 
                 while (rs.next()) {
                     line = rs.getInt("company_id")
-                            + " || " + rs.getString("company_name")
-                            + " || " + rs.getInt("course_id")
-                            + " || " + rs.getString("course_name")
-                            + " || " + rs.getString("course_year")
-                            + " || " + rs.getInt("fct_real_assigned_students")
-                            + " || " + rs.getInt("available_places_for_students")
-                            + " || " + rs.getInt("total_requests");
+                            + ", " + rs.getString("company_name")
+                            + ", " + rs.getInt("course_id")
+                            + ", " + rs.getString("course_name")
+                            + ", " + rs.getString("course_year")
+                            + ", " + rs.getInt("fct_real_assigned_students")
+                            + ", " + rs.getInt("available_places_for_students")
+                            + ", " + rs.getInt("total_requests");
                 }
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());

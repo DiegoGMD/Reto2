@@ -31,13 +31,18 @@ public class EditFCTsData extends javax.swing.JFrame {
             }
 
             public String getElementAt(int i) {
+                System.out.println(strings[i]);
+                System.out.println(i);
                 return strings[i];
             }
         });
         jListCompanies.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                readFCTData(getSelectedFCT());
+                MyConnection1 conexion = new MyConnection1();
+                List<String> dataList = conexion.getFCTsDBData();
+                String[] strings = dataList.toArray(new String[0]);
+                readFCTData(strings[getSelectedFCT()]);
             }
         });
     }
@@ -51,12 +56,10 @@ public class EditFCTsData extends javax.swing.JFrame {
         }
     }
 
-    public void readFCTData(int index) {
+    public void readFCTData(String data) {
         MyConnection1 conexion = new MyConnection1();
-        String data = conexion.getFCTsDBData(index); // getFCTsDBData(index) returns a single string
-
         if (data != null && !data.isEmpty()) { // Ensure data is retrieved successfully
-            String[] values = data.split(" \\|\\| "); // Split the string into values
+            String[] values = data.split(", "); // Split the string into values
 
             if (values.length >= 8) { // Ensure there are at least 8 values
                 jTextFieldCompanyId.setText(values[0]);
@@ -78,11 +81,11 @@ public class EditFCTsData extends javax.swing.JFrame {
 
     public String getFCTInfoFromFields() {
         String companyInfo = ""
-                + jTextFieldCompanyId.getText() + " || "
-                + jTextFieldCourseId.getText() + " || "
-                + jTextFieldYear.getText() + " || "
-                + jTextFieldAssignedStudents.getText() + " || "
-                + jTextFieldAvailablePlaces.getText() + " || "
+                + jTextFieldCompanyId.getText() + ", "
+                + jTextFieldCourseId.getText() + ", "
+                + jTextFieldYear.getText() + ", "
+                + jTextFieldAssignedStudents.getText() + ", "
+                + jTextFieldAvailablePlaces.getText() + ", "
                 + jTextFieldTotalRequests.getText();
         System.out.println(companyInfo);
         return companyInfo.toString();
