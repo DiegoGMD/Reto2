@@ -129,7 +129,9 @@ public class C7 extends javax.swing.JFrame {
         MyConnection2 con = new MyConnection2();
         String[] Emp = con.empresaDesdeTecnologia(seleccionado);
         String empresa = String.join(" ", Emp);
-        jTextFieldEmpresa.setText(empresa);
+        for (int i = 0; i < Emp.length; i++) {
+            jTextFieldEmpresa.setText(Emp[i]);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

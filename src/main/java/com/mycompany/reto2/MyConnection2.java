@@ -86,6 +86,35 @@ public class MyConnection2 {
         return Empresa.toArray(new String[0]);
     }
     
+    public String[] historialContacto(String empresa) {
+        Connection conn = makeConection();
+        List<String> info = new ArrayList<>();
+        if (conn != null) {
+            try {
+                String query = "SELECT profesor.nombre AS Profesor, informa.observaciones AS Info "
+                        + "FROM profesor "
+                        + "JOIN informa ON informa.idprofe = profesor.idProf "
+                        + "JOIN empresa ON empresa.idempresa = informa.idempresa "
+                        + "WHERE empresa.nombre = '" + empresa + "'; ";
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+
+                while (rs.next()) {
+                    String profesor = rs.getString("Profesor");
+                    String observacion = rs.getString("Info");
+                    info.add(profesor);
+                    info.add(observacion);
+                }
+                rs.close();
+                stmt.close();
+                conn.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+            }
+        }
+        return info.toArray(new String[0]);
+    }
+    
     public List<String> informacionEmpresaYCicloSelecionado(String empresaSelec, String cicloSelec) {
         Connection conn = makeConection();
         List<String> datos = new ArrayList<>();
