@@ -25,7 +25,6 @@ public class C1 extends javax.swing.JFrame {
         initComponents();
         MyConnection conexion = new MyConnection();
         jComboBoxEmpresas.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.tryQuery4())); // Combobox de empresas
-
     }
 
     /**

@@ -17,7 +17,7 @@ public class C6 extends javax.swing.JFrame {
         initComponents();
         MyConnection conexion = new MyConnection();
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.tryQuery4())); // Combobox de empresas
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.tryQuery5()));// Combobox de ciclo
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.listaCiclos()));// Combobox de ciclo
     }
 
     /**

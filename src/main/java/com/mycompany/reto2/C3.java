@@ -16,8 +16,8 @@ public class C3 extends javax.swing.JFrame {
     public C3() {
         initComponents();
         MyConnection conexion = new MyConnection();
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.tryQuery6()));// Combobox de curso
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.tryQuery5()));// Combobox de ciclo
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.listaAños()));// Combobox de curso
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.listaCiclos()));// Combobox de ciclo
     }
 
     /**

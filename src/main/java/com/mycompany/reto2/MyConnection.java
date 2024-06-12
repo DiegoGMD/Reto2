@@ -123,7 +123,7 @@ public class MyConnection {
         return Empresas.toArray(new String[0]);
     }
 
-    public String[] tryQuery5() { // Combobox de ciclo
+    public String[] listaCiclos() { // Combobox de ciclo
         Connection conn = makeConection();
         List<String> Ciclo = new ArrayList<>();
 
@@ -147,19 +147,19 @@ public class MyConnection {
         return Ciclo.toArray(new String[0]);
     }
 
-    public String[] tryQuery6() { // Combobox de grupo
+    public String[] listaAños() { // Combobox de curso
         Connection conn = makeConection();
-        List<String> Grupo = new ArrayList<>();
+        List<String> Ciclo = new ArrayList<>();
 
         if (conn != null) {
             try {
-                String query = "SELECT idGrupo FROM grupo";
+                String query = "SELECT DISTINCT curso FROM ciclo";
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
 
                 while (rs.next()) {
-                    String idGrupoStr = rs.getString("idGrupo");
-                    Grupo.add(idGrupoStr);
+                    String curso = rs.getString("curso");
+                    Ciclo.add(curso);
                 }
                 rs.close();
                 stmt.close();
@@ -168,8 +168,9 @@ public class MyConnection {
                 JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
             }
         }
-        return Grupo.toArray(new String[0]);
+        return Ciclo.toArray(new String[0]);
     }
+    
 
     public List<String> informacionEmpresaSelecionada(String empresaSelec) { //Esto es una consulta temporal, lo tendremos de modelo
         Connection conn = makeConection();
@@ -203,7 +204,47 @@ public class MyConnection {
                         datos.add(line4);
                     }
                 }
+                rs.close();
+                stmt.close();
+                conn.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+            }
+        }
+        for (String dato : datos) {
+            System.out.println(dato);
+        }
+        return datos;
+    }
+    
+    public List<String> informacionFctPorCursoYCiclo(String cicloSelec, String cursoSelec) { //Esto es una consulta temporal, lo tendremos de modelo
+        Connection conn = makeConection();
+        List<String> datos = new ArrayList<>();
+        if (conn != null) {
+            try {
+                String query = "SELECT empresa.nombre AS Empresa,"
+                        + "ciclo.ciclo AS Ciclo, "
+                        + "ciclo.curso AS Curso_Ciclo, "
+                        + "count(realizan_fct.num_alu_asignados) AS Numero_Fct "
+                        + "FROM realizan_fct "
+                        + "JOIN grupo ON realizan_fct.idgrupo = grupo.idGrupo "
+                        + "JOIN ciclo ON grupo.idCiclo = ciclo.idCiclo "
+                        + "JOIN empresa ON realizan_fct.idempresa = empresa.idempresa "
+                        + "GROUP BY empresa.nombre, ciclo.ciclo, ciclo.curso, realizan_fct.cursoescolar;";
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
 
+                while (rs.next()) {
+                    String ciclo = rs.getString("Ciclo");
+                    String curso = rs.getString("Curso_ciclo");
+                    if (ciclo.equals(cicloSelec) && curso.equals(cursoSelec)) {
+                        String line = rs.getString("Empresa");
+                        int fcts = rs.getInt("Numero_Fct");
+                        String line2 = Integer.toString(fcts);
+                        datos.add(line);
+                        datos.add(line2);
+                    }
+                }
                 rs.close();
                 stmt.close();
                 conn.close();

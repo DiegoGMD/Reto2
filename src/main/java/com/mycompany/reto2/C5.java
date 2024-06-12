@@ -16,7 +16,7 @@ public class C5 extends javax.swing.JFrame {
     public C5() {
         initComponents();
         MyConnection conexion = new MyConnection();
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.tryQuery6())); // Combobox de curso
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.listaAños())); // Combobox de curso
     }
 
     /**

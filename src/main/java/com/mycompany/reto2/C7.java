@@ -16,7 +16,7 @@ public class C7 extends javax.swing.JFrame {
     public C7() {
         initComponents();
         MyConnection conexion = new MyConnection();
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.tryQuery6()));// Combobox de curso
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.listaAños()));// Combobox de curso
     }
 
     /**
