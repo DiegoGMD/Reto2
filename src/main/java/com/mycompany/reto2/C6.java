@@ -18,6 +18,9 @@ public class C6 extends javax.swing.JFrame {
         MyConnection conexion = new MyConnection();
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.tryQuery4())); // Combobox de empresas
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.listaCiclos()));// Combobox de ciclo
+        setSize(455, 455);
+        setResizable(false);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -44,6 +47,7 @@ public class C6 extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(455, 455));
 
         jButton1.setText("OK");
 

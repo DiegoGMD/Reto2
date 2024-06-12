@@ -21,6 +21,9 @@ public class C2 extends javax.swing.JFrame {
         MyConnection conexion = new MyConnection();
         jComboBoxCycles.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.listaCiclos()));// Combobox de ciclo
         jComboBoxYear.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.listaAños()));// Combobox de curso
+        setSize(455, 455);
+        setResizable(false);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -45,6 +48,7 @@ public class C2 extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(455, 455));
 
         jComboBoxCycles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxCycles.addActionListener(new java.awt.event.ActionListener() {

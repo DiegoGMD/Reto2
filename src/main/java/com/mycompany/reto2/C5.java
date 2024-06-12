@@ -17,6 +17,9 @@ public class C5 extends javax.swing.JFrame {
         initComponents();
         MyConnection conexion = new MyConnection();
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.listaAños())); // Combobox de curso
+        setSize(455, 455);
+        setResizable(false);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -41,6 +44,7 @@ public class C5 extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(455, 455));
 
         jLabel1.setText("Select 1 option:");
 
