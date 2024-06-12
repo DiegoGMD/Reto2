@@ -21,11 +21,7 @@ public class Consultas extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         configData = new ConfigData();
     }
-    
     int selection = 1;
- 
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -126,9 +122,6 @@ public class Consultas extends javax.swing.JFrame {
            case 7:
                selection = 8;
                break;    
-           case 8:
-               selection = 9;
-               break;
         }
     }//GEN-LAST:event_jComboBoxConsultaActionPerformed
 
@@ -139,42 +132,38 @@ public class Consultas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     private void OKjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKjButtonActionPerformed
+        C1 c1 = new C1();
+        C2 c2 = new C2();
+        C3 c3 = new C3();
+        C4 c4 = new C4();
+        C5 c5 = new C5();
+        C6 c6 = new C6();
+        C7 c7 = new C7();
+        C8 c8 = new C8();
         if (selection == 1) {
             setVisible(false);
-            C1 c1 = new C1();
             c1.setVisible(true);
         } else if (selection == 2) {
             setVisible(false);
-            C2 c2 = new C2();
             c2.setVisible(true);
         }else if (selection == 3) {
             setVisible(false);
-            C3 c3 = new C2();
-            c2.setVisible(true);
-        } else if (selection == 2) {
+            c3.setVisible(true);
+        } else if (selection == 4) {
             setVisible(false);
-            C2 c2 = new C2();
-            c2.setVisible(true);
-        } else if (selection == 2) {
+            c4.setVisible(true);
+        } else if (selection == 5) {
             setVisible(false);
-            C2 c2 = new C2();
-            c2.setVisible(true);
-        } else if (selection == 2) {
+            c5.setVisible(true);
+        } else if (selection == 6) {
             setVisible(false);
-            C2 c2 = new C2();
-            c2.setVisible(true);
-        } else if (selection == 2) {
+            c6.setVisible(true);
+        } else if (selection == 7) {
             setVisible(false);
-            C2 c2 = new C2();
-            c2.setVisible(true);
-        } else if (selection == 2) {
+            c7.setVisible(true);
+        } else if (selection == 8) {
             setVisible(false);
-            C2 c2 = new C2();
-            c2.setVisible(true);
-        } else if (selection == 2) {
-            setVisible(false);
-            C2 c2 = new C2();
-            c2.setVisible(true);
+            c8.setVisible(true);
         }
     }//GEN-LAST:event_OKjButtonActionPerformed
 
