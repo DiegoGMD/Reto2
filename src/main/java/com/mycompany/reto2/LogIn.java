@@ -5,10 +5,12 @@
 package com.mycompany.reto2;
 
 import java.awt.BorderLayout;
+import java.awt.Desktop;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.net.URI;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -49,7 +51,7 @@ public class LogIn extends javax.swing.JDialog {
 
     public void addBongo() {
          try {
-        URL imageUrl = getClass().getResource("/images/bongoCat.png");
+        URL imageUrl = getClass().getResource("/images/bongoI2.png");
         if (imageUrl == null) {
             throw new IllegalArgumentException("Image not found!");
         }
@@ -76,7 +78,7 @@ public class LogIn extends javax.swing.JDialog {
     
     public void addBongo2() {
          try {
-        URL imageUrl = getClass().getResource("/images/bongoCat.png");
+        URL imageUrl = getClass().getResource("/images/bongoI1.png");
         if (imageUrl == null) {
             throw new IllegalArgumentException("Image not found!");
         }
@@ -118,9 +120,11 @@ public class LogIn extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
         jPanelLogoBongoPhoto2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jButtonOK.setBackground(new java.awt.Color(204, 255, 255));
         jButtonOK.setText("OK");
         jButtonOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,7 +147,13 @@ public class LogIn extends javax.swing.JDialog {
             .addGap(0, 70, Short.MAX_VALUE)
         );
 
+        jButtonHelp.setBackground(new java.awt.Color(204, 255, 255));
         jButtonHelp.setText("Help");
+        jButtonHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonHelpActionPerformed(evt);
+            }
+        });
 
         jLabelUsername.setText("Username:");
 
@@ -178,6 +188,19 @@ public class LogIn extends javax.swing.JDialog {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 296, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 151, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -203,6 +226,8 @@ public class LogIn extends javax.swing.JDialog {
                     .addComponent(jButtonOK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelLogoBongoPhoto2, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,6 +249,8 @@ public class LogIn extends javax.swing.JDialog {
                     .addComponent(jButtonHelp)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -248,6 +275,15 @@ public class LogIn extends javax.swing.JDialog {
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
+
+    private void jButtonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHelpActionPerformed
+        try {
+            URI url = new URI("https://agusahi.github.io/reto2bongosquadweb.github.io/");
+            Desktop.getDesktop().browse(url);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jButtonHelpActionPerformed
 
     /**
      * @param args the command line arguments
@@ -297,6 +333,7 @@ public class LogIn extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelPassword;
     private javax.swing.JLabel jLabelUsername;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelLogoBongoPhoto;
     private javax.swing.JPanel jPanelLogoBongoPhoto2;
     private javax.swing.JPasswordField jPasswordField1;
