@@ -21,9 +21,15 @@ public class EditTeachersData extends javax.swing.JFrame {
     public EditTeachersData() {
         initComponents();
         setLocationRelativeTo(null);
+        setUpTeachersList();
+        setupEventListeners();
+    }
+
+    public void setUpTeachersList() {
+        MyConnection conexion = new MyConnection();
+        List<String> dataList = conexion.listaProfesores();
+
         jListTeachers.setModel(new javax.swing.AbstractListModel<String>() {
-            MyConnection conexion = new MyConnection();
-            List<String> dataList = conexion.listaProfesores();
             String[] strings = dataList.toArray(new String[0]);
 
             public int getSize() {
@@ -34,55 +40,64 @@ public class EditTeachersData extends javax.swing.JFrame {
                 return strings[i];
             }
         });
+    }
+
+    private void setupEventListeners() {
         jListTeachers.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                readTeacherData(getSelectedTeacher());
+                if (!e.getValueIsAdjusting()) {
+                    int selectedTeacherIndex = getSelectedTeacherIndex();
+                    String selectedTeacherData = getSelectedTeacherData(selectedTeacherIndex);
+                    displayTeacherData(selectedTeacherData);
+                }
             }
         });
     }
 
-    private int getSelectedTeacher() {
-        int selectedIndex = jListTeachers.getSelectedIndex() + 1;
-        if (selectedIndex != -1) {
-            return selectedIndex;
-        } else {
-            return 0;
-        }
+    private int getSelectedTeacherIndex() {
+        return jListTeachers.getSelectedIndex();
     }
 
-    public void readTeacherData(int index) {
-        MyConnection conexion = new MyConnection();
-        List<String> data = conexion.teacherData(index);
+    private String getSelectedTeacherData(int index) {
+        if (index != -1) {
+            MyConnection connection = new MyConnection();
+            List<String> dataList = connection.teacherData(index); // Ajustar el índice según sea necesario
+            return dataList.isEmpty() ? "" : dataList.get(0);
+        }
+        return "";
+    }
 
-        if (!data.isEmpty()) { // Ensure data is retrieved successfully
-            String[] values = data.get(0).split(", ");
-
-            if (values.length >= 5) {
-                jTextFieldIDTeacher.setText(values[0]);
-                jTextFieldName.setText(values[1]);
-
-                if (!"null".equals(values[4])) {
-                    jTextFieldSName.setText("Yes");
-                } else {
-                    jTextFieldSName.setText("No");
-                }
+    public void displayTeacherData(String data) {
+        if (data != null && !data.isEmpty()) {
+            String[] values = data.split(", ");
+            if (values.length >= 3) {
+                setTextFields(values);
+            } else {
+                setUnknownTextFields();
             }
-        } else {
-            jTextFieldIDTeacher.setText("");
-            jTextFieldName.setText("");
-            jTextFieldSName.setText("");
         }
     }
 
-    public List<String> getCompanyInfoFromFields() {
-    List<String> teacherInfo = new ArrayList<>();
-    teacherInfo.add(jTextFieldIDTeacher.getText());
-    teacherInfo.add(jTextFieldName.getText());
-    teacherInfo.add(jTextFieldSName.getText());
-    return teacherInfo;
-}
+    private void setTextFields(String[] values) {
+        jTextFieldIDTeacher.setText(values[0]);
+        jTextFieldName.setText(values[1]);
+        jTextFieldSName.setText(values[2]);
+    }
 
+    private void setUnknownTextFields() {
+        jTextFieldIDTeacher.setText("Unknown");
+        jTextFieldName.setText("Unknown");
+        jTextFieldSName.setText("Unknown");
+    }
+
+    public void reloadWindow() {
+        jTextFieldIDTeacher.setText("");
+        jTextFieldName.setText("");
+        jTextFieldSName.setText("");
+        setUpTeachersList();
+        setupEventListeners();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -280,8 +295,12 @@ public class EditTeachersData extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldSNameActionPerformed
 
     private void jButtonModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModifyActionPerformed
+        String id = jTextFieldIDTeacher.getText();
+        String name = jTextFieldName.getText();
+        String secondName = jTextFieldSName.getText();
         MyConnection conexion = new MyConnection();
-        conexion.tryQuery3();
+        conexion.updateTeacher(id, name, secondName);
+        reloadWindow();
     }//GEN-LAST:event_jButtonModifyActionPerformed
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
@@ -289,15 +308,25 @@ public class EditTeachersData extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
-        MyConnection1 conexion = new MyConnection1();
+        String id = jTextFieldIDTeacher.getText();
+        String name = jTextFieldName.getText();
+        String secondName = jTextFieldSName.getText();
+        MyConnection conexion = new MyConnection();
+        conexion.addTeacher(id, name, secondName);
+        reloadWindow();
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
-        // TODO add your handling code here:
+        String id = jTextFieldIDTeacher.getText();
+        String name = jTextFieldName.getText();
+        String secondName = jTextFieldSName.getText();
+        MyConnection conexion = new MyConnection();
+        conexion.deleteTeacher(id);
+        reloadWindow();
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
-        // TODO add your handling code here:
+        reloadWindow();        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonUpdateActionPerformed
 
     /**
