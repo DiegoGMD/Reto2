@@ -543,4 +543,58 @@ public class MyConnection1 {
             }
         }
     }
+    
+    public List<String> getPreviewFCTsDBData() {
+        Connection conn = makeConection();
+        List<String> data = new ArrayList<>();
+
+        if (conn != null) {
+            try {
+                String query = "SELECT "
+                        + "e.idempresa AS company_id, "
+                        + "e.nombre AS company_name, "
+                        + "c.idCiclo AS course_id, "
+                        + "c.ciclo AS course_name, "
+                        + "pf.cursoescolar AS course_year, "
+                        + "rf.num_alu_asignados AS assigned_students, "
+                        + "pf.solicitaAlu AS students_requests, "
+                        + "pf.totalSoli AS total_requests "
+                        + "FROM "
+                        + "empresa e "
+                        + "LEFT JOIN prevision_fct pf ON e.idempresa = pf.idempresa "
+                        + "LEFT JOIN ciclo c ON c.idCiclo = pf.idciclo "
+                        + "LEFT JOIN realizan_fct rf ON e.idempresa = rf.idempresa "
+                        + "ORDER BY e.idempresa;";
+
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+
+                while (rs.next()) {
+                    String line = rs.getString("company_id")
+                            + ", " + rs.getString("company_name")
+                            + ", " + rs.getString("course_id")
+                            + ", " + rs.getString("course_name")
+                            + ", " + rs.getString("course_year")
+                            + ", " + rs.getString("assigned_students")
+                            + ", " + rs.getString("students_requests")
+                            + ", " + rs.getString("total_requests");
+                    data.add(line);
+                }
+
+                stmt.close();
+
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+            } finally {
+                try {
+                    if (conn != null) {
+                        conn.close();
+                    }
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.toString());
+                }
+            }
+        }
+        return data;
+    }
 }
