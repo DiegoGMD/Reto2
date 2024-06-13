@@ -62,7 +62,7 @@ public class EditContactData extends javax.swing.JFrame {
     private String getSelectedContactData(int index) {
         if (index != -1) {
             MyConnection connection = new MyConnection();
-            List<String> dataList = connection.companyData(index);
+            List<String> dataList = connection.cotactData(index);
             return dataList.isEmpty() ? "" : dataList.get(0);
         }
         return "";
