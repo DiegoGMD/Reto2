@@ -633,4 +633,91 @@ public class MyConnection {
         }
     }
 
+    public List<String> contactList() {
+        Connection conn = makeConection();
+        List<String> profesList = new ArrayList<>();
+
+        if (conn != null) {
+            try {
+                String query = "SELECT "
+                        + "e.nombre AS Empresa, "
+                        + "CONCAT(p.nombre, ' ', p.apellidos) AS Profesor, "
+                        + "CONCAT(prs.nombre, ' ', prs.apellidos) AS Contacto_Empresa, "
+                        + "prs.cargo AS Puesto "
+                        + "FROM "
+                        + "empresa e "
+                        + "JOIN responsable r ON e.idempresa = r.idempresa "
+                        + "JOIN profesor p ON r.idprofe = p.idProf "
+                        + "JOIN personal prs ON e.idempresa = prs.idempresa AND prs.escontacto = 1;";
+
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+                String line = "Company // Tutor // ContactName // Job";
+                profesList.add(line);
+                while (rs.next()) {
+                    line = rs.getString("Empresa") + ", " + rs.getString("Profesor")
+                            + ", " + rs.getString("Contacto_Empresa") + ", "
+                            + rs.getString("Puesto");
+                    profesList.add(line);
+                }
+                rs.close();
+                stmt.close();
+                conn.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+            }
+        }
+        return profesList;
+    }
+
+    public List<String> cotactData(int index) {
+        Connection conn = makeConection();
+        List<String> companyList = new ArrayList<>();
+
+        if (conn != null) {
+            PreparedStatement pstmt = null;
+            ResultSet rs = null;
+            try {
+                String query = "SELECT "
+                        + "e.nombre AS Empresa, "
+                        + "CONCAT(p.nombre, ' ', p.apellidos) AS Profesor, "
+                        + "CONCAT(prs.nombre, ' ', prs.apellidos) AS Contacto_Empresa, "
+                        + "prs.cargo AS Puesto "
+                        + "FROM "
+                        + "empresa e "
+                        + "JOIN responsable r ON e.idempresa = r.idempresa "
+                        + "JOIN profesor p ON r.idprofe = p.idProf "
+                        + "JOIN personal prs ON e.idempresa = prs.idempresa AND prs.escontacto = 1 "
+                        + "WHERE e.idempresa = ?";
+                pstmt = conn.prepareStatement(query);
+                pstmt.setInt(1, index);
+                rs = pstmt.executeQuery();
+                while (rs.next()) {
+                    String line = rs.getString("Empresa") + ", "
+                            + rs.getString("Profesor") + ", "
+                            + rs.getString("Contacto_Empresa") + ", "
+                            + rs.getString("Puesto");
+                    companyList.add(line);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+            } finally {
+                try {
+                    if (rs != null) {
+                        rs.close();
+                    }
+                    if (pstmt != null) {
+                        pstmt.close();
+                    }
+                    if (conn != null) {
+                        conn.close();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return companyList;
+    }
+
 }
