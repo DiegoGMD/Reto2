@@ -19,7 +19,6 @@ public class C5 extends javax.swing.JFrame {
         initComponents();
         MyConnection conexion = new MyConnection();
         jComboBoxCycle.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.listaCiclos()));// Combobox de ciclo
-        jComboBoxYear.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.listaAños()));// Combobox de curso
         setSize(455, 455);
         setResizable(false);
         setLocationRelativeTo(null);
@@ -37,35 +36,30 @@ public class C5 extends javax.swing.JFrame {
         jTextFieldIssueDate = new javax.swing.JTextField();
         jTextFieldIssueNumber = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
+        jButtonOK = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBoxYear = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jTextFieldComment = new javax.swing.JTextField();
         jComboBoxCycle = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+        jButtonVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Select the 2 options:");
 
-        jLabel3.setText("Year");
-
-        jButton1.setText("OK");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonOK.setText("OK");
+        jButtonOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonOKActionPerformed(evt);
             }
         });
 
         jLabel4.setText("Issue Number");
 
         jLabel5.setText("Issue Date");
-
-        jComboBoxYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel6.setText("Comment");
 
@@ -78,40 +72,43 @@ public class C5 extends javax.swing.JFrame {
 
         jLabel2.setText("Cycle");
 
+        jButtonVolver.setText("Volver");
+        jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jComboBoxCycle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel2))
-                                        .addGap(25, 25, 25))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jComboBoxYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel3))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                .addComponent(jButton1))
-                            .addComponent(jLabel1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6)
-                            .addComponent(jTextFieldIssueNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
-                            .addComponent(jTextFieldIssueDate)
-                            .addComponent(jTextFieldComment))))
-                .addContainerGap(20, Short.MAX_VALUE))
-            .addComponent(jSeparator1)
+                                    .addComponent(jComboBoxCycle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jButtonOK)
+                                    .addComponent(jLabel1)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jTextFieldIssueNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldIssueDate)
+                                    .addComponent(jTextFieldComment))))
+                        .addGap(0, 14, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonVolver)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,14 +119,9 @@ public class C5 extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBoxCycle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(2, 2, 2)
-                        .addComponent(jComboBoxYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(15, 15, 15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonOK)
+                .addGap(26, 26, 26)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addComponent(jLabel4)
@@ -143,7 +135,9 @@ public class C5 extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldComment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonVolver)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -153,21 +147,21 @@ public class C5 extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jComboBoxCycleActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+    private void jButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOKActionPerformed
+        //Solo hay incidencias con DAW las cuales hay dos y causan problemas, solucion solo una en daw o cambiar la sql :/
         String cycleSelected = (String) jComboBoxCycle.getSelectedItem();
-        String yearSelected = (String) jComboBoxYear.getSelectedItem();
         MyConnection3 conexion = new MyConnection3();
-        List<String> datos = conexion.incidenciasPorCurso(cycleSelected, yearSelected);
-        if (datos != null && datos.size() >= 3) {
-            jTextFieldIssueNumber.setText(datos.get(0)); // Primer dato: Número de incidencia
-            jTextFieldIssueDate.setText(datos.get(1));   // Segundo dato: Fecha de incidencia
-            jTextFieldComment.setText(datos.get(2));     // Tercer dato: Observaciones
-        }
+        String[] datos = conexion.incidenciasPorCurso(cycleSelected);
+        jTextFieldIssueNumber.setText(datos[0]);
+        jTextFieldIssueDate.setText(datos[1]);
+        jTextFieldComment.setText(datos[2]);
+    }//GEN-LAST:event_jButtonOKActionPerformed
 
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
+    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
+        setVisible(false);
+        Consultas consultas = new Consultas();
+        consultas.setVisible(true);
+    }//GEN-LAST:event_jButtonVolverActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -204,12 +198,11 @@ public class C5 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonOK;
+    private javax.swing.JButton jButtonVolver;
     private javax.swing.JComboBox<String> jComboBoxCycle;
-    private javax.swing.JComboBox<String> jComboBoxYear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

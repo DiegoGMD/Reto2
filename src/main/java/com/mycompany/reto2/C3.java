@@ -21,7 +21,7 @@ public class C3 extends javax.swing.JFrame {
         jComboBoxYear.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.listaAños()));// Combobox de curso
         jComboBoxCourse.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.listaCiclos()));// Combobox de ciclo
         jComboBoxGroups.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.listaGrupos()));// Combobox de grupos
-        setSize(455, 455);
+        setSize(455, 555);
         setResizable(false);
         setLocationRelativeTo(null);
     }
@@ -54,6 +54,7 @@ public class C3 extends javax.swing.JFrame {
         jTextFieldNumFcts = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jButtonVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(455, 455));
@@ -96,6 +97,13 @@ public class C3 extends javax.swing.JFrame {
 
         jLabel10.setText("Fcts");
 
+        jButtonVolver.setText("Volver");
+        jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,6 +144,10 @@ public class C3 extends javax.swing.JFrame {
                                     .addComponent(jTextFieldNumFcts, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextFieldTutorSecondName, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonVolver)
+                .addGap(17, 17, 17))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,7 +190,9 @@ public class C3 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldNumFcts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonVolver)
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         pack();
@@ -220,6 +234,12 @@ public class C3 extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
+        setVisible(false);
+        Consultas consultas = new Consultas();
+        consultas.setVisible(true);
+    }//GEN-LAST:event_jButtonVolverActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -257,6 +277,7 @@ public class C3 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonVolver;
     private javax.swing.JComboBox<String> jComboBoxCourse;
     private javax.swing.JComboBox<String> jComboBoxGroups;
     private javax.swing.JComboBox<String> jComboBoxYear;

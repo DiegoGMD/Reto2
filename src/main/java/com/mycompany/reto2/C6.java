@@ -52,6 +52,7 @@ public class C6 extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jTextFieldStudentsCycle = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        jButtonVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(455, 455));
@@ -95,6 +96,13 @@ public class C6 extends javax.swing.JFrame {
 
         jLabel8.setText("Cycle");
 
+        jButtonVolver.setText("Volver");
+        jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -130,7 +138,10 @@ public class C6 extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(jTextFieldYear, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
                             .addComponent(jTextFieldStudentsCycle))
-                        .addGap(22, 22, 22)))
+                        .addGap(22, 22, 22))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonVolver)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -172,7 +183,9 @@ public class C6 extends javax.swing.JFrame {
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldStudentsCycle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(84, 84, 84))
+                .addGap(55, 55, 55)
+                .addComponent(jButtonVolver)
+                .addContainerGap())
         );
 
         pack();
@@ -216,6 +229,12 @@ public class C6 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxCycleActionPerformed
 
+    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
+        setVisible(false);
+        Consultas consultas = new Consultas();
+        consultas.setVisible(true);
+    }//GEN-LAST:event_jButtonVolverActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -253,6 +272,7 @@ public class C6 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonVolver;
     private javax.swing.JComboBox<String> jComboBoxCompany;
     private javax.swing.JComboBox<String> jComboBoxCycle;
     private javax.swing.JComboBox<String> jComboBoxYear;

@@ -37,7 +37,7 @@ public class MyConnection3 {
         return connection;
     }
 
-    public List<String> incidenciasPorCurso(String cicloSelec, String cursoSelec) {
+    public String[] incidenciasPorCurso(String cicloSelec) {
         Connection conn = makeConection();
         List<String> datos = new ArrayList<>();
         if (conn != null) {
@@ -49,17 +49,15 @@ public class MyConnection3 {
                         + "JOIN empresa ON incidencia.idempresa = empresa.idempresa "
                         + "JOIN prevision_fct ON empresa.idempresa = prevision_fct.idempresa "
                         + "JOIN ciclo ON prevision_fct.idciclo = ciclo.idCiclo "
-                        + "WHERE ciclo.ciclo = ? AND ciclo.curso = ?;";
+                        + "WHERE ciclo.ciclo = " + cicloSelec + ";";
                 PreparedStatement pstmt = conn.prepareStatement(query);
-                pstmt.setString(1, cicloSelec);
-                pstmt.setString(2, cursoSelec);
                 ResultSet rs = pstmt.executeQuery();
 
                 while (rs.next()) {
-                    int numIncidencia = rs.getInt("NumIncidencia");
+                    String numIncidencia = Integer.toString(rs.getInt("NumIncidencia"));
                     String fechaIncidencia = rs.getString("FechaIncidencia");
                     String observaciones = rs.getString("Observaciones");
-                    datos.add(numIncidencia + "");
+                    datos.add(numIncidencia);
                     datos.add(fechaIncidencia);
                     datos.add(observaciones);
                 }
@@ -73,7 +71,7 @@ public class MyConnection3 {
         for (String dato : datos) {
             System.out.println(dato);
         }
-        return datos;
+        return datos.toArray(new String[0]);
     }
     
     public List<String> datosSolicitadosPorEmpresaYCiclo(String companySelected, String cycleSelected,String yearSelected) {

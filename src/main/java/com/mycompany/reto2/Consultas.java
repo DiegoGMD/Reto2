@@ -128,7 +128,7 @@ public class Consultas extends javax.swing.JFrame {
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
          setVisible(false);
          Main main = new Main();
-         main.setVisible(true);
+         //main.setVisible(true);
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     private void OKjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKjButtonActionPerformed
