@@ -41,7 +41,7 @@ public class Consultas extends javax.swing.JFrame {
 
         jLabelConsulta.setText("Seleciona la consulta:");
 
-        jComboBoxConsulta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", " " }));
+        jComboBoxConsulta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Company data", "Company and practices", "Tutor and FCT info", "Students in company", "Issues in company", "Request per company", "Company per tecnology", "Company history" }));
         jComboBoxConsulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxConsultaActionPerformed(evt);
@@ -67,16 +67,15 @@ public class Consultas extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(127, Short.MAX_VALUE)
+                .addContainerGap(89, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabelConsulta)
-                        .addGap(14, 14, 14))
-                    .addComponent(jComboBoxConsulta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(OKjButton)
-                    .addComponent(jButtonVolver))
+                    .addComponent(jLabelConsulta)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBoxConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(OKjButton)
+                            .addComponent(jButtonVolver))))
                 .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
