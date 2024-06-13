@@ -151,7 +151,7 @@ public class MyConnection {
         return Grupo.toArray(new String[0]);
     }
 
-    public List<String> listaProfesores() { // Combobox de curso
+    public List<String> listaProfesores() {
         Connection conn = makeConection();
         List<String> profesList = new ArrayList<>();
 
@@ -479,80 +479,35 @@ public class MyConnection {
         return verificacion;
     }
 
-    public String[] getCompaniesDBData() {
+    public List<String> companyList() {
         Connection conn = makeConection();
-        List<String> data = new ArrayList<>();
-
-        if (conn != null) {
-            try {
-                String query = "SELECT "
-                        + "e.idempresa AS company_id, "
-                        + "e.nombre AS company_name, "
-                        + "s.descripcion AS sector, "
-                        + "rf.num_alu_asignados AS fct_real_assigned_students, "
-                        + "pf.solicitaAlu AS available_places_for_students "
-                        + "FROM "
-                        + "empresa e "
-                        + "LEFT JOIN sector s ON e.idSector = s.idSector "
-                        + "LEFT JOIN realizan_fct rf ON e.idempresa = rf.idempresa "
-                        + "LEFT JOIN prevision_fct pf ON e.idempresa = pf.idempresa "
-                        + "ORDER BY e.idempresa;";
-                Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery(query);
-
-                while (rs.next()) {
-                    String line = rs.getString("company_name")
-                            + " || " + rs.getString("sector")
-                            + " || " + rs.getString("fct_real_assigned_students")
-                            + " || " + rs.getString("available_places_for_students");
-                    data.add(line);
-                }
-
-                rs.close();
-                stmt.close();
-                conn.close();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
-            }
-        }
-        return data.toArray(new String[0]);
-    }
-
-    public String[] getCompaniesDBData(int index) {
-        Connection conn = makeConection();
-        List<String> data = new ArrayList<>();
+        List<String> companyList = new ArrayList<>();
 
         if (conn != null) {
             PreparedStatement pstmt = null;
             ResultSet rs = null;
             try {
-                String query = "SELECT "
-                        + "e.idempresa AS company_id, "
-                        + "e.nombre AS company_name, "
-                        + "s.descripcion AS sector, "
-                        + "rf.num_alu_asignados AS fct_real_assigned_students, "
-                        + "pf.solicitaAlu AS available_places_for_students "
-                        + "FROM "
-                        + "empresa e "
-                        + "LEFT JOIN sector s ON e.idSector = s.idSector "
+                String query = "SELECT e.idempresa, e.nombre AS Empresa, e.idSector, s.descripcion AS Sector, e.estado, COUNT(rf.idgrupo) AS Numero_FCTs_Habilitadas "
+                        + "FROM empresa e "
+                        + "JOIN sector s ON e.idSector = s.idSector "
                         + "LEFT JOIN realizan_fct rf ON e.idempresa = rf.idempresa "
-                        + "LEFT JOIN prevision_fct pf ON e.idempresa = pf.idempresa "
-                        + "WHERE e.idempresa = ? "
-                        + "ORDER BY e.idempresa;";
-
+                        + "GROUP BY e.idempresa, e.nombre, e.idSector, s.descripcion, e.estado";
                 pstmt = conn.prepareStatement(query);
-                pstmt.setInt(1, index);
                 rs = pstmt.executeQuery();
 
-                if (rs.next()) {
-                    String line = rs.getString("company_name")
-                            + " || " + rs.getString("sector")
-                            + " || " + rs.getString("fct_real_assigned_students")
-                            + " || " + rs.getString("available_places_for_students");
-                    data.add(line);
-                }
+                String header = "IDC // Name // IDS // Sector // State // NumFcts";
+                companyList.add(header);
 
-            } catch (SQLException e) {
+                while (rs.next()) {
+                    String line = rs.getString("idempresa") + ", "
+                            + rs.getString("Empresa") + ", "
+                            + rs.getString("idSector") + ", "
+                            + rs.getString("Sector") + ", "
+                            + rs.getString("estado") + ", "
+                            + rs.getInt("Numero_FCTs_Habilitadas");
+                    companyList.add(line);
+                }
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
             } finally {
                 try {
@@ -565,11 +520,51 @@ public class MyConnection {
                     if (conn != null) {
                         conn.close();
                     }
-                } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.toString());
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         }
-        return data.toArray(new String[0]);
+        return companyList;
+    }
+
+    public List<String> companyData(int index) {
+        Connection conn = makeConection();
+        List<String> companyList = new ArrayList<>();
+
+        if (conn != null) {
+            PreparedStatement pstmt = null;
+            ResultSet rs = null;
+            try {
+                String query = "SELECT idempresa, nombre, idSector, estado FROM empresa "
+                        + "WHERE idempresa = ?";
+                pstmt = conn.prepareStatement(query);
+                pstmt.setInt(1, index);
+                rs = pstmt.executeQuery();
+                while (rs.next()) {
+                    String line = rs.getString("idempresa") + ", " + rs.getString("nombre")
+                            + ", " + rs.getString("idSector") + ", "
+                            + rs.getString("estado");;
+                    companyList.add(line);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+            } finally {
+                try {
+                    if (rs != null) {
+                        rs.close();
+                    }
+                    if (pstmt != null) {
+                        pstmt.close();
+                    }
+                    if (conn != null) {
+                        conn.close();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return companyList;
     }
 }
