@@ -37,6 +37,7 @@ public class Consultas extends javax.swing.JFrame {
         jButtonVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 204, 204));
 
         jLabelConsulta.setText("Seleciona la consulta:");
 
@@ -127,7 +128,7 @@ public class Consultas extends javax.swing.JFrame {
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
          setVisible(false);
-         Main main = new Main();
+         //Main main = new Main();
          //main.setVisible(true);
     }//GEN-LAST:event_jButtonVolverActionPerformed
 

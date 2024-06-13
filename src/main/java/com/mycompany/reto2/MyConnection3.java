@@ -49,7 +49,7 @@ public class MyConnection3 {
                         + "JOIN empresa ON incidencia.idempresa = empresa.idempresa "
                         + "JOIN prevision_fct ON empresa.idempresa = prevision_fct.idempresa "
                         + "JOIN ciclo ON prevision_fct.idciclo = ciclo.idCiclo "
-                        + "WHERE ciclo.ciclo = " + cicloSelec + ";";
+                        + "WHERE ciclo.ciclo = '"+ cicloSelec +"';";
                 PreparedStatement pstmt = conn.prepareStatement(query);
                 ResultSet rs = pstmt.executeQuery();
 
@@ -74,7 +74,7 @@ public class MyConnection3 {
         return datos.toArray(new String[0]);
     }
     
-    public List<String> datosSolicitadosPorEmpresaYCiclo(String companySelected, String cycleSelected,String yearSelected) {
+    public List<String> datosSolicitadosPorEmpresaYCiclo(String companySelected, String cycleSelected) {
         Connection conn = makeConection();
         List<String> datos = new ArrayList<>();
         if (conn != null) {
@@ -83,15 +83,10 @@ public class MyConnection3 {
                 + "FROM empresa e "
                 + "JOIN prevision_fct pf ON e.idempresa = pf.idempresa "
                 + "JOIN ciclo c ON pf.idciclo = c.idCiclo "
-                + "WHERE pf.solicitaAlu = TRUE "
-                + "AND e.nombre = ? "
-                + "AND c.ciclo = ? "
-                + "AND c.curso = ?";
+                + "WHERE e.nombre = '"+ companySelected +"' "
+                + "AND c.ciclo = '"+ cycleSelected +"' ";
 
-            PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, companySelected);
-            pstmt.setString(2, cycleSelected);                
-            pstmt.setString(3, yearSelected);
+                PreparedStatement pstmt = conn.prepareStatement(query);              
                 ResultSet rs = pstmt.executeQuery();
 
                 while (rs.next()) {

@@ -67,7 +67,7 @@ public class C8 extends javax.swing.JFrame {
 
         jLabel4.setText("Comments");
 
-        jButtonVolver.setText("Volver");
+        jButtonVolver.setText("Back");
         jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVolverActionPerformed(evt);

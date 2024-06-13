@@ -97,7 +97,7 @@ public class C3 extends javax.swing.JFrame {
 
         jLabel10.setText("Fcts");
 
-        jButtonVolver.setText("Volver");
+        jButtonVolver.setText("Back");
         jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVolverActionPerformed(evt);

@@ -60,7 +60,7 @@ public class C7 extends javax.swing.JFrame {
 
         jLabel2.setText("Empresa");
 
-        jButtonVolver.setText("Volver");
+        jButtonVolver.setText("Back");
         jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVolverActionPerformed(evt);

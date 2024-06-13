@@ -5,6 +5,7 @@
 package com.mycompany.reto2;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,7 +20,7 @@ public class C5 extends javax.swing.JFrame {
         initComponents();
         MyConnection conexion = new MyConnection();
         jComboBoxCycle.setModel(new javax.swing.DefaultComboBoxModel<>(conexion.listaCiclos()));// Combobox de ciclo
-        setSize(455, 455);
+        setSize(455, 500);
         setResizable(false);
         setLocationRelativeTo(null);
     }
@@ -72,7 +73,7 @@ public class C5 extends javax.swing.JFrame {
 
         jLabel2.setText("Cycle");
 
-        jButtonVolver.setText("Volver");
+        jButtonVolver.setText("Back");
         jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVolverActionPerformed(evt);
@@ -137,7 +138,7 @@ public class C5 extends javax.swing.JFrame {
                 .addComponent(jTextFieldComment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonVolver)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         pack();
@@ -148,13 +149,21 @@ public class C5 extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxCycleActionPerformed
 
     private void jButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOKActionPerformed
-        //Solo hay incidencias con DAW las cuales hay dos y causan problemas, solucion solo una en daw o cambiar la sql :/
-        String cycleSelected = (String) jComboBoxCycle.getSelectedItem();
-        MyConnection3 conexion = new MyConnection3();
-        String[] datos = conexion.incidenciasPorCurso(cycleSelected);
-        jTextFieldIssueNumber.setText(datos[0]);
-        jTextFieldIssueDate.setText(datos[1]);
-        jTextFieldComment.setText(datos[2]);
+        try {
+            String cycleSelected = (String) jComboBoxCycle.getSelectedItem();
+            MyConnection3 conexion = new MyConnection3();
+            String[] datos = conexion.incidenciasPorCurso(cycleSelected);
+        if (datos != null) {
+            jTextFieldIssueNumber.setText(datos[0]);
+            jTextFieldIssueDate.setText(datos[1]);
+            jTextFieldComment.setText(datos[2]);
+        }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No hay incidencias para la opcion seleccionada");
+            jTextFieldIssueNumber.setText("Empty");
+            jTextFieldIssueDate.setText("Empty");
+            jTextFieldComment.setText("Empty");
+        }
     }//GEN-LAST:event_jButtonOKActionPerformed
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
