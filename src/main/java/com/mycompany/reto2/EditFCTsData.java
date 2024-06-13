@@ -21,76 +21,92 @@ public class EditFCTsData extends javax.swing.JFrame {
     public EditFCTsData() {
         initComponents();
         setLocationRelativeTo(null);
+        setupCompanyList();
+        setupEventListeners();
+    }
+
+    private void setupCompanyList() {
         jListCompanies.setModel(new javax.swing.AbstractListModel<String>() {
-            MyConnection1 conexion = new MyConnection1();
-            List<String> dataList = conexion.getFCTsDBData();
-            String[] strings = dataList.toArray(new String[0]);
+            MyConnection1 connection = new MyConnection1();
+            List<String> dataList = connection.getFCTsDBData();
+            String[] companyArray = dataList.toArray(new String[0]);
 
             public int getSize() {
-                return strings.length;
+                return companyArray.length;
             }
 
-            public String getElementAt(int i) {
-                System.out.println(strings[i]);
-                System.out.println(i);
-                return strings[i];
+            public String getElementAt(int index) {
+                return companyArray[index];
             }
         });
+    }
+
+    private void setupEventListeners() {
         jListCompanies.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                MyConnection1 conexion = new MyConnection1();
-                List<String> dataList = conexion.getFCTsDBData();
-                String[] strings = dataList.toArray(new String[0]);
-                readFCTData(strings[getSelectedFCT()]);
+                int selectedFCTIndex = getSelectedFCTIndex();
+                String selectedFCTData = getSelectedFCTData(selectedFCTIndex);
+                displayFCTData(selectedFCTData);
             }
         });
     }
 
-    private int getSelectedFCT() {
+    private int getSelectedFCTIndex() {
         int selectedIndex = jListCompanies.getSelectedIndex();
-        if (selectedIndex != -1) {
-            return selectedIndex;
-        } else {
-            return 0;
-        }
+        return selectedIndex != -1 ? selectedIndex : 0;
     }
 
-    public void readFCTData(String data) {
-        MyConnection1 conexion = new MyConnection1();
-        if (data != null && !data.isEmpty()) { // Ensure data is retrieved successfully
-            String[] values = data.split(", "); // Split the string into values
+    private String getSelectedFCTData(int index) {
+        MyConnection1 connection = new MyConnection1();
+        List<String> dataList = connection.getFCTsDBData();
+        return dataList.get(index);
+    }
 
-            if (values.length >= 8) { // Ensure there are at least 8 values
-                jTextFieldCompanyId.setText(values[0]);
-                jTextFieldCourseId.setText(values[2]);
-                jTextFieldYear.setText(values[4]);
-                jTextFieldAssignedStudents.setText(values[5]);
-                jTextFieldAvailablePlaces.setText(values[6]);
-                jTextFieldTotalRequests.setText(values[7]);
+    public void displayFCTData(String data) {
+        if (data != null && !data.isEmpty()) {
+            String[] values = data.split(", ");
+            if (values.length >= 8) {
+                setTextFields(values);
             } else {
-                jTextFieldCompanyId.setText("null");
-                jTextFieldCourseId.setText("null");
-                jTextFieldYear.setText("null");
-                jTextFieldAssignedStudents.setText("null");
-                jTextFieldAvailablePlaces.setText("null");
-                jTextFieldTotalRequests.setText("null");
+                setUnknownTextFields();
             }
         }
     }
 
-    public String getFCTInfoFromFields() {
-        String companyInfo = ""
-                + jTextFieldCompanyId.getText() + ", "
-                + jTextFieldCourseId.getText() + ", "
-                + jTextFieldYear.getText() + ", "
-                + jTextFieldAssignedStudents.getText() + ", "
-                + jTextFieldAvailablePlaces.getText() + ", "
-                + jTextFieldTotalRequests.getText();
-        System.out.println(companyInfo);
-        return companyInfo.toString();
+    private void setTextFields(String[] values) {
+        jTextFieldCompanyId.setText(values[0]);
+        jTextFieldCourseId.setText(values[2]);
+        jTextFieldYear.setText(values[4]);
+        jTextFieldAssignedStudents.setText(values[5]);
+        jTextFieldStudentsRequests.setText(values[6]);
+        jTextFieldTotalRequests.setText(values[7]);
     }
 
+    private void setUnknownTextFields() {
+        jTextFieldCompanyId.setText("Unknown");
+        jTextFieldCourseId.setText("Unknown");
+        jTextFieldYear.setText("Unknown");
+        jTextFieldAssignedStudents.setText("Unknown");
+        jTextFieldStudentsRequests.setText("Unknown");
+        jTextFieldTotalRequests.setText("Unknown");
+    }
+
+    public String getFCTInfoFromFields() {
+        return String.format("%s, %s, %s, %s, %s, %s",
+                jTextFieldCompanyId.getText(),
+                jTextFieldCourseId.getText(),
+                jTextFieldYear.getText(),
+                jTextFieldAssignedStudents.getText(),
+                jTextFieldStudentsRequests.getText(),
+                jTextFieldTotalRequests.getText());
+    }
+    
+    public void reloadWindow() {
+        setupCompanyList();
+        setupEventListeners();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -112,9 +128,9 @@ public class EditFCTsData extends javax.swing.JFrame {
         jLabelYear = new javax.swing.JLabel();
         jTextFieldYear = new javax.swing.JTextField();
         jLabelAssignedStudents = new javax.swing.JLabel();
-        jLabelAvailablePlaces = new javax.swing.JLabel();
+        jLabelStudentsRequests = new javax.swing.JLabel();
         jTextFieldAssignedStudents = new javax.swing.JTextField();
-        jTextFieldAvailablePlaces = new javax.swing.JTextField();
+        jTextFieldStudentsRequests = new javax.swing.JTextField();
         jLabelTotalRequests = new javax.swing.JLabel();
         jTextFieldTotalRequests = new javax.swing.JTextField();
         jButtonAdd = new javax.swing.JButton();
@@ -167,9 +183,9 @@ public class EditFCTsData extends javax.swing.JFrame {
             }
         });
 
-        jLabelAssignedStudents.setText("AssignedStudents:");
+        jLabelAssignedStudents.setText("Assigned Students:");
 
-        jLabelAvailablePlaces.setText("AvailablePlaces:");
+        jLabelStudentsRequests.setText("Students Requests:");
 
         jTextFieldAssignedStudents.setText("Unknown");
         jTextFieldAssignedStudents.addActionListener(new java.awt.event.ActionListener() {
@@ -178,10 +194,10 @@ public class EditFCTsData extends javax.swing.JFrame {
             }
         });
 
-        jTextFieldAvailablePlaces.setText("Unknown");
-        jTextFieldAvailablePlaces.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldStudentsRequests.setText("Unknown");
+        jTextFieldStudentsRequests.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldAvailablePlacesActionPerformed(evt);
+                jTextFieldStudentsRequestsActionPerformed(evt);
             }
         });
 
@@ -196,7 +212,7 @@ public class EditFCTsData extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldAvailablePlaces)
+                    .addComponent(jTextFieldStudentsRequests)
                     .addComponent(jTextFieldCompanyId)
                     .addComponent(jTextFieldCourseId)
                     .addComponent(jTextFieldYear)
@@ -205,12 +221,12 @@ public class EditFCTsData extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelCompanyId)
                             .addComponent(jLabelAssignedStudents))
-                        .addGap(0, 5, Short.MAX_VALUE))
+                        .addGap(0, 2, Short.MAX_VALUE))
                     .addComponent(jLabelTotalRequests, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextFieldTotalRequests)
                     .addComponent(jLabelCourseId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabelYear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelAvailablePlaces, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabelStudentsRequests, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -233,9 +249,9 @@ public class EditFCTsData extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldAssignedStudents, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelAvailablePlaces)
+                .addComponent(jLabelStudentsRequests)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldAvailablePlaces, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldStudentsRequests, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelTotalRequests)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -336,31 +352,34 @@ public class EditFCTsData extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldAssignedStudentsActionPerformed
 
-    private void jTextFieldAvailablePlacesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAvailablePlacesActionPerformed
+    private void jTextFieldStudentsRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldStudentsRequestsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldAvailablePlacesActionPerformed
+    }//GEN-LAST:event_jTextFieldStudentsRequestsActionPerformed
 
     private void jButtonModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModifyActionPerformed
-        MyConnection conexion = new MyConnection();
-        //conexion.tryQuery3();
+        MyConnection1 conexion = new MyConnection1();
+        conexion.modifyFCTDBData(getFCTInfoFromFields());
+        reloadWindow();
     }//GEN-LAST:event_jButtonModifyActionPerformed
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
-        setVisible(false);
+        dispose();
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
         MyConnection1 conexion = new MyConnection1();
         conexion.insertFCTDBData(getFCTInfoFromFields());
+        reloadWindow();
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         MyConnection1 conexion = new MyConnection1();
         conexion.deleteFCTDBData(getFCTInfoFromFields());
+        reloadWindow();
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
-        // TODO add your handling code here:
+        reloadWindow();
     }//GEN-LAST:event_jButtonUpdateActionPerformed
 
     /**
@@ -412,9 +431,9 @@ public class EditFCTsData extends javax.swing.JFrame {
     private javax.swing.JButton jButtonModify;
     private javax.swing.JButton jButtonUpdate;
     private javax.swing.JLabel jLabelAssignedStudents;
-    private javax.swing.JLabel jLabelAvailablePlaces;
     private javax.swing.JLabel jLabelCompanyId;
     private javax.swing.JLabel jLabelCourseId;
+    private javax.swing.JLabel jLabelStudentsRequests;
     private javax.swing.JLabel jLabelTotalRequests;
     private javax.swing.JLabel jLabelYear;
     private javax.swing.JList<String> jListCompanies;
@@ -422,9 +441,9 @@ public class EditFCTsData extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextFieldAssignedStudents;
-    private javax.swing.JTextField jTextFieldAvailablePlaces;
     private javax.swing.JTextField jTextFieldCompanyId;
     private javax.swing.JTextField jTextFieldCourseId;
+    private javax.swing.JTextField jTextFieldStudentsRequests;
     private javax.swing.JTextField jTextFieldTotalRequests;
     private javax.swing.JTextField jTextFieldYear;
     private javax.swing.JTextPane jTextPane1;

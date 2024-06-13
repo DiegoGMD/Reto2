@@ -302,114 +302,6 @@ public class MyConnection1 {
         return data;
     }
 
-//    public void insertCompanyData(List<String> companyInfo) {
-//        Connection conn = makeConection();
-//        if (conn != null) {
-//            try {
-//                String query = "INSERT INTO prevision_fct(idempresa,idciclo,cursoescolar,solicitaAlu,acogeAlu,totalSoli)"
-//                        + "VALUES(1,2,'2023-2024',40,0,40)";
-//                Statement stmt = conn.createStatement();
-//                int rs = stmt.executeUpdate(query);
-//
-//                stmt.close();
-//                conn.close();
-//            } catch (Exception e) {
-//                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
-//            }
-//        }
-//    }
-//    public void insertCompanyData(List<String> companyInfo) {
-//        Connection conn = makeConection();
-//        if (conn != null) {
-//            PreparedStatement pstmt = null;
-//            try {
-//                // Insert into empresa
-//                String query = "INSERT INTO empresa (nombre, idSector) VALUES (?, ?);";
-//                pstmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-//                pstmt.setString(1, companyInfo.get(0)); // Company name
-//                pstmt.setInt(2, getSectorId(companyInfo.get(1))); // Sector ID
-//                pstmt.executeUpdate();
-//
-//                ResultSet generatedKeys = pstmt.getGeneratedKeys();
-//                int companyId = -1;
-//                if (generatedKeys.next()) {
-//                    companyId = generatedKeys.getInt(1);
-//                }
-//
-//                if (companyId != -1) {
-//                    // Insert into realizan_fct
-//                    query = "INSERT INTO realizan_fct (idempresa, idgrupo, cursoescolar, periodo, num_alu_asignados) VALUES (?, ?, ?, ?, ?);";
-//                    pstmt = conn.prepareStatement(query);
-//                    pstmt.setInt(1, companyId); // Company ID
-//                    pstmt.setInt(2, Integer.parseInt(companyInfo.get(2))); // Group ID
-//                    pstmt.setString(3, null); // Academic year
-//                    pstmt.setString(4, null); // Period
-//                    pstmt.setInt(5, Integer.parseInt(companyInfo.get(5))); // Number of assigned students
-//                    pstmt.executeUpdate();
-//
-//                    // Insert into prevision_fct
-//                    query = "INSERT INTO prevision_fct (idempresa, idciclo, cursoescolar, periodo, solicitaAlu, acogeAlu) VALUES (?, ?, ?, ?, ?, ?);";
-//                    pstmt = conn.prepareStatement(query);
-//                    pstmt.setInt(1, companyId); // Company ID
-//                    pstmt.setInt(2, Integer.parseInt(companyInfo.get(6))); // Cycle ID
-//                    pstmt.setString(3, companyInfo.get(7)); // Academic year
-//                    pstmt.setString(4, companyInfo.get(8)); // Period
-//                    pstmt.setBoolean(5, Boolean.parseBoolean(companyInfo.get(9))); // Solicits students
-//                    pstmt.setBoolean(6, Boolean.parseBoolean(companyInfo.get(10))); // Accommodates students
-//                    pstmt.executeUpdate();
-//                }
-//            } catch (SQLException e) {
-//                JOptionPane.showMessageDialog(null, "Error inserting data: " + e.toString());
-//            } finally {
-//                try {
-//                    if (pstmt != null) {
-//                        pstmt.close();
-//                    }
-//                    if (conn != null) {
-//                        conn.close();
-//                    }
-//                } catch (SQLException e) {
-//                    JOptionPane.showMessageDialog(null, "Error closing connection: " + e.toString());
-//                }
-//            }
-//        }
-//    }
-//
-//    // Helper method to get the sector ID
-//    private int getSectorId(String sectorDescription) {
-//        Connection conn = makeConection();
-//        int sectorId = -1;
-//        if (conn != null) {
-//            PreparedStatement pstmt = null;
-//            ResultSet rs = null;
-//            try {
-//                String query = "SELECT idSector FROM sector WHERE descripcion = ?;";
-//                pstmt = conn.prepareStatement(query);
-//                pstmt.setString(1, sectorDescription);
-//                rs = pstmt.executeQuery();
-//                if (rs.next()) {
-//                    sectorId = rs.getInt("idSector");
-//                }
-//            } catch (SQLException e) {
-//                JOptionPane.showMessageDialog(null, "Error fetching sector ID: " + e.toString());
-//            } finally {
-//                try {
-//                    if (rs != null) {
-//                        rs.close();
-//                    }
-//                    if (pstmt != null) {
-//                        pstmt.close();
-//                    }
-//                    if (conn != null) {
-//                        conn.close();
-//                    }
-//                } catch (SQLException e) {
-//                    JOptionPane.showMessageDialog(null, "Error closing connection: " + e.toString());
-//                }
-//            }
-//        }
-//        return sectorId;
-//    }
     public List<String> getFCTsDBData() {
         Connection conn = makeConection();
         List<String> data = new ArrayList<>();
@@ -422,8 +314,8 @@ public class MyConnection1 {
                         + "c.idCiclo AS course_id, "
                         + "c.ciclo AS course_name, "
                         + "pf.cursoescolar AS course_year, "
-                        + "rf.num_alu_asignados AS fct_real_assigned_students, "
-                        + "pf.solicitaAlu AS available_places_for_students, "
+                        + "rf.num_alu_asignados AS assigned_students, "
+                        + "pf.solicitaAlu AS students_requests, "
                         + "pf.totalSoli AS total_requests "
                         + "FROM "
                         + "empresa e "
@@ -441,8 +333,8 @@ public class MyConnection1 {
                             + ", " + rs.getString("course_id")
                             + ", " + rs.getString("course_name")
                             + ", " + rs.getString("course_year")
-                            + ", " + rs.getString("fct_real_assigned_students")
-                            + ", " + rs.getString("available_places_for_students")
+                            + ", " + rs.getString("assigned_students")
+                            + ", " + rs.getString("students_requests")
                             + ", " + rs.getString("total_requests");
                     data.add(line);
                 }
@@ -477,8 +369,8 @@ public class MyConnection1 {
                         + "c.idCiclo AS course_id, "
                         + "c.ciclo AS course_name, "
                         + "pf.cursoescolar AS course_year, "
-                        + "rf.num_alu_asignados AS fct_real_assigned_students, "
-                        + "pf.solicitaAlu AS available_places_for_students, "
+                        + "rf.num_alu_asignados AS assigned_students, "
+                        + "pf.solicitaAlu AS students_requests, "
                         + "pf.totalSoli AS total_requests "
                         + "FROM "
                         + "empresa e "
@@ -498,8 +390,8 @@ public class MyConnection1 {
                             + ", " + rs.getInt("course_id")
                             + ", " + rs.getString("course_name")
                             + ", " + rs.getString("course_year")
-                            + ", " + rs.getInt("fct_real_assigned_students")
-                            + ", " + rs.getInt("available_places_for_students")
+                            + ", " + rs.getInt("assigned_students")
+                            + ", " + rs.getInt("students_requests")
                             + ", " + rs.getInt("total_requests");
                 }
             } catch (SQLException e) {
@@ -526,19 +418,20 @@ public class MyConnection1 {
     public void insertFCTDBData(String info) {
         Connection conn = makeConection();
         if (conn != null) {
-            if (info != null && !info.isEmpty()) { // Ensure data is retrieved successfully
+            if (info != null && !info.isEmpty()) {
                 String[] values = info.split(", ");
-                if (values.length >= 6) { // Ensure there are enough values
+                if (values.length >= 6) {
                     Statement stmt = null;
                     try {
-                        // Construct the query string with properly formatted values
-                        String query = "INSERT INTO prevision_fct (idempresa, idciclo, cursoescolar, solicitaAlu, acogeAlu, totalSoli) VALUES ("
-                                + Integer.parseInt(values[0]) + ", "
-                                + Integer.parseInt(values[1]) + ", '"
-                                + values[2] + "', "
-                                + Integer.parseInt(values[3]) + ", "
-                                + Integer.parseInt(values[4]) + ", "
-                                + Integer.parseInt(values[5]) + ")";
+                        int companyId = Integer.parseInt(values[0]);
+                        int courseId = Integer.parseInt(values[1]);
+                        String courseYear = values[2].replace("'", "''"); 
+                        int assignedStudents = Integer.parseInt(values[3]);
+                        int studentsRequests = Integer.parseInt(values[4]);
+                        int totalRequests = Integer.parseInt(values[5]);
+
+                        String query = String.format("INSERT INTO prevision_fct (idempresa, idciclo, cursoescolar, solicitaAlu, acogeAlu, totalSoli) VALUES (%d, %d, '%s', %d, %d, %d)",
+                                companyId, courseId, courseYear, assignedStudents, studentsRequests, totalRequests);
 
                         stmt = conn.createStatement();
                         stmt.executeUpdate(query);
@@ -571,19 +464,64 @@ public class MyConnection1 {
     public void deleteFCTDBData(String info) {
         Connection conn = makeConection();
         if (conn != null) {
-            if (info != null && !info.isEmpty()) { // Ensure data is retrieved successfully
-                String[] values = info.split(" \\|\\| ");
-                if (values.length >= 6) { // Ensure there are enough values
+            if (info != null && !info.isEmpty()) {
+                String[] values = info.split(", ");
+                if (values.length >= 6) {
                     Statement stmt = null;
                     try {
-                        // Construct the query string with properly formatted values
-                        String query = "DELETE FROM prevision_fct "
-                                + "WHERE idempresa = " + Integer.parseInt(values[0]) + " "
-                                + "AND idciclo = " + Integer.parseInt(values[1]) + " "
-                                + "AND cursoescolar = '" + values[2] + "' "
-                                + "AND solicitaAlu = " + Integer.parseInt(values[3]) + " "
-                                + "AND acogeAlu = " + Integer.parseInt(values[4]) + " "
-                                + "AND totalSoli = " + Integer.parseInt(values[5]);
+                        int companyId = Integer.parseInt(values[0]);
+                        int courseId = Integer.parseInt(values[1]);
+                        String courseYear = values[2].replace("'", "''"); 
+                        int assignedStudents = Integer.parseInt(values[3]);
+                        int studentsRequests = Integer.parseInt(values[4]);
+                        int totalRequests = Integer.parseInt(values[5]);
+
+                        String query = String.format("DELETE FROM prevision_fct WHERE idempresa = %d AND idciclo = %d AND cursoescolar = '%s' AND solicitaAlu = %d AND acogeAlu = %d AND totalSoli = %d",
+                                companyId, courseId, courseYear, assignedStudents, studentsRequests, totalRequests);
+
+                        stmt = conn.createStatement();
+                        stmt.executeUpdate(query);
+
+                    } catch (SQLException e) {
+                        JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null, "Error de formato en los datos: " + e.toString());
+                    } finally {
+                        try {
+                            if (stmt != null) {
+                                stmt.close();
+                            }
+                            conn.close();
+                        } catch (SQLException e) {
+                            JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.toString());
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al realizar la consulta: Datos insuficientes");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: No has agregado información");
+            }
+        }
+    }
+
+    public void modifyFCTDBData(String info) {
+        Connection conn = makeConection();
+        if (conn != null) {
+            if (info != null && !info.isEmpty()) {
+                String[] values = info.split(", ");
+                if (values.length >= 6) { 
+                    Statement stmt = null;
+                    try {
+                        int companyId = Integer.parseInt(values[0]);
+                        int courseId = Integer.parseInt(values[1]);
+                        String courseYear = values[2].replace("'", "''"); 
+                        int assignedStudents = Integer.parseInt(values[3]);
+                        int studentsRequests = Integer.parseInt(values[4]);
+                        int totalRequests = Integer.parseInt(values[5]);
+
+                        String query = String.format("UPDATE prevision_fct SET solicitaAlu = %d, acogeAlu = %d, totalSoli = %d WHERE idempresa = %d AND idciclo = %d AND cursoescolar = '%s'",
+                                assignedStudents, studentsRequests, totalRequests, companyId, courseId, courseYear);
 
                         stmt = conn.createStatement();
                         stmt.executeUpdate(query);
