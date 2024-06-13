@@ -131,9 +131,9 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTextFieldStudentsRequests" max="32767" attributes="0"/>
+                      <Component id="jTextFieldStatus" max="32767" attributes="0"/>
                       <Component id="jTextFieldCompanyId" max="32767" attributes="0"/>
-                      <Component id="jTextFieldCourseId" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jTextFieldGroupId" alignment="0" max="32767" attributes="0"/>
                       <Component id="jTextFieldYear" alignment="0" max="32767" attributes="0"/>
                       <Component id="jTextFieldAssignedStudents" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
@@ -143,8 +143,6 @@
                           </Group>
                           <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jLabelTotalRequests" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jTextFieldTotalRequests" alignment="0" max="32767" attributes="0"/>
                       <Component id="jLabelCourseId" alignment="0" max="32767" attributes="0"/>
                       <Component id="jLabelYear" alignment="0" max="32767" attributes="0"/>
                       <Component id="jLabelStudentsRequests" alignment="0" max="32767" attributes="0"/>
@@ -163,7 +161,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabelCourseId" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextFieldCourseId" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldGroupId" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabelYear" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -175,12 +173,8 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabelStudentsRequests" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextFieldStudentsRequests" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabelTotalRequests" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextFieldTotalRequests" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jTextFieldStatus" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="56" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -201,15 +195,15 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelCourseId">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Course Id:"/>
+            <Property name="text" type="java.lang.String" value="Group Id:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldCourseId">
+        <Component class="javax.swing.JTextField" name="jTextFieldGroupId">
           <Properties>
             <Property name="text" type="java.lang.String" value="Unknown"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldCourseIdActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldGroupIdActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelYear">
@@ -232,7 +226,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelStudentsRequests">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Students Requests:"/>
+            <Property name="text" type="java.lang.String" value="Status:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldAssignedStudents">
@@ -243,23 +237,13 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldAssignedStudentsActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldStudentsRequests">
+        <Component class="javax.swing.JTextField" name="jTextFieldStatus">
           <Properties>
             <Property name="text" type="java.lang.String" value="Unknown"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldStudentsRequestsActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldStatusActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabelTotalRequests">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Total Requests:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldTotalRequests">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Unknown"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>

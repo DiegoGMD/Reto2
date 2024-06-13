@@ -309,19 +309,18 @@ public class MyConnection1 {
         if (conn != null) {
             try {
                 String query = "SELECT "
-                        + "e.idempresa AS company_id, "
+                        + "r.idempresa AS company_id, "
                         + "e.nombre AS company_name, "
-                        + "c.idCiclo AS course_id, "
-                        + "c.ciclo AS course_name, "
-                        + "pf.cursoescolar AS course_year, "
-                        + "rf.num_alu_asignados AS assigned_students, "
-                        + "pf.solicitaAlu AS students_requests, "
-                        + "pf.totalSoli AS total_requests "
+                        + "r.idgrupo AS group_id, "
+                        + "g.nombre_grupo AS group_name, "
+                        + "r.cursoescolar AS course_year, "
+                        + "r.num_alu_asignados AS assigned_students, "
+                        + "r.estado AS status "
                         + "FROM "
-                        + "empresa e "
-                        + "LEFT JOIN prevision_fct pf ON e.idempresa = pf.idempresa "
-                        + "LEFT JOIN ciclo c ON c.idCiclo = pf.idciclo "
-                        + "LEFT JOIN realizan_fct rf ON e.idempresa = rf.idempresa "
+                        + "realizan_fct r "
+                        + "LEFT JOIN empresa e ON r.idempresa = e.idempresa "
+                        + "LEFT JOIN grupo g ON r.idgrupo = g.idGrupo "
+                        + "LEFT JOIN ciclo c ON g.idCiclo = c.idCiclo "
                         + "ORDER BY e.idempresa;";
 
                 Statement stmt = conn.createStatement();
@@ -330,12 +329,11 @@ public class MyConnection1 {
                 while (rs.next()) {
                     String line = rs.getString("company_id")
                             + ", " + rs.getString("company_name")
-                            + ", " + rs.getString("course_id")
-                            + ", " + rs.getString("course_name")
+                            + ", " + rs.getString("group_id")
+                            + ", " + rs.getString("group_name")
                             + ", " + rs.getString("course_year")
                             + ", " + rs.getString("assigned_students")
-                            + ", " + rs.getString("students_requests")
-                            + ", " + rs.getString("total_requests");
+                            + ", " + rs.getString("status");
                     data.add(line);
                 }
 
@@ -364,19 +362,18 @@ public class MyConnection1 {
             ResultSet rs = null;
             try {
                 String query = "SELECT "
-                        + "e.idempresa AS company_id, "
+                        + "r.idempresa AS company_id, "
                         + "e.nombre AS company_name, "
-                        + "c.idCiclo AS course_id, "
-                        + "c.ciclo AS course_name, "
-                        + "pf.cursoescolar AS course_year, "
-                        + "rf.num_alu_asignados AS assigned_students, "
-                        + "pf.solicitaAlu AS students_requests, "
-                        + "pf.totalSoli AS total_requests "
+                        + "r.idgrupo AS group_id, "
+                        + "g.nombre_grupo AS group_name, "
+                        + "r.cursoescolar AS course_year, "
+                        + "r.num_alu_asignados AS assigned_students, "
+                        + "r.estado AS status "
                         + "FROM "
-                        + "empresa e "
-                        + "LEFT JOIN prevision_fct pf ON e.idempresa = pf.idempresa "
-                        + "LEFT JOIN ciclo c ON c.idCiclo = pf.idciclo "
-                        + "LEFT JOIN realizan_fct rf ON e.idempresa = rf.idempresa "
+                        + "realizan_fct r "
+                        + "LEFT JOIN empresa e ON r.idempresa = e.idempresa "
+                        + "LEFT JOIN grupo g ON r.idgrupo = g.idGrupo "
+                        + "LEFT JOIN ciclo c ON g.idCiclo = c.idCiclo "
                         + "WHERE e.idempresa = ? "
                         + "ORDER BY e.idempresa;";
 
@@ -385,14 +382,13 @@ public class MyConnection1 {
                 rs = pstmt.executeQuery();
 
                 while (rs.next()) {
-                    line = rs.getInt("company_id")
+                    line = rs.getString("company_id")
                             + ", " + rs.getString("company_name")
-                            + ", " + rs.getInt("course_id")
-                            + ", " + rs.getString("course_name")
+                            + ", " + rs.getString("group_id")
+                            + ", " + rs.getString("group_name")
                             + ", " + rs.getString("course_year")
-                            + ", " + rs.getInt("assigned_students")
-                            + ", " + rs.getInt("students_requests")
-                            + ", " + rs.getInt("total_requests");
+                            + ", " + rs.getString("assigned_students")
+                            + ", " + rs.getString("status");
                 }
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Error while executing the query: " + e.toString());
@@ -420,18 +416,17 @@ public class MyConnection1 {
         if (conn != null) {
             if (info != null && !info.isEmpty()) {
                 String[] values = info.split(", ");
-                if (values.length >= 6) {
+                if (values.length >= 4) {
                     Statement stmt = null;
                     try {
                         int companyId = Integer.parseInt(values[0]);
-                        int courseId = Integer.parseInt(values[1]);
-                        String courseYear = values[2].replace("'", "''"); 
+                        int groupId = Integer.parseInt(values[1]);
+                        String courseYear = values[2].replace("'", "''");
                         int assignedStudents = Integer.parseInt(values[3]);
-                        int studentsRequests = Integer.parseInt(values[4]);
-                        int totalRequests = Integer.parseInt(values[5]);
+                        String status = values[4].replace("'", "''");
 
-                        String query = String.format("INSERT INTO prevision_fct (idempresa, idciclo, cursoescolar, solicitaAlu, acogeAlu, totalSoli) VALUES (%d, %d, '%s', %d, %d, %d)",
-                                companyId, courseId, courseYear, assignedStudents, studentsRequests, totalRequests);
+                        String query = String.format("INSERT INTO realizan_fct (idempresa, idgrupo, cursoescolar, num_alu_asignados, estado) VALUES (%d, %d, '%s', %d, '%s')",
+                                companyId, groupId, courseYear, assignedStudents, status);
 
                         stmt = conn.createStatement();
                         stmt.executeUpdate(query);
@@ -461,67 +456,22 @@ public class MyConnection1 {
         }
     }
 
-    public void deleteFCTDBDataOG(String info) {
-        Connection conn = makeConection();
-        if (conn != null) {
-            if (info != null && !info.isEmpty()) {
-                String[] values = info.split(", ");
-                if (values.length >= 6) {
-                    Statement stmt = null;
-                    try {
-                        int companyId = Integer.parseInt(values[0]);
-                        int courseId = Integer.parseInt(values[1]);
-                        String courseYear = values[2].replace("'", "''"); 
-                        int assignedStudents = Integer.parseInt(values[3]);
-                        int studentsRequests = Integer.parseInt(values[4]);
-                        int totalRequests = Integer.parseInt(values[5]);
-
-                        String query = String.format("DELETE FROM prevision_fct WHERE idempresa = %d AND idciclo = %d AND cursoescolar = '%s' AND solicitaAlu = %d AND acogeAlu = %d AND totalSoli = %d",
-                                companyId, courseId, courseYear, assignedStudents, studentsRequests, totalRequests);
-
-                        stmt = conn.createStatement();
-                        stmt.executeUpdate(query);
-
-                    } catch (SQLException e) {
-                        JOptionPane.showMessageDialog(null, "Error while executing the query: " + e.toString());
-                    } catch (NumberFormatException e) {
-                        JOptionPane.showMessageDialog(null, "Data format error: " + e.toString());
-                    } finally {
-                        try {
-                            if (stmt != null) {
-                                stmt.close();
-                            }
-                            conn.close();
-                        } catch (SQLException e) {
-                            JOptionPane.showMessageDialog(null, "Error while closing the connection: " + e.toString());
-                        }
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error while executing the query: Datos insuficientes");
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Error while executing the query: No has agregado información");
-            }
-        }
-    }
-    
     public void deleteFCTDBData(String info) {
         Connection conn = makeConection();
         if (conn != null) {
             if (info != null && !info.isEmpty()) {
                 String[] values = info.split(", ");
-                if (values.length >= 6) {
+                if (values.length >= 4) {
                     Statement stmt = null;
                     try {
                         int companyId = Integer.parseInt(values[0]);
-                        int courseId = Integer.parseInt(values[1]);
-                        String courseYear = values[2].replace("'", "''"); 
+                        int groupId = Integer.parseInt(values[1]);
+                        String courseYear = values[2].replace("'", "''");
                         int assignedStudents = Integer.parseInt(values[3]);
-                        int studentsRequests = Integer.parseInt(values[4]);
-                        int totalRequests = Integer.parseInt(values[5]);
+                        String status = "I";
 
-                        String query = String.format("DELETE FROM prevision_fct WHERE idempresa = %d AND idciclo = %d AND cursoescolar = '%s' AND solicitaAlu = %d AND acogeAlu = %d AND totalSoli = %d",
-                                companyId, courseId, courseYear, assignedStudents, studentsRequests, totalRequests);
+                        String query = String.format("UPDATE realizan_fct SET estado = '%s' WHERE idempresa = %d AND idgrupo = %d AND cursoescolar = '%s'",
+                                status, companyId, groupId, courseYear);
 
                         stmt = conn.createStatement();
                         stmt.executeUpdate(query);
@@ -554,18 +504,17 @@ public class MyConnection1 {
         if (conn != null) {
             if (info != null && !info.isEmpty()) {
                 String[] values = info.split(", ");
-                if (values.length >= 6) { 
+                if (values.length >= 4) {
                     Statement stmt = null;
                     try {
                         int companyId = Integer.parseInt(values[0]);
-                        int courseId = Integer.parseInt(values[1]);
-                        String courseYear = values[2].replace("'", "''"); 
+                        int groupId = Integer.parseInt(values[1]);
+                        String courseYear = values[2].replace("'", "''");
                         int assignedStudents = Integer.parseInt(values[3]);
-                        int studentsRequests = Integer.parseInt(values[4]);
-                        int totalRequests = Integer.parseInt(values[5]);
+                        String status = values[4].replace("'", "''");
 
-                        String query = String.format("UPDATE prevision_fct SET solicitaAlu = %d, acogeAlu = %d, totalSoli = %d WHERE idempresa = %d AND idciclo = %d AND cursoescolar = '%s'",
-                                assignedStudents, studentsRequests, totalRequests, companyId, courseId, courseYear);
+                        String query = String.format("UPDATE realizan_fct SET num_alu_asignados = %d, estado = '%s' WHERE idempresa = %d AND idgrupo = %d AND cursoescolar = '%s'",
+                                assignedStudents, status, companyId, groupId, courseYear);
 
                         stmt = conn.createStatement();
                         stmt.executeUpdate(query);
