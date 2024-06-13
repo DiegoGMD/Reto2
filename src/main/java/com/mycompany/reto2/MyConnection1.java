@@ -55,7 +55,7 @@ public class MyConnection1 {
                 stmt.close();
                 conn.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error while executing the query: " + e.toString());
             }
         }
     }
@@ -77,7 +77,7 @@ public class MyConnection1 {
                 stmt.close();
                 conn.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error while executing the query: " + e.toString());
             }
         }
     }
@@ -94,7 +94,7 @@ public class MyConnection1 {
                 stmt.close();
                 conn.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error while executing the query: " + e.toString());
             }
         }
     }
@@ -117,7 +117,7 @@ public class MyConnection1 {
                 stmt.close();
                 conn.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error while executing the query: " + e.toString());
             }
         }
         return Empresas.toArray(new String[0]);
@@ -141,7 +141,7 @@ public class MyConnection1 {
                 stmt.close();
                 conn.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error while executing the query: " + e.toString());
             }
         }
         return Ciclo.toArray(new String[0]);
@@ -165,7 +165,7 @@ public class MyConnection1 {
                 stmt.close();
                 conn.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error while executing the query: " + e.toString());
             }
         }
         return Grupo.toArray(new String[0]);
@@ -192,7 +192,7 @@ public class MyConnection1 {
                 stmt.close();
                 conn.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error while executing the query: " + e.toString());
             }
         }
         return verificacion;
@@ -232,14 +232,14 @@ public class MyConnection1 {
                 stmt.close();
 
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error while executing the query: " + e.toString());
             } finally {
                 try {
                     if (conn != null) {
                         conn.close();
                     }
                 } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.toString());
+                    JOptionPane.showMessageDialog(null, "Error while closing the connection: " + e.toString());
                 }
             }
         }
@@ -282,7 +282,7 @@ public class MyConnection1 {
                 }
 
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error while executing the query: " + e.toString());
             } finally {
                 try {
                     if (rs != null) {
@@ -295,7 +295,7 @@ public class MyConnection1 {
                         conn.close();
                     }
                 } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.toString());
+                    JOptionPane.showMessageDialog(null, "Error while closing the connection: " + e.toString());
                 }
             }
         }
@@ -342,14 +342,14 @@ public class MyConnection1 {
                 stmt.close();
 
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error while executing the query: " + e.toString());
             } finally {
                 try {
                     if (conn != null) {
                         conn.close();
                     }
                 } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.toString());
+                    JOptionPane.showMessageDialog(null, "Error while closing the connection: " + e.toString());
                 }
             }
         }
@@ -395,7 +395,7 @@ public class MyConnection1 {
                             + ", " + rs.getInt("total_requests");
                 }
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error while executing the query: " + e.toString());
             } finally {
                 try {
                     if (rs != null) {
@@ -408,7 +408,7 @@ public class MyConnection1 {
                         conn.close();
                     }
                 } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.toString());
+                    JOptionPane.showMessageDialog(null, "Error while closing the connection: " + e.toString());
                 }
             }
         }
@@ -437,9 +437,9 @@ public class MyConnection1 {
                         stmt.executeUpdate(query);
 
                     } catch (SQLException e) {
-                        JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                        JOptionPane.showMessageDialog(null, "Error while executing the query: " + e.toString());
                     } catch (NumberFormatException e) {
-                        JOptionPane.showMessageDialog(null, "Error de formato en los datos: " + e.toString());
+                        JOptionPane.showMessageDialog(null, "Data format error: " + e.toString());
                     } finally {
                         try {
                             if (stmt != null) {
@@ -449,18 +449,62 @@ public class MyConnection1 {
                                 conn.close();
                             }
                         } catch (SQLException e) {
-                            JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.toString());
+                            JOptionPane.showMessageDialog(null, "Error while closing the connection: " + e.toString());
                         }
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error al realizar la consulta: Datos insuficientes");
+                    JOptionPane.showMessageDialog(null, "Error while executing the query: Datos insuficientes");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: No has agregado información");
+                JOptionPane.showMessageDialog(null, "Error while executing the query: No has agregado información");
             }
         }
     }
 
+    public void deleteFCTDBDataOG(String info) {
+        Connection conn = makeConection();
+        if (conn != null) {
+            if (info != null && !info.isEmpty()) {
+                String[] values = info.split(", ");
+                if (values.length >= 6) {
+                    Statement stmt = null;
+                    try {
+                        int companyId = Integer.parseInt(values[0]);
+                        int courseId = Integer.parseInt(values[1]);
+                        String courseYear = values[2].replace("'", "''"); 
+                        int assignedStudents = Integer.parseInt(values[3]);
+                        int studentsRequests = Integer.parseInt(values[4]);
+                        int totalRequests = Integer.parseInt(values[5]);
+
+                        String query = String.format("DELETE FROM prevision_fct WHERE idempresa = %d AND idciclo = %d AND cursoescolar = '%s' AND solicitaAlu = %d AND acogeAlu = %d AND totalSoli = %d",
+                                companyId, courseId, courseYear, assignedStudents, studentsRequests, totalRequests);
+
+                        stmt = conn.createStatement();
+                        stmt.executeUpdate(query);
+
+                    } catch (SQLException e) {
+                        JOptionPane.showMessageDialog(null, "Error while executing the query: " + e.toString());
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null, "Data format error: " + e.toString());
+                    } finally {
+                        try {
+                            if (stmt != null) {
+                                stmt.close();
+                            }
+                            conn.close();
+                        } catch (SQLException e) {
+                            JOptionPane.showMessageDialog(null, "Error while closing the connection: " + e.toString());
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error while executing the query: Datos insuficientes");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Error while executing the query: No has agregado información");
+            }
+        }
+    }
+    
     public void deleteFCTDBData(String info) {
         Connection conn = makeConection();
         if (conn != null) {
@@ -483,9 +527,9 @@ public class MyConnection1 {
                         stmt.executeUpdate(query);
 
                     } catch (SQLException e) {
-                        JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                        JOptionPane.showMessageDialog(null, "Error while executing the query: " + e.toString());
                     } catch (NumberFormatException e) {
-                        JOptionPane.showMessageDialog(null, "Error de formato en los datos: " + e.toString());
+                        JOptionPane.showMessageDialog(null, "Data format error: " + e.toString());
                     } finally {
                         try {
                             if (stmt != null) {
@@ -493,14 +537,14 @@ public class MyConnection1 {
                             }
                             conn.close();
                         } catch (SQLException e) {
-                            JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.toString());
+                            JOptionPane.showMessageDialog(null, "Error while closing the connection: " + e.toString());
                         }
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error al realizar la consulta: Datos insuficientes");
+                    JOptionPane.showMessageDialog(null, "Error while executing the query: Datos insuficientes");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: No has agregado información");
+                JOptionPane.showMessageDialog(null, "Error while executing the query: No has agregado información");
             }
         }
     }
@@ -527,9 +571,9 @@ public class MyConnection1 {
                         stmt.executeUpdate(query);
 
                     } catch (SQLException e) {
-                        JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                        JOptionPane.showMessageDialog(null, "Error while executing the query: " + e.toString());
                     } catch (NumberFormatException e) {
-                        JOptionPane.showMessageDialog(null, "Error de formato en los datos: " + e.toString());
+                        JOptionPane.showMessageDialog(null, "Data format error: " + e.toString());
                     } finally {
                         try {
                             if (stmt != null) {
@@ -539,14 +583,14 @@ public class MyConnection1 {
                                 conn.close();
                             }
                         } catch (SQLException e) {
-                            JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + e.toString());
+                            JOptionPane.showMessageDialog(null, "Error while closing the connection: " + e.toString());
                         }
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error al realizar la consulta: Datos insuficientes");
+                    JOptionPane.showMessageDialog(null, "Error while executing the query: Datos insuficientes");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: No has agregado información");
+                JOptionPane.showMessageDialog(null, "Error while executing the query: No has agregado información");
             }
         }
     }

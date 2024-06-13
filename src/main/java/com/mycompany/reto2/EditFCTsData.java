@@ -21,6 +21,7 @@ public class EditFCTsData extends javax.swing.JFrame {
     public EditFCTsData() {
         initComponents();
         setLocationRelativeTo(null);
+        setEmptyTextFields();
         setupCompanyList();
         setupEventListeners();
     }
@@ -69,7 +70,7 @@ public class EditFCTsData extends javax.swing.JFrame {
             if (values.length >= 8) {
                 setTextFields(values);
             } else {
-                setUnknownTextFields();
+                setEmptyTextFields();
             }
         }
     }
@@ -83,13 +84,13 @@ public class EditFCTsData extends javax.swing.JFrame {
         jTextFieldTotalRequests.setText(values[7]);
     }
 
-    private void setUnknownTextFields() {
-        jTextFieldCompanyId.setText("Unknown");
-        jTextFieldCourseId.setText("Unknown");
-        jTextFieldYear.setText("Unknown");
-        jTextFieldAssignedStudents.setText("Unknown");
-        jTextFieldStudentsRequests.setText("Unknown");
-        jTextFieldTotalRequests.setText("Unknown");
+    private void setEmptyTextFields() {
+        jTextFieldCompanyId.setText(" ");
+        jTextFieldCourseId.setText(" ");
+        jTextFieldYear.setText(" ");
+        jTextFieldAssignedStudents.setText(" ");
+        jTextFieldStudentsRequests.setText(" ");
+        jTextFieldTotalRequests.setText(" ");
     }
 
     public String getFCTInfoFromFields() {
