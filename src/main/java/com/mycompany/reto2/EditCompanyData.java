@@ -312,10 +312,10 @@ public class EditCompanyData extends javax.swing.JFrame {
     private void jButtonModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModifyActionPerformed
         String id = jTextFieldIDCompany.getText();
         String name = jTextFieldName.getText();
-        String secondName = jTextFieldIDSector.getText();
+        String idS = jTextFieldIDSector.getText();
         String state = jTextFieldState.getText();
         MyConnection conexion = new MyConnection();
-        conexion.updateTeacher(id, name, secondName, state);
+        conexion.updateCompany(id, name, idS, state);
         reloadWindow();
     }//GEN-LAST:event_jButtonModifyActionPerformed
 
@@ -336,7 +336,7 @@ public class EditCompanyData extends javax.swing.JFrame {
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         String id = jTextFieldIDCompany.getText();
         MyConnection conexion = new MyConnection();
-        conexion.deactivateTeacher(id);
+        conexion.deactivateCompany(id);
         reloadWindow();
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 

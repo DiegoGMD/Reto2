@@ -567,4 +567,70 @@ public class MyConnection {
         }
         return companyList;
     }
+
+    public void deactivateCompany(String idEmpresa) {
+        Connection conn = makeConection();
+        if (conn != null) {
+            PreparedStatement pstmt = null;
+            try {
+                String query = "UPDATE empresa SET estado = 'I' WHERE idempresa = ?";
+                pstmt = conn.prepareStatement(query);
+                pstmt.setString(1, idEmpresa);
+                int rs = pstmt.executeUpdate();
+                if (rs > 0) {
+                    JOptionPane.showMessageDialog(null, "Estado de la empresa actualizado a 'Inactivo' con éxito");
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se encontró la empresa con el ID proporcionado");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+            } finally {
+                try {
+                    if (pstmt != null) {
+                        pstmt.close();
+                    }
+                    if (conn != null) {
+                        conn.close();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void updateCompany(String idEmpresa, String nombre, String idSector, String estado) {
+        Connection conn = makeConection();
+        if (conn != null) {
+            PreparedStatement pstmt = null;
+            try {
+                String query = "UPDATE empresa SET nombre = ?, idSector = ?, estado = ? WHERE idempresa = ?";
+                pstmt = conn.prepareStatement(query);
+                pstmt.setString(1, nombre);
+                pstmt.setString(2, idSector);
+                pstmt.setString(3, estado);
+                pstmt.setString(4, idEmpresa);
+                int rs = pstmt.executeUpdate();
+                if (rs > 0) {
+                    JOptionPane.showMessageDialog(null, "Empresa modificada con éxito");
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se encontró la empresa con el ID proporcionado");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+            } finally {
+                try {
+                    if (pstmt != null) {
+                        pstmt.close();
+                    }
+                    if (conn != null) {
+                        conn.close();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 }
