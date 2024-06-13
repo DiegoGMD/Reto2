@@ -16,7 +16,7 @@ import javax.swing.Timer;
 
 /**
  *
- * @author Administrador
+ * @author ol1ve-116i
  */
 public class BongoLoadingScreen extends javax.swing.JFrame {
 
@@ -57,6 +57,33 @@ public class BongoLoadingScreen extends javax.swing.JFrame {
         }
     }
     
+    public void addImage(JPanel jPanelLogoBongoPhoto, String imageLocation) {
+        try {
+        URL imageUrl = getClass().getResource(imageLocation); //"/images/bongoCat.png"
+        if (imageUrl == null) {
+            throw new IllegalArgumentException("Bongo not found!");
+        }
+        Image image = ImageIO.read(imageUrl);
+        JPanel imagePanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                if (image != null) {
+                    g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+                }
+            }
+        };
+        imagePanel.setPreferredSize(jPanelLogoBongoPhoto.getPreferredSize());
+        jPanelLogoBongoPhoto.setLayout(new BorderLayout());
+        jPanelLogoBongoPhoto.removeAll();
+        jPanelLogoBongoPhoto.add(imagePanel, BorderLayout.CENTER);
+        jPanelLogoBongoPhoto.revalidate();
+        jPanelLogoBongoPhoto.repaint();
+    } catch (Exception ex) {
+        ex.printStackTrace();
+        }
+    }
+    
     public void showLoadingScreen() {
         BongoLoadingScreen bongoLoadingScreen = new BongoLoadingScreen();
         bongoLoadingScreen.setVisible(true);
@@ -85,7 +112,6 @@ public class BongoLoadingScreen extends javax.swing.JFrame {
         jLabelLoadingText = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(400, 500));
 
         javax.swing.GroupLayout jPanelLogoBongoPhoto3Layout = new javax.swing.GroupLayout(jPanelLogoBongoPhoto3);
         jPanelLogoBongoPhoto3.setLayout(jPanelLogoBongoPhoto3Layout);
