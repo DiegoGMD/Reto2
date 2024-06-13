@@ -139,9 +139,11 @@
                               <Component id="jLabelCompany" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelSector" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelFTCs" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="20" max="32767" attributes="0"/>
                       </Group>
+                      <Component id="jTextFieldState" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -162,7 +164,11 @@
                   <Component id="jLabelFTCs" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jTextFieldSName" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="144" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jTextFieldState" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="84" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -206,6 +212,16 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldSNameActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="State"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextFieldState">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Unknown"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

@@ -83,18 +83,21 @@ public class EditTeachersData extends javax.swing.JFrame {
         jTextFieldIDTeacher.setText(values[0]);
         jTextFieldName.setText(values[1]);
         jTextFieldSName.setText(values[2]);
+        jTextFieldState.setText(values[3]);
     }
 
     private void setUnknownTextFields() {
         jTextFieldIDTeacher.setText("Unknown");
         jTextFieldName.setText("Unknown");
         jTextFieldSName.setText("Unknown");
+        jTextFieldState.setText("Unknown");
     }
 
     public void reloadWindow() {
         jTextFieldIDTeacher.setText("");
         jTextFieldName.setText("");
         jTextFieldSName.setText("");
+        jTextFieldState.setText("");
         setUpTeachersList();
         setupEventListeners();
     }
@@ -119,6 +122,8 @@ public class EditTeachersData extends javax.swing.JFrame {
         jTextFieldName = new javax.swing.JTextField();
         jLabelFTCs = new javax.swing.JLabel();
         jTextFieldSName = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jTextFieldState = new javax.swing.JTextField();
         jButtonAdd = new javax.swing.JButton();
         jButtonModify = new javax.swing.JButton();
         jButtonDelete = new javax.swing.JButton();
@@ -169,6 +174,10 @@ public class EditTeachersData extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("State");
+
+        jTextFieldState.setText("Unknown");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -183,8 +192,10 @@ public class EditTeachersData extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelCompany)
                             .addComponent(jLabelSector)
-                            .addComponent(jLabelFTCs))
-                        .addGap(0, 20, Short.MAX_VALUE)))
+                            .addComponent(jLabelFTCs)
+                            .addComponent(jLabel1))
+                        .addGap(0, 20, Short.MAX_VALUE))
+                    .addComponent(jTextFieldState))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -202,7 +213,11 @@ public class EditTeachersData extends javax.swing.JFrame {
                 .addComponent(jLabelFTCs)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldSName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         jButtonAdd.setText("Add");
@@ -298,8 +313,9 @@ public class EditTeachersData extends javax.swing.JFrame {
         String id = jTextFieldIDTeacher.getText();
         String name = jTextFieldName.getText();
         String secondName = jTextFieldSName.getText();
+        String state = jTextFieldState.getText();
         MyConnection conexion = new MyConnection();
-        conexion.updateTeacher(id, name, secondName);
+        conexion.updateTeacher(id, name, secondName, state);
         reloadWindow();
     }//GEN-LAST:event_jButtonModifyActionPerformed
 
@@ -311,17 +327,16 @@ public class EditTeachersData extends javax.swing.JFrame {
         String id = jTextFieldIDTeacher.getText();
         String name = jTextFieldName.getText();
         String secondName = jTextFieldSName.getText();
+        String state = jTextFieldState.getText();
         MyConnection conexion = new MyConnection();
-        conexion.addTeacher(id, name, secondName);
+        conexion.addTeacher(id, name, secondName, state);
         reloadWindow();
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         String id = jTextFieldIDTeacher.getText();
-        String name = jTextFieldName.getText();
-        String secondName = jTextFieldSName.getText();
         MyConnection conexion = new MyConnection();
-        conexion.deleteTeacher(id);
+        conexion.deactivateTeacher(id);
         reloadWindow();
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
@@ -377,6 +392,7 @@ public class EditTeachersData extends javax.swing.JFrame {
     private javax.swing.JButton jButtonDelete;
     private javax.swing.JButton jButtonModify;
     private javax.swing.JButton jButtonUpdate;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelCompany;
     private javax.swing.JLabel jLabelFTCs;
     private javax.swing.JLabel jLabelSector;
@@ -387,6 +403,7 @@ public class EditTeachersData extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldIDTeacher;
     private javax.swing.JTextField jTextFieldName;
     private javax.swing.JTextField jTextFieldSName;
+    private javax.swing.JTextField jTextFieldState;
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }

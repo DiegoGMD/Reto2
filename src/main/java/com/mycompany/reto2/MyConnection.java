@@ -157,14 +157,15 @@ public class MyConnection {
 
         if (conn != null) {
             try {
-                String query = "SELECT idProf, nombre, apellidos FROM profesor";
+                String query = "SELECT idProf, nombre, apellidos, estado FROM profesor";
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
-                String line = "IDProf // Name // SecondName";
+                String line = "IDProf // Name // SecondName // State";
                 profesList.add(line);
                 while (rs.next()) {
                     line = rs.getString("idProf") + ", " + rs.getString("nombre")
-                            + ", " + rs.getString("apellidos");
+                            + ", " + rs.getString("apellidos") + ", "
+                            + rs.getString("estado");
                     profesList.add(line);
                 }
                 rs.close();
@@ -177,16 +178,17 @@ public class MyConnection {
         return profesList;
     }
 
-    public void addTeacher(String ID, String name, String secondName) {
+    public void addTeacher(String ID, String name, String secondName, String estado) {
         Connection conn = makeConection();
         if (conn != null) {
             PreparedStatement pstmt = null;
             try {
-                String query = "INSERT INTO profesor(idProf, nombre, apellidos) VALUES (?, ?, ?)";
+                String query = "INSERT INTO profesor(idProf, nombre, apellidos, estado) VALUES (?, ?, ?, ?)";
                 pstmt = conn.prepareStatement(query);
                 pstmt.setString(1, ID);
                 pstmt.setString(2, name);
                 pstmt.setString(3, secondName);
+                pstmt.setString(4, estado);
                 int rs = pstmt.executeUpdate();
                 if (rs > 0) {
                     JOptionPane.showMessageDialog(null, "Profesor agregado con éxito");
@@ -208,16 +210,17 @@ public class MyConnection {
         }
     }
 
-    public void updateTeacher(String ID, String name, String secondName) {
+    public void updateTeacher(String ID, String name, String secondName, String state) {
         Connection conn = makeConection();
         if (conn != null) {
             PreparedStatement pstmt = null;
             try {
-                String query = "UPDATE profesor SET nombre = ?, apellidos = ? WHERE idProf = ?";
+                String query = "UPDATE profesor SET nombre = ?, apellidos = ?, estado = ? WHERE idProf = ?";
                 pstmt = conn.prepareStatement(query);
                 pstmt.setString(1, name);
                 pstmt.setString(2, secondName);
-                pstmt.setString(3, ID);
+                pstmt.setString(3, state);
+                pstmt.setString(4, ID);
                 int rs = pstmt.executeUpdate();
                 if (rs > 0) {
                     JOptionPane.showMessageDialog(null, "Profesor modificado con éxito");
@@ -241,17 +244,17 @@ public class MyConnection {
         }
     }
 
-    public void deleteTeacher(String ID) {
+    public void deactivateTeacher(String ID) {
         Connection conn = makeConection();
         if (conn != null) {
             PreparedStatement pstmt = null;
             try {
-                String query = "DELETE FROM profesor WHERE idProf = ?";
+                String query = "UPDATE profesor SET estado = 'I' WHERE idProf = ?";
                 pstmt = conn.prepareStatement(query);
                 pstmt.setString(1, ID);
                 int rs = pstmt.executeUpdate();
                 if (rs > 0) {
-                    JOptionPane.showMessageDialog(null, "Profesor eliminado con éxito");
+                    JOptionPane.showMessageDialog(null, "Estado del profesor actualizado a 'Inactivo' con éxito");
                 } else {
                     JOptionPane.showMessageDialog(null, "No se encontró el profesor con el ID proporcionado");
                 }
@@ -280,14 +283,15 @@ public class MyConnection {
             PreparedStatement pstmt = null;
             ResultSet rs = null;
             try {
-                String query = "SELECT idProf, nombre, apellidos FROM profesor "
+                String query = "SELECT idProf, nombre, apellidos, estado FROM profesor "
                         + "WHERE idProf = ?";
                 pstmt = conn.prepareStatement(query);
                 pstmt.setInt(1, index);
                 rs = pstmt.executeQuery();
                 while (rs.next()) {
                     String line = rs.getString("idProf") + ", " + rs.getString("nombre")
-                            + ", " + rs.getString("apellidos");
+                            + ", " + rs.getString("apellidos") + ", "
+                            + rs.getString("estado");;
                     profesList.add(line);
                 }
             } catch (Exception e) {
