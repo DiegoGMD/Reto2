@@ -11,6 +11,7 @@ import java.util.ArrayList;
  * @author Administrador
  */
 public class Consultas extends javax.swing.JFrame {
+
     private ConfigData configData;
 
     /**
@@ -22,6 +23,7 @@ public class Consultas extends javax.swing.JFrame {
         configData = new ConfigData();
     }
     int selection = 1;
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,7 +41,7 @@ public class Consultas extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 204, 204));
 
-        jLabelConsulta.setText("Seleciona la consulta:");
+        jLabelConsulta.setText("Select the query:");
 
         jComboBoxConsulta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Company data", "Company and practices", "Tutor and FCT info", "Students in company", "Issues in company", "Request per company", "Company per tecnology", "Company history" }));
         jComboBoxConsulta.addActionListener(new java.awt.event.ActionListener() {
@@ -55,7 +57,7 @@ public class Consultas extends javax.swing.JFrame {
             }
         });
 
-        jButtonVolver.setText("Volver");
+        jButtonVolver.setText("Back");
         jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVolverActionPerformed(evt);
@@ -100,35 +102,35 @@ public class Consultas extends javax.swing.JFrame {
         switch (jComboBoxConsulta.getSelectedIndex()) {
             case 0:
                 selection = 1;
-               break;
-           case 1:
-               selection = 2;
-               break;
-           case 2:
-               selection = 3;
-               break;
-           case 3:
-               selection = 4;
-               break;
-           case 4:
-               selection = 5;
-               break;
-           case 5:
-               selection = 6;
-               break;  
-           case 6:
-               selection = 7;
-               break;
-           case 7:
-               selection = 8;
-               break;    
+                break;
+            case 1:
+                selection = 2;
+                break;
+            case 2:
+                selection = 3;
+                break;
+            case 3:
+                selection = 4;
+                break;
+            case 4:
+                selection = 5;
+                break;
+            case 5:
+                selection = 6;
+                break;
+            case 6:
+                selection = 7;
+                break;
+            case 7:
+                selection = 8;
+                break;
         }
     }//GEN-LAST:event_jComboBoxConsultaActionPerformed
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
-         setVisible(false);
-         //Main main = new Main();
-         //main.setVisible(true);
+        setVisible(false);
+        //Main main = new Main();
+        //main.setVisible(true);
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     private void OKjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKjButtonActionPerformed
@@ -140,30 +142,33 @@ public class Consultas extends javax.swing.JFrame {
         C6 c6 = new C6();
         C7 c7 = new C7();
         C8 c8 = new C8();
-        if (selection == 1) {
-            setVisible(false);
-            c1.setVisible(true);
-        } else if (selection == 2) {
-            setVisible(false);
-            c2.setVisible(true);
-        }else if (selection == 3) {
-            setVisible(false);
-            c3.setVisible(true);
-        } else if (selection == 4) {
-            setVisible(false);
-            c4.setVisible(true);
-        } else if (selection == 5) {
-            setVisible(false);
-            c5.setVisible(true);
-        } else if (selection == 6) {
-            setVisible(false);
-            c6.setVisible(true);
-        } else if (selection == 7) {
-            setVisible(false);
-            c7.setVisible(true);
-        } else if (selection == 8) {
-            setVisible(false);
-            c8.setVisible(true);
+        switch (selection) {
+            case 1:
+                c1.setVisible(true);
+                break;
+            case 2:
+                c2.setVisible(true);
+                break;
+            case 3:
+                c3.setVisible(true);
+                break;
+            case 4:
+                c4.setVisible(true);
+                break;
+            case 5:
+                c5.setVisible(true);
+                break;
+            case 6:
+                c6.setVisible(true);
+                break;
+            case 7:
+                c7.setVisible(true);
+                break;
+            case 8:
+                c8.setVisible(true);
+                break;
+            default:
+                break;
         }
     }//GEN-LAST:event_OKjButtonActionPerformed
 

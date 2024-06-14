@@ -448,10 +448,10 @@ public class MyConnection1 {
                         }
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error while executing the query: Datos insuficientes");
+                    JOptionPane.showMessageDialog(null, "Error while executing the query: Insufficient information");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Error while executing the query: No has agregado información");
+                JOptionPane.showMessageDialog(null, "Error while executing the query: You haven't added information");
             }
         }
     }
@@ -491,10 +491,10 @@ public class MyConnection1 {
                         }
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error while executing the query: Datos insuficientes");
+                    JOptionPane.showMessageDialog(null, "Error while executing the query: Insufficient information");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Error while executing the query: No has agregado información");
+                JOptionPane.showMessageDialog(null, "Error while executing the query: You haven't added information");
             }
         }
     }
@@ -536,10 +536,10 @@ public class MyConnection1 {
                         }
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error while executing the query: Datos insuficientes");
+                    JOptionPane.showMessageDialog(null, "Error while executing the query: Insufficient information");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Error while executing the query: No has agregado información");
+                JOptionPane.showMessageDialog(null, "Error while executing the query: You haven't added information");
             }
         }
     }
@@ -584,7 +584,7 @@ public class MyConnection1 {
                 stmt.close();
 
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error while executing the query: " + e.toString());
             } finally {
                 try {
                     if (conn != null) {

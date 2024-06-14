@@ -5,6 +5,7 @@
 package com.mycompany.reto2;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -45,8 +46,16 @@ public class LogIn extends javax.swing.JDialog {
                 System.exit(0);
             }
         });
+        setBackgroundColor();
         addBongo();
         addBongo2();
+    }
+
+    public void setBackgroundColor() {
+        // Set the background color to #F9AAB0
+        Color backgroundColor = Color.decode("#ffcccc");
+        getContentPane().setBackground(backgroundColor);
+        jPanel1.setBackground(backgroundColor);
     }
 
     public void addBongo() {
@@ -187,8 +196,6 @@ public class LogIn extends javax.swing.JDialog {
             jPanelLogoBongoPhoto2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-
-        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

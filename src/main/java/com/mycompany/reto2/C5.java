@@ -159,7 +159,7 @@ public class C5 extends javax.swing.JFrame {
             jTextFieldComment.setText(datos[2]);
         }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No hay incidencias para la opcion seleccionada");
+            JOptionPane.showMessageDialog(null, "There are no incidents for the selected option.");
             jTextFieldIssueNumber.setText("Empty");
             jTextFieldIssueDate.setText("Empty");
             jTextFieldComment.setText("Empty");

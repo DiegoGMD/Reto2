@@ -129,6 +129,9 @@ public class EditFCTsData extends javax.swing.JFrame {
         jLabelStudentsRequests = new javax.swing.JLabel();
         jTextFieldAssignedStudents = new javax.swing.JTextField();
         jTextFieldStatus = new javax.swing.JTextField();
+        jLabelCompanyName = new javax.swing.JLabel();
+        jTextFieldCompanyName = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jButtonAdd = new javax.swing.JButton();
         jButtonModify = new javax.swing.JButton();
         jButtonDelete = new javax.swing.JButton();
@@ -139,6 +142,7 @@ public class EditFCTsData extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTextPane1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(474, 371));
 
         jListCompanies.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -198,6 +202,12 @@ public class EditFCTsData extends javax.swing.JFrame {
             }
         });
 
+        jLabelCompanyName.setText("Company Name:");
+
+        jTextFieldCompanyName.setText("Unknown");
+
+        jLabel1.setText("Group Name:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -205,19 +215,22 @@ public class EditFCTsData extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldStatus)
                     .addComponent(jTextFieldCompanyId)
                     .addComponent(jTextFieldGroupId)
+                    .addComponent(jLabelCourseId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelCompanyName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldCompanyName)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldStatus)
                     .addComponent(jTextFieldYear)
                     .addComponent(jTextFieldAssignedStudents)
+                    .addComponent(jLabelYear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelStudentsRequests, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelCompanyId)
                             .addComponent(jLabelAssignedStudents))
-                        .addGap(0, 2, Short.MAX_VALUE))
-                    .addComponent(jLabelCourseId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelYear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelStudentsRequests, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 36, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -228,9 +241,15 @@ public class EditFCTsData extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldCompanyId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelCompanyName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelCourseId)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldGroupId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelYear)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -243,10 +262,12 @@ public class EditFCTsData extends javax.swing.JFrame {
                 .addComponent(jLabelStudentsRequests)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jButtonAdd.setText("Add");
+        jButtonAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAddActionPerformed(evt);
@@ -254,6 +275,8 @@ public class EditFCTsData extends javax.swing.JFrame {
         });
 
         jButtonModify.setText("Modify");
+        jButtonModify.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonModify.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButtonModify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonModifyActionPerformed(evt);
@@ -261,6 +284,8 @@ public class EditFCTsData extends javax.swing.JFrame {
         });
 
         jButtonDelete.setText("Delete");
+        jButtonDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDeleteActionPerformed(evt);
@@ -268,6 +293,8 @@ public class EditFCTsData extends javax.swing.JFrame {
         });
 
         jButtonUpdate.setText("Update");
+        jButtonUpdate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonUpdate.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonUpdateActionPerformed(evt);
@@ -275,6 +302,8 @@ public class EditFCTsData extends javax.swing.JFrame {
         });
 
         jButtonBack.setText("Back");
+        jButtonBack.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonBack.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButtonBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBackActionPerformed(evt);
@@ -282,6 +311,13 @@ public class EditFCTsData extends javax.swing.JFrame {
         });
 
         jButtonHelp.setText("Help");
+        jButtonHelp.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonHelp.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonHelpActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -290,41 +326,46 @@ public class EditFCTsData extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButtonAdd)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonModify)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonDelete)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonUpdate)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonHelp)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonBack))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButtonModify)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonDelete)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonUpdate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonBack)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonHelp)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonAdd, jButtonBack, jButtonDelete, jButtonHelp, jButtonModify, jButtonUpdate});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jButtonAdd)
                     .addComponent(jButtonModify)
                     .addComponent(jButtonDelete)
                     .addComponent(jButtonUpdate)
-                    .addComponent(jButtonHelp)
-                    .addComponent(jButtonBack))
-                .addContainerGap())
+                    .addComponent(jButtonBack)
+                    .addComponent(jButtonHelp))
+                .addGap(6, 6, 6))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonAdd, jButtonBack, jButtonDelete, jButtonHelp, jButtonModify, jButtonUpdate});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -375,6 +416,11 @@ public class EditFCTsData extends javax.swing.JFrame {
         reloadWindow();
     }//GEN-LAST:event_jButtonUpdateActionPerformed
 
+    private void jButtonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHelpActionPerformed
+        EditFCTsHelp help = new EditFCTsHelp();
+        help.setVisible(true);
+    }//GEN-LAST:event_jButtonHelpActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -424,8 +470,10 @@ public class EditFCTsData extends javax.swing.JFrame {
     private javax.swing.JButton jButtonHelp;
     private javax.swing.JButton jButtonModify;
     private javax.swing.JButton jButtonUpdate;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelAssignedStudents;
     private javax.swing.JLabel jLabelCompanyId;
+    private javax.swing.JLabel jLabelCompanyName;
     private javax.swing.JLabel jLabelCourseId;
     private javax.swing.JLabel jLabelStudentsRequests;
     private javax.swing.JLabel jLabelYear;
@@ -435,6 +483,7 @@ public class EditFCTsData extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextFieldAssignedStudents;
     private javax.swing.JTextField jTextFieldCompanyId;
+    private javax.swing.JTextField jTextFieldCompanyName;
     private javax.swing.JTextField jTextFieldGroupId;
     private javax.swing.JTextField jTextFieldStatus;
     private javax.swing.JTextField jTextFieldYear;

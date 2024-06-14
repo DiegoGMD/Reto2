@@ -63,7 +63,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabelConsulta">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Seleciona la consulta:"/>
+        <Property name="text" type="java.lang.String" value="Select the query:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBoxConsulta">
@@ -98,7 +98,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButtonVolver">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Volver"/>
+        <Property name="text" type="java.lang.String" value="Back"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonVolverActionPerformed"/>

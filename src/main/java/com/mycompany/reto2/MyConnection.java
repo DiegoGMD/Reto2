@@ -33,7 +33,7 @@ public class MyConnection {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(cadena, usuario, contraseña);
         } catch (Exception e) {
-            JOptionPane.showInternalMessageDialog(null, "No se pudo conectar" + e.toString());
+            JOptionPane.showInternalMessageDialog(null, "Couldn't connect" + e.toString());
         }
         return connection;
     }
@@ -50,7 +50,7 @@ public class MyConnection {
                 stmt.close();
                 conn.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error when making the query: " + e.toString());
             }
         }
     }
@@ -73,7 +73,7 @@ public class MyConnection {
                 stmt.close();
                 conn.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error when making the query: " + e.toString());
             }
         }
         return Empresas.toArray(new String[0]);
@@ -97,7 +97,7 @@ public class MyConnection {
                 stmt.close();
                 conn.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error when making the query: " + e.toString());
             }
         }
         return Ciclo.toArray(new String[0]);
@@ -121,7 +121,7 @@ public class MyConnection {
                 stmt.close();
                 conn.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error when making the query: " + e.toString());
             }
         }
         return Ciclo.toArray(new String[0]);
@@ -145,7 +145,7 @@ public class MyConnection {
                 stmt.close();
                 conn.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error when making the query: " + e.toString());
             }
         }
         return Grupo.toArray(new String[0]);
@@ -172,7 +172,7 @@ public class MyConnection {
                 stmt.close();
                 conn.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error when making the query: " + e.toString());
             }
         }
         return profesList;
@@ -191,10 +191,10 @@ public class MyConnection {
                 pstmt.setString(4, estado);
                 int rs = pstmt.executeUpdate();
                 if (rs > 0) {
-                    JOptionPane.showMessageDialog(null, "Profesor agregado con éxito");
+                    JOptionPane.showMessageDialog(null, "Professor added successfully");
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error when making the query: " + e.toString());
             } finally {
                 try {
                     if (pstmt != null) {
@@ -223,12 +223,12 @@ public class MyConnection {
                 pstmt.setString(4, ID);
                 int rs = pstmt.executeUpdate();
                 if (rs > 0) {
-                    JOptionPane.showMessageDialog(null, "Profesor modificado con éxito");
+                    JOptionPane.showMessageDialog(null, "Professor modified successfully");
                 } else {
-                    JOptionPane.showMessageDialog(null, "No se encontró el profesor con el ID proporcionado");
+                    JOptionPane.showMessageDialog(null, "The professor with the provided ID was not found");
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error when making the query: " + e.toString());
             } finally {
                 try {
                     if (pstmt != null) {
@@ -254,12 +254,12 @@ public class MyConnection {
                 pstmt.setString(1, ID);
                 int rs = pstmt.executeUpdate();
                 if (rs > 0) {
-                    JOptionPane.showMessageDialog(null, "Estado del profesor actualizado a 'Inactivo' con éxito");
+                    JOptionPane.showMessageDialog(null, "Professor status successfully updated to 'Inactive'");
                 } else {
-                    JOptionPane.showMessageDialog(null, "No se encontró el profesor con el ID proporcionado");
+                    JOptionPane.showMessageDialog(null, "The professor with the provided ID was not found");
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error when making the query: " + e.toString());
             } finally {
                 try {
                     if (pstmt != null) {
@@ -295,7 +295,7 @@ public class MyConnection {
                     profesList.add(line);
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error when making the query: " + e.toString());
             } finally {
                 try {
                     if (rs != null) {
@@ -351,7 +351,7 @@ public class MyConnection {
                 stmt.close();
                 conn.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error when making the query: " + e.toString());
             }
         }
         for (String dato : datos) {
@@ -387,14 +387,14 @@ public class MyConnection {
                         datos.add(line);
                         datos.add(line2);
                     } else {
-                        JOptionPane.showMessageDialog(null, "Alguna de las dos opciones no tiene fct solicitada");
+                        JOptionPane.showMessageDialog(null, "Neither of the two options meets the required work experience (FCT)");
                     }
                 }
                 rs.close();
                 stmt.close();
                 conn.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta" + e.toString());
+                JOptionPane.showMessageDialog(null, "Error when making the query" + e.toString());
             }
         }
         for (String dato : datos) {
@@ -436,14 +436,14 @@ public class MyConnection {
                         datos.add(line3);
                         datos.add(line4);
                     } else {
-                        JOptionPane.showMessageDialog(null, "Alguna de las dos opciones no tiene fct solicitada");
+                        JOptionPane.showMessageDialog(null, "One of the two options does not have the requested internship (FCT)");
                     }
                 }
                 rs.close();
                 stmt.close();
                 conn.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta" + e.toString());
+                JOptionPane.showMessageDialog(null, "Error when making the query" + e.toString());
             }
         }
         for (String dato : datos) {
@@ -473,7 +473,7 @@ public class MyConnection {
                 stmt.close();
                 conn.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error when making the query: " + e.toString());
             }
         }
         return verificacion;
@@ -508,7 +508,7 @@ public class MyConnection {
                     companyList.add(line);
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error when making the query: " + e.toString());
             } finally {
                 try {
                     if (rs != null) {
@@ -548,7 +548,7 @@ public class MyConnection {
                     companyList.add(line);
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error when making the query: " + e.toString());
             } finally {
                 try {
                     if (rs != null) {
@@ -578,12 +578,12 @@ public class MyConnection {
                 pstmt.setString(1, idEmpresa);
                 int rs = pstmt.executeUpdate();
                 if (rs > 0) {
-                    JOptionPane.showMessageDialog(null, "Estado de la empresa actualizado a 'Inactivo' con éxito");
+                    JOptionPane.showMessageDialog(null, "Company status updated to 'Inactive' successfully");
                 } else {
-                    JOptionPane.showMessageDialog(null, "No se encontró la empresa con el ID proporcionado");
+                    JOptionPane.showMessageDialog(null, "The company with the provided ID was not found");
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error when making the query: " + e.toString());
             } finally {
                 try {
                     if (pstmt != null) {
@@ -612,12 +612,12 @@ public class MyConnection {
                 pstmt.setString(4, idEmpresa);
                 int rs = pstmt.executeUpdate();
                 if (rs > 0) {
-                    JOptionPane.showMessageDialog(null, "Empresa modificada con éxito");
+                    JOptionPane.showMessageDialog(null, "Company modified successfully");
                 } else {
-                    JOptionPane.showMessageDialog(null, "No se encontró la empresa con el ID proporcionado");
+                    JOptionPane.showMessageDialog(null, "The company with the provided ID was not found");
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error when making the query: " + e.toString());
             } finally {
                 try {
                     if (pstmt != null) {
@@ -664,7 +664,7 @@ public class MyConnection {
                 stmt.close();
                 conn.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error when making the query: " + e.toString());
             }
         }
         return profesList;
@@ -700,7 +700,7 @@ public class MyConnection {
                     companyList.add(line);
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error when making the query: " + e.toString());
             } finally {
                 try {
                     if (rs != null) {
@@ -719,5 +719,4 @@ public class MyConnection {
         }
         return companyList;
     }
-
 }

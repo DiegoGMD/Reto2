@@ -105,7 +105,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Tecnologia"/>
+        <Property name="text" type="java.lang.String" value="Tecnology"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">
@@ -120,7 +120,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Empresa"/>
+        <Property name="text" type="java.lang.String" value="Company"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldEmpresa">

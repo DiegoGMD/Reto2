@@ -32,7 +32,7 @@ public class MyConnection3 {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(cadena, usuario, contraseña);
         } catch (Exception e) {
-            JOptionPane.showInternalMessageDialog(null, "No se pudo conectar" + e.toString());
+            JOptionPane.showInternalMessageDialog(null, "The connection could not be established" + e.toString());
         }
         return connection;
     }
@@ -49,7 +49,7 @@ public class MyConnection3 {
                         + "JOIN empresa ON incidencia.idempresa = empresa.idempresa "
                         + "JOIN prevision_fct ON empresa.idempresa = prevision_fct.idempresa "
                         + "JOIN ciclo ON prevision_fct.idciclo = ciclo.idCiclo "
-                        + "WHERE ciclo.ciclo = '"+ cicloSelec +"';";
+                        + "WHERE ciclo.ciclo = '" + cicloSelec + "';";
                 PreparedStatement pstmt = conn.prepareStatement(query);
                 ResultSet rs = pstmt.executeQuery();
 
@@ -65,7 +65,7 @@ public class MyConnection3 {
                 pstmt.close();
                 conn.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error while executing the query: " + e.toString());
             }
         }
         for (String dato : datos) {
@@ -73,20 +73,20 @@ public class MyConnection3 {
         }
         return datos.toArray(new String[0]);
     }
-    
+
     public List<String> datosSolicitadosPorEmpresaYCiclo(String companySelected, String cycleSelected) {
         Connection conn = makeConection();
         List<String> datos = new ArrayList<>();
         if (conn != null) {
             try {
                 String query = "SELECT e.nombre AS CompanyName, pf.totalSoli AS TotalSoli, c.ciclo AS Cycle, c.curso AS Year "
-                + "FROM empresa e "
-                + "JOIN prevision_fct pf ON e.idempresa = pf.idempresa "
-                + "JOIN ciclo c ON pf.idciclo = c.idCiclo "
-                + "WHERE e.nombre = '"+ companySelected +"' "
-                + "AND c.ciclo = '"+ cycleSelected +"' ";
+                        + "FROM empresa e "
+                        + "JOIN prevision_fct pf ON e.idempresa = pf.idempresa "
+                        + "JOIN ciclo c ON pf.idciclo = c.idCiclo "
+                        + "WHERE e.nombre = '" + companySelected + "' "
+                        + "AND c.ciclo = '" + cycleSelected + "' ";
 
-                PreparedStatement pstmt = conn.prepareStatement(query);              
+                PreparedStatement pstmt = conn.prepareStatement(query);
                 ResultSet rs = pstmt.executeQuery();
 
                 while (rs.next()) {
@@ -103,7 +103,7 @@ public class MyConnection3 {
                 pstmt.close();
                 conn.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error while executing the query: " + e.toString());
             }
         }
         for (String dato : datos) {
@@ -111,15 +111,4 @@ public class MyConnection3 {
         }
         return datos;
     }
-
-
-
-
- 
-    
-    
-    
-    
-    
-    
 }

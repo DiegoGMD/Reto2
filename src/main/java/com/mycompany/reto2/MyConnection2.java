@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
  * @author Administrador
  */
 public class MyConnection2 {
+
     public static Connection connection = null;
     public static String usuario = "root";
     public static String contraseña = "Virtual01";
@@ -30,11 +31,11 @@ public class MyConnection2 {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(cadena, usuario, contraseña);
         } catch (Exception e) {
-            JOptionPane.showInternalMessageDialog(null, "No se pudo conectar" + e.toString());
+            JOptionPane.showInternalMessageDialog(null, "The connection could not be established" + e.toString());
         }
         return connection;
     }
-    
+
     public String[] listaTec() {
         Connection conn = makeConection();
         List<String> Tec = new ArrayList<>();
@@ -53,12 +54,12 @@ public class MyConnection2 {
                 stmt.close();
                 conn.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error while executing the query: " + e.toString());
             }
         }
         return Tec.toArray(new String[0]);
     }
-    
+
     public String[] empresaDesdeTecnologia(String tecnologia) {
         Connection conn = makeConection();
         List<String> Empresa = new ArrayList<>();
@@ -80,12 +81,12 @@ public class MyConnection2 {
                 stmt.close();
                 conn.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error while executing the query: " + e.toString());
             }
         }
         return Empresa.toArray(new String[0]);
     }
-    
+
     public String[] historialContacto(String empresa) {
         Connection conn = makeConection();
         List<String> info = new ArrayList<>();
@@ -109,12 +110,12 @@ public class MyConnection2 {
                 stmt.close();
                 conn.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error while executing the query: " + e.toString());
             }
         }
         return info.toArray(new String[0]);
     }
-    
+
     public List<String> informacionEmpresaYCicloSelecionado(String empresaSelec, String cicloSelec) {
         Connection conn = makeConection();
         List<String> datos = new ArrayList<>();
@@ -150,7 +151,7 @@ public class MyConnection2 {
                 stmt.close();
                 conn.close();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.toString());
+                JOptionPane.showMessageDialog(null, "Error while executing the query: " + e.toString());
             }
         }
         for (String dato : datos) {

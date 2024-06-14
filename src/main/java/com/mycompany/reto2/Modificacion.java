@@ -4,6 +4,8 @@
  */
 package com.mycompany.reto2;
 
+import java.awt.Color;
+
 /**
  *
  * @author Administrador
@@ -36,16 +38,16 @@ public class Modificacion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Selecciona el elemento a modificar");
+        jLabel1.setText("Select the element to modify");
 
-        jComboBoxElementos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona una opcion", "Empresa", "Contacto con empresa", "Profesores", "FCT" }));
+        jComboBoxElementos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select an option", "Company", "Contact with company", "Teachers", "FCT", " " }));
         jComboBoxElementos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxElementosActionPerformed(evt);
             }
         });
 
-        jButtonVolver.setText("Volver");
+        jButtonVolver.setText("Back");
         jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVolverActionPerformed(evt);
@@ -75,7 +77,7 @@ public class Modificacion extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jComboBoxElementos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 131, Short.MAX_VALUE)))
+                        .addGap(0, 160, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -117,20 +119,28 @@ public class Modificacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxElementosActionPerformed
 
     private void jButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOKActionPerformed
-        if (elemento == 1) {
-            EditCompaniesData editCompaniesData = new EditCompaniesData();
-            setVisible(false);
-            editCompaniesData.setVisible(true);
-        } else if (elemento == 2) {
-            
-        } else if (elemento == 3) {
-            
-        } else if (elemento == 4) {
-            
+        switch (elemento) {
+            case 1:
+                EditCompanyData editCompanyData = new EditCompanyData();
+                editCompanyData.setVisible(true);
+                break;
+            case 2:
+                EditContactData editContactData = new EditContactData();
+                editContactData.setVisible(true);
+                break;
+            case 3:
+                EditTeachersData editTeachersData = new EditTeachersData();
+                editTeachersData.setVisible(true);
+                break;
+            case 4:
+                EditFCTsData editFCTsData = new EditFCTsData();
+                editFCTsData.setVisible(true);
+                break;
+            default:
+                break;
         }
     }//GEN-LAST:event_jButtonOKActionPerformed
 
-    
     /**
      * @param args the command line arguments
      */

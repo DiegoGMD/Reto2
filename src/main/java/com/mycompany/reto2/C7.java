@@ -49,7 +49,7 @@ public class C7 extends javax.swing.JFrame {
 
         jLabel1.setText("Select 1 option:");
 
-        jLabel3.setText("Tecnologia");
+        jLabel3.setText("Tecnology");
 
         jButton1.setText("OK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -58,7 +58,7 @@ public class C7 extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Empresa");
+        jLabel2.setText("Company");
 
         jButtonVolver.setText("Back");
         jButtonVolver.addActionListener(new java.awt.event.ActionListener() {

@@ -21,7 +21,6 @@ public class ConfigData {
     String puerto = "3306";
     String cadena = "jdbc:mysql://" + ip + ":" + puerto + "/" + bd;
     
-
     public String getUsername() {
         return username;
     }
