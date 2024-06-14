@@ -128,9 +128,7 @@ public class Consultas extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxConsultaActionPerformed
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
-        setVisible(false);
-        //Main main = new Main();
-        //main.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
     private void OKjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKjButtonActionPerformed
