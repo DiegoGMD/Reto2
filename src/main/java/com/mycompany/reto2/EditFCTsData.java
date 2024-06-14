@@ -77,7 +77,9 @@ public class EditFCTsData extends javax.swing.JFrame {
 
     private void setTextFields(String[] values) {
         jTextFieldCompanyId.setText(values[0]);
+        jTextFieldCompanyName.setText(values[1]);
         jTextFieldGroupId.setText(values[2]);
+        jTextFieldGroupName.setText(values[3]);
         jTextFieldYear.setText(values[4]);
         jTextFieldAssignedStudents.setText(values[5]);
         jTextFieldStatus.setText(values[6]);
@@ -85,7 +87,9 @@ public class EditFCTsData extends javax.swing.JFrame {
 
     private void setEmptyTextFields() {
         jTextFieldCompanyId.setText(" ");
+        jTextFieldCompanyName.setText(" ");
         jTextFieldGroupId.setText(" ");
+        jTextFieldGroupName.setText(" ");
         jTextFieldYear.setText(" ");
         jTextFieldAssignedStudents.setText(" ");
         jTextFieldStatus.setText(" ");
@@ -132,6 +136,7 @@ public class EditFCTsData extends javax.swing.JFrame {
         jLabelCompanyName = new javax.swing.JLabel();
         jTextFieldCompanyName = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jTextFieldGroupName = new javax.swing.JTextField();
         jButtonAdd = new javax.swing.JButton();
         jButtonModify = new javax.swing.JButton();
         jButtonDelete = new javax.swing.JButton();
@@ -208,6 +213,13 @@ public class EditFCTsData extends javax.swing.JFrame {
 
         jLabel1.setText("Group Name:");
 
+        jTextFieldGroupName.setText("Unknown");
+        jTextFieldGroupName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldGroupNameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -218,9 +230,10 @@ public class EditFCTsData extends javax.swing.JFrame {
                     .addComponent(jTextFieldCompanyId)
                     .addComponent(jTextFieldGroupId)
                     .addComponent(jLabelCourseId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelCompanyName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelCompanyName, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
                     .addComponent(jTextFieldCompanyName)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldGroupName)
                     .addComponent(jTextFieldStatus)
                     .addComponent(jTextFieldYear)
                     .addComponent(jTextFieldAssignedStudents)
@@ -230,7 +243,7 @@ public class EditFCTsData extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelCompanyId)
                             .addComponent(jLabelAssignedStudents))
-                        .addGap(0, 36, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -250,6 +263,8 @@ public class EditFCTsData extends javax.swing.JFrame {
                 .addComponent(jTextFieldGroupId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldGroupName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelYear)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -352,7 +367,7 @@ public class EditFCTsData extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
@@ -362,7 +377,7 @@ public class EditFCTsData extends javax.swing.JFrame {
                     .addComponent(jButtonUpdate)
                     .addComponent(jButtonBack)
                     .addComponent(jButtonHelp))
-                .addGap(6, 6, 6))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonAdd, jButtonBack, jButtonDelete, jButtonHelp, jButtonModify, jButtonUpdate});
@@ -420,6 +435,10 @@ public class EditFCTsData extends javax.swing.JFrame {
         EditFCTsHelp help = new EditFCTsHelp();
         help.setVisible(true);
     }//GEN-LAST:event_jButtonHelpActionPerformed
+
+    private void jTextFieldGroupNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldGroupNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldGroupNameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -485,6 +504,7 @@ public class EditFCTsData extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldCompanyId;
     private javax.swing.JTextField jTextFieldCompanyName;
     private javax.swing.JTextField jTextFieldGroupId;
+    private javax.swing.JTextField jTextFieldGroupName;
     private javax.swing.JTextField jTextFieldStatus;
     private javax.swing.JTextField jTextFieldYear;
     private javax.swing.JTextPane jTextPane1;

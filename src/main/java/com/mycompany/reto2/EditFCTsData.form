@@ -70,7 +70,7 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jPanel1" pref="330" max="32767" attributes="0"/>
+                  <Component id="jPanel1" pref="358" max="32767" attributes="0"/>
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -82,7 +82,7 @@
                   <Component id="jButtonBack" linkSize="2" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonHelp" linkSize="2" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -141,9 +141,10 @@
                       <Component id="jTextFieldCompanyId" max="32767" attributes="0"/>
                       <Component id="jTextFieldGroupId" alignment="0" max="32767" attributes="0"/>
                       <Component id="jLabelCourseId" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jLabelCompanyName" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jLabelCompanyName" alignment="0" pref="136" max="32767" attributes="0"/>
                       <Component id="jTextFieldCompanyName" alignment="0" max="32767" attributes="0"/>
                       <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jTextFieldGroupName" alignment="0" max="32767" attributes="0"/>
                       <Component id="jTextFieldStatus" max="32767" attributes="0"/>
                       <Component id="jTextFieldYear" alignment="0" max="32767" attributes="0"/>
                       <Component id="jTextFieldAssignedStudents" alignment="0" max="32767" attributes="0"/>
@@ -154,7 +155,7 @@
                               <Component id="jLabelCompanyId" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelAssignedStudents" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="36" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -178,6 +179,8 @@
                   <Component id="jTextFieldGroupId" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jTextFieldGroupName" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabelYear" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -275,6 +278,14 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Group Name:"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextFieldGroupName">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Unknown"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldGroupNameActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
